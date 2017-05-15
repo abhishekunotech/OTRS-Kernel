@@ -88,5 +88,3 @@ Installing Memcache
  14. systemctl restart httpd
  15. su - otrs
  16. bin/otrs.Console.pl Maint::Config::Rebuild
-
- 

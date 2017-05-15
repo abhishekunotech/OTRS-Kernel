@@ -72,6 +72,9 @@ sub Load {
     # ---------------------------------------------------- #
     # $Self->{SessionUseCookie} = 0;
     # $Self->{CheckMXRecord} = 0;
+    
+
+    $Self->{Memcached} = {'Servers' => ['127.0.0.1:11211'], 'Parameters' => {'compress_threshold' => 10_000, 'utf8'=>1}};
 
     # This is an example configuration for an LDAP auth. backend.
     # (make sure Net::LDAP is installed!)
