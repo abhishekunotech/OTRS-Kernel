@@ -66,3 +66,27 @@ Committing code to Git
  2. git commit -am "<your message>"
  3. git push
 
+Installing Memcache
+---------------------
+
+### Steps ###
+ 
+ 0. Pull the latest code
+ 1. yum install -y gcc memcached patch
+ 2. git clone https://github.com/JRaspass/Cache-Memcached-Fast.git
+ 3. cd Cache-Memcached-Fast
+ 4. perl Makefile.pl
+ 5. make
+ 6. systemctl start memcached
+ 7. make test
+ 8. make install
+ 9. cd /opt/otrs/OTRS-Kernel
+ 10. cp otrs-memcached.patch ../../otrs
+ 11. patch -i otrs-memcached.patch
+ 12. Go to <ip_of_otrs_server>/otrs/index.pl?Action=AdminSysConfig;Subaction=Edit;SysConfigSubGroup=Core::Cache;SysConfigGroup=Framework;#
+ 13. Change Cache Module to Memcached and enable disabled checkboxes.
+ 14. systemctl restart httpd
+ 15. su - otrs
+ 16. bin/otrs.Console.pl Maint::Config::Rebuild
+
+ 
