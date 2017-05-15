@@ -37,32 +37,3 @@ Installing PostgreSQL Server
  7. vim /var/lib/pgsql/9.6/data/postgresql.conf
  8. Change hostname to <ip_of_postgre_server>
  9. Follow steps for Installing OTRS on new Database Server
-
-
-Backing up and Restoring PostgreSQL data
------------------------------------------
-
-### Steps ###
-
- 1. su - postgres
- 2. pg_dumpall > output.dmp
- 3. psql -f output.dmp postgres
-
-
-Restoring Config and Code from Git
------------------------------------
-
-### Steps ###
-
- 1. git pull
- 2. yes | cp -R /opt/otrs/OTRS-Kernel/* /opt/otrs/Kernel/
-
-Committing code to Git
------------------------
-
-### Steps ###
-
- 1. yes | cp -R /opt/otrs/Kernel/* /opt/otrs/OTRS-Kernel/
- 2. git commit -am "<your message>"
- 3. git push
-
