@@ -1,6 +1,8 @@
 # --
 # Copyright (C) 2001-2017 OTRS AG, http://otrs.com/
 # --
+# $origin: otrs - be4010f3365da552dcfd079c36ad31cc90e06c32 - Kernel/Output/HTML/Templates/Standard/CustomerTicketZoom.tt
+# --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
@@ -204,6 +206,16 @@
 [% RenderBlockStart("State") %]
                     <li><span class="Key">[% Translate("State") | html %]:</span> <span title="[% Translate(Data.State) | html %]">[% Translate(Data.State) | html %]</span></li>
 [% RenderBlockEnd("State") %]
+# ---
+# ITSMIncidentProblemManagement
+# ---
+[% RenderBlockStart("TicketDynamicField") %]
+                    <li>
+                        <span class="Key">[% Translate(Data.Label) | html %]:</span>
+                        <span title="[% Data.Title | html %]">[% Data.Value %]</span>
+                    </li>
+[% RenderBlockEnd("TicketDynamicField") %]
+# ---
 [% RenderBlockStart("Priority") %]
                     <li><span class="Key">[% Translate("Priority") | html %]:</span> <span title="[% Translate(Data.Priority) | html %]">[% Translate(Data.Priority) | html %]</span></li>
 [% RenderBlockEnd("Priority") %]
@@ -222,12 +234,16 @@
 [% RenderBlockEnd("ProcessData") %]
 
 # show ticket dynamic fields
-[% RenderBlockStart("TicketDynamicField") %]
-                    <li>
-                        <span class="Key">[% Translate(Data.Label) | html %]:</span>
-                        <span title="[% Data.Title | html %]">[% Data.Value %]</span>
-                    </li>
-[% RenderBlockEnd("TicketDynamicField") %]
+# ---
+# ITSMIncidentProblemManagement
+# ---
+#[% RenderBlockStart("TicketDynamicField") %]
+#                    <li>
+#                        <span class="Key">[% Translate(Data.Label) | html %]:</span>
+#                        <span title="[% Data.Title | html %]">[% Data.Value %]</span>
+#                    </li>
+#[% RenderBlockEnd("TicketDynamicField") %]
+# ---
 # example of how to use fixed dynamic field blocks for customizations
 # Note: Field1 and Field2 are the names of the fields and had to be replaced with the actual
 # field names

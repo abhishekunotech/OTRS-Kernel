@@ -1,6 +1,8 @@
 # --
 # Copyright (C) 2001-2017 OTRS AG, http://otrs.com/
 # --
+# $origin: otrs - be4010f3365da552dcfd079c36ad31cc90e06c32 - Kernel/Output/HTML/Templates/Standard/AdminService.tt
+# --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
@@ -105,6 +107,21 @@
                             [% Data.ParentOptionStrg %]
                         </div>
                         <div class="Clear"></div>
+# ---
+# ITSMCore
+# ---
+                        <label for="TypeID">[% Translate("Type") | html %]: </label>
+                        <div class="Field">
+                            [% Data.TypeOptionStrg %]
+                        </div>
+                        <div class="Clear"></div>
+
+                        <label for="Criticality">[% Translate("Criticality") | html %]: </label>
+                        <div class="Field">
+                            [% Data.CriticalityOptionStrg %]
+                        </div>
+                        <div class="Clear"></div>
+# ---
 
                         <label for="ValidID">[% Translate("Validity") | html %]: </label>
                         <div class="Field">

@@ -1,6 +1,8 @@
 # --
 # Copyright (C) 2001-2017 OTRS AG, http://otrs.com/
 # --
+# $origin: otrs - be4010f3365da552dcfd079c36ad31cc90e06c32 - Kernel/Modules/AgentTicketPrint.pm
+# --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
@@ -111,8 +113,20 @@ sub Run {
     # get content
     my %Ticket = $TicketObject->TicketGet(
         TicketID => $Self->{TicketID},
+# ---
+# ITSMIncidentProblemManagement
+# ---
+        DynamicFields => 1,
+# ---
         UserID   => $Self->{UserID},
     );
+# ---
+# ITSMIncidentProblemManagement
+# ---
+    # set criticality and impact
+    $Ticket{Criticality} = $Ticket{DynamicField_ITSMCriticality} || '-';
+    $Ticket{Impact}      = $Ticket{DynamicField_ITSMImpact}      || '-';
+# ---
     my @ArticleBox = $TicketObject->ArticleContentIndex(
         TicketID                   => $Self->{TicketID},
         StripPlainBodyAsAttachment => 1,
@@ -361,10 +375,14 @@ sub _PDFOutputTicketInfos {
             Key   => $LayoutObject->{LanguageObject}->Translate('State'),
             Value => $LayoutObject->{LanguageObject}->Translate( $Ticket{State} ),
         },
-        {
-            Key   => $LayoutObject->{LanguageObject}->Translate('Priority'),
-            Value => $LayoutObject->{LanguageObject}->Translate( $Ticket{Priority} ),
-        },
+# ---
+# ITSMIncidentProblemManagement
+# ---
+#        {
+#            Key   => $LayoutObject->{LanguageObject}->Translate('Priority'),
+#            Value => $LayoutObject->{LanguageObject}->Translate( $Ticket{Priority} ),
+#        },
+# ---
         {
             Key   => $LayoutObject->{LanguageObject}->Translate('Queue'),
             Value => $Ticket{Queue},
@@ -425,6 +443,25 @@ sub _PDFOutputTicketInfos {
         };
         push( @{$TableLeft}, $RowSLA );
     }
+# ---
+# ITSMIncidentProblemManagement
+# ---
+    my $TableLeftExtended = [
+        {
+            Key => $LayoutObject->{LanguageObject}->Translate('Criticality') . ':',
+            Value => $LayoutObject->{LanguageObject}->Translate($Ticket{Criticality}),
+        },
+        {
+            Key => $LayoutObject->{LanguageObject}->Translate('Impact') . ':',
+            Value => $LayoutObject->{LanguageObject}->Translate($Ticket{Impact}),
+        },
+        {
+            Key => $LayoutObject->{LanguageObject}->Translate('Priority') . ':',
+            Value => $LayoutObject->{LanguageObject}->Translate($Ticket{Priority}),
+        },
+    ];
+    push @{$TableLeft}, @{$TableLeftExtended};
+# ---
 
     # create right table
     my $TableRight = [

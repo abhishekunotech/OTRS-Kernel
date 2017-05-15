@@ -1,6 +1,8 @@
 # --
 # Copyright (C) 2001-2017 OTRS AG, http://otrs.com/
 # --
+# $origin: otrs - 153b251a2beb77eb9228e1a32e0f5e35f64922ae - Kernel/Output/HTML/Templates/Standard/AgentTicketZoom.tt
+# --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
@@ -188,9 +190,13 @@
                         <p class="Value" title="[% Translate(Data.Lock) | html %]">[% Translate(Data.Lock) | html %]</p>
                         <div class="Clear"></div>
 
-                        <label>[% Translate("Priority") | html %]:</label>
-                        <p class="Value" title="[% Translate(Data.Priority) | html %]">[% Translate(Data.Priority) | html %]</p>
-                        <div class="Clear"></div>
+# ---
+# ITSMIncidentProblemManagement
+# ---
+#                        <label>[% Translate("Priority") | html %]:</label>
+#                        <p class="Value" title="[% Translate(Data.Priority) | html %]">[% Translate(Data.Priority) | html %]</p>
+#                        <div class="Clear"></div>
+# ---
 
                         <label>[% Translate("Queue") | html %]:</label>
                         <p class="Value" title="[% Data.Queue | html %]">[% Data.Queue | html | replace('::', '<wbr>::<wbr>') %]</p>
@@ -198,12 +204,33 @@
 
 [% RenderBlockStart("Service") %]
                         <label>[% Translate("Service") | html %]:</label>
-                        <p class="Value" title="[% Data.Service | html %]">[% Data.Service | html %]</p>
+# ---
+# ITSMIncidentProblemManagement
+# ---
+#                        <p class="Value" title="[% Data.Service | html %]">[% Data.Service | html %]</p>
+                        <p class="Value" title="[% Data.Service | html %]">
+                            <a href="[% Env("Baselink") %]Action=AgentITSMServiceZoom;ServiceID=[% Data.ServiceID | uri %];" target="_blank">[% Data.Service | html %]</a>
+                        </p>
+                        <label>[% Translate("Service Incident State") | html %]:</label>
+                        <div class="Value">
+                            <div class="Flag Small">
+                                <span class="[% Data.CurInciSignal | html %]" title="[% Translate(Data.CurInciState) | html %]"></span>
+                            </div>
+                            <span>[% Translate(Data.CurInciState) | html %]</span>
+                        </div>
+# ---
                         <div class="Clear"></div>
 [% RenderBlockEnd("Service") %]
 [% RenderBlockStart("SLA") %]
                         <label>[% Translate("Service Level Agreement") | html %]:</label>
-                        <p class="Value" title="[% Data.SLA | html %]">[% Data.SLA | html %]</p>
+# ---
+# ITSMIncidentProblemManagement
+# ---
+#                        <p class="Value" title="[% Data.SLA | html %]">[% Data.SLA | html %]</p>
+                        <p class="Value" title="[% Data.SLA | html %]">
+                            <a href="[% Env("Baselink") %]Action=AgentITSMSLAZoom;SLAID=[% Data.SLAID | uri %];" target="_blank">[% Data.SLA | html %]</a>
+                        </p>
+# ---
                         <div class="Clear"></div>
 [% RenderBlockEnd("SLA") %]
                     </fieldset>
@@ -243,6 +270,130 @@
                         <div class="Clear"></div>
 [% RenderBlockEnd("SolutionTime") %]
                     </fieldset>
+# ---
+# ITSMIncidentProblemManagement
+# ---
+                    <fieldset class="TableLike FixedLabelSmall">
+
+[% RenderBlockStart("TicketDynamicField_ITSMCriticality") %]
+                        <label>[% Translate(Data.Label) | html %]:</label>
+                        <p class="Value">
+[% RenderBlockStart("TicketDynamicField_ITSMCriticality_Link") %]
+                            <span title="[% Data.Title | html %]"><a href="[% Data.Link | Interpolate %]" target="_blank">[% Data.Value %]</a></span>
+[% RenderBlockEnd("TicketDynamicField_ITSMCriticality_Link") %]
+[% RenderBlockStart("TicketDynamicField_ITSMCriticality_Plain") %]
+                            <span title="[% Data.Title | html %]">[% Data.Value %]</span>
+[% RenderBlockEnd("TicketDynamicField_ITSMCriticality_Plain") %]
+                        </p>
+                        <div class="Clear"></div>
+[% RenderBlockEnd("TicketDynamicField_ITSMCriticality") %]
+
+
+[% RenderBlockStart("TicketDynamicField_ITSMImpact") %]
+                        <label>[% Translate(Data.Label) | html %]:</label>
+                        <p class="Value">
+[% RenderBlockStart("TicketDynamicField_ITSMImpact_Link") %]
+                            <span title="[% Data.Title | html %]"><a href="[% Data.Link | Interpolate %]" target="_blank">[% Data.Value %]</a></span>
+[% RenderBlockEnd("TicketDynamicField_ITSMImpact_Link") %]
+[% RenderBlockStart("TicketDynamicField_ITSMImpact_Plain") %]
+                            <span title="[% Data.Title | html %]">[% Data.Value %]</span>
+[% RenderBlockEnd("TicketDynamicField_ITSMImpact_Plain") %]
+                        </p>
+                        <div class="Clear"></div>
+[% RenderBlockEnd("TicketDynamicField_ITSMImpact") %]
+
+
+                        <label>[% Translate("Priority") | html %]:</label>
+                        <p class="Value" title="[% Translate(Data.Priority) | html %]">[% Translate(Data.Priority) | html %]</p>
+                        <div class="Clear"></div>
+                    </fieldset>
+
+                    <fieldset class="TableLike FixedLabelSmall Tight">
+
+[% RenderBlockStart("TicketDynamicField_ITSMReviewRequired") %]
+                        <label>[% Translate(Data.Label) | html %]:</label>
+                        <p class="Value">
+[% RenderBlockStart("TicketDynamicField_ITSMReviewRequired_Link") %]
+                            <span title="[% Data.Title | html %]"><a href="[% Data.Link | Interpolate %]" target="_blank">[% Data.Value %]</a></span>
+[% RenderBlockEnd("TicketDynamicField_ITSMReviewRequired_Link") %]
+[% RenderBlockStart("TicketDynamicField_ITSMReviewRequired_Plain") %]
+                            <span title="[% Data.Title | html %]">[% Data.Value %]</span>
+[% RenderBlockEnd("TicketDynamicField_ITSMReviewRequired_Plain") %]
+                        </p>
+                        <div class="Clear"></div>
+[% RenderBlockEnd("TicketDynamicField_ITSMReviewRequired") %]
+
+[% RenderBlockStart("TicketDynamicField_ITSMDecisionResult") %]
+                        <label>[% Translate(Data.Label) | html %]:</label>
+                        <p class="Value">
+[% RenderBlockStart("TicketDynamicField_ITSMDecisionResult_Link") %]
+                            <span title="[% Data.Title | html %]"><a href="[% Data.Link | Interpolate %]" target="_blank">[% Data.Value %]</a></span>
+[% RenderBlockEnd("TicketDynamicField_ITSMDecisionResult_Link") %]
+[% RenderBlockStart("TicketDynamicField_ITSMDecisionResult_Plain") %]
+                            <span title="[% Data.Title | html %]">[% Data.Value %]</span>
+[% RenderBlockEnd("TicketDynamicField_ITSMDecisionResult_Plain") %]
+                        </p>
+                        <div class="Clear"></div>
+[% RenderBlockEnd("TicketDynamicField_ITSMDecisionResult") %]
+
+
+[% RenderBlockStart("TicketDynamicField_ITSMDecisionDate") %]
+                        <label>[% Translate(Data.Label) | html %]:</label>
+                        <p class="Value">
+[% RenderBlockStart("TicketDynamicField_ITSMDecisionDate_Link") %]
+                            <span title="[% Data.Title | html %]"><a href="[% Data.Link | Interpolate %]" target="_blank">[% Data.Value %]</a></span>
+[% RenderBlockEnd("TicketDynamicField_ITSMDecisionDate_Link") %]
+[% RenderBlockStart("TicketDynamicField_ITSMDecisionDate_Plain") %]
+                            <span title="[% Data.Title | html %]">[% Data.Value %]</span>
+[% RenderBlockEnd("TicketDynamicField_ITSMDecisionDate_Plain") %]
+                        </p>
+                        <div class="Clear"></div>
+[% RenderBlockEnd("TicketDynamicField_ITSMDecisionDate") %]
+
+
+[% RenderBlockStart("TicketDynamicField_ITSMRepairStartTime") %]
+                        <label>[% Translate(Data.Label) | html %]:</label>
+                        <p class="Value">
+[% RenderBlockStart("TicketDynamicField_ITSMRepairStartTime_Link") %]
+                            <span title="[% Data.Title | html %]"><a href="[% Data.Link | Interpolate %]" target="_blank">[% Data.Value %]</a></span>
+[% RenderBlockEnd("TicketDynamicField_ITSMRepairStartTime_Link") %]
+[% RenderBlockStart("TicketDynamicField_ITSMRepairStartTime_Plain") %]
+                            <span title="[% Data.Title | html %]">[% Data.Value %]</span>
+[% RenderBlockEnd("TicketDynamicField_ITSMRepairStartTime_Plain") %]
+                        </p>
+                        <div class="Clear"></div>
+[% RenderBlockEnd("TicketDynamicField_ITSMRepairStartTime") %]
+
+
+[% RenderBlockStart("TicketDynamicField_ITSMRecoveryStartTime") %]
+                        <label>[% Translate(Data.Label) | html %]:</label>
+                        <p class="Value">
+[% RenderBlockStart("TicketDynamicField_ITSMRecoveryStartTime_Link") %]
+                            <span title="[% Data.Title | html %]"><a href="[% Data.Link | Interpolate %]" target="_blank">[% Data.Value %]</a></span>
+[% RenderBlockEnd("TicketDynamicField_ITSMRecoveryStartTime_Link") %]
+[% RenderBlockStart("TicketDynamicField_ITSMRecoveryStartTime_Plain") %]
+                            <span title="[% Data.Title | html %]">[% Data.Value %]</span>
+[% RenderBlockEnd("TicketDynamicField_ITSMRecoveryStartTime_Plain") %]
+                        </p>
+                        <div class="Clear"></div>
+[% RenderBlockEnd("TicketDynamicField_ITSMRecoveryStartTime") %]
+
+
+[% RenderBlockStart("TicketDynamicField_ITSMDueDate") %]
+                        <label>[% Translate(Data.Label) | html %]:</label>
+                        <p class="Value">
+[% RenderBlockStart("TicketDynamicField_ITSMDueDate_Link") %]
+                            <span title="[% Data.Title | html %]"><a href="[% Data.Link | Interpolate %]" target="_blank">[% Data.Value %]</a></span>
+[% RenderBlockEnd("TicketDynamicField_ITSMDueDate_Link") %]
+[% RenderBlockStart("TicketDynamicField_ITSMDueDate_Plain") %]
+                            <span title="[% Data.Title | html %]">[% Data.Value %]</span>
+[% RenderBlockEnd("TicketDynamicField_ITSMDueDate_Plain") %]
+                        </p>
+                        <div class="Clear"></div>
+[% RenderBlockEnd("TicketDynamicField_ITSMDueDate") %]
+
+                    </fieldset>
+# ---
 
                     <fieldset class="TableLike FixedLabelSmall Narrow">
                         <label>[% Translate("CustomerID") | html %]:</label>

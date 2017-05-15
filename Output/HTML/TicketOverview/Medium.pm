@@ -1,6 +1,8 @@
 # --
 # Copyright (C) 2001-2017 OTRS AG, http://otrs.com/
 # --
+# $origin: otrs - be4010f3365da552dcfd079c36ad31cc90e06c32 - Kernel/Output/HTML/TicketOverview/Medium.pm
+# --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
@@ -349,6 +351,13 @@ sub _Show {
 
     # show ticket create time in current view
     $Article{Created} = $Ticket{Created};
+# ---
+# ITSMIncidentProblemManagement
+# ---
+    # set criticality and impact
+    $Article{Criticality} = $Article{DynamicField_ITSMCriticality} || '-';
+    $Article{Impact}      = $Article{DynamicField_ITSMImpact}      || '-';
+# ---
 
     # user info
     my %UserInfo = $Kernel::OM->Get('Kernel::System::User')->GetUserData(

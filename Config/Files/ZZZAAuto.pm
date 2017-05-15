@@ -7,6 +7,3105 @@ no warnings 'redefine';
 use utf8;
 sub Load {
     my ($File, $Self) = @_;
+$Self->{'Package::RepositoryList'} =  {
+  'http://ftp.otrs.org/pub/otrs/itsm/bundle5/' => 'OTRS::ITSM 5 Bundle Master'
+};
+$Self->{'Ticket::Service'} =  '1';
+$Self->{'ACLKeysLevel3::Actions'}->{'100-Default-ITSM'} =  [
+  'AgentTicketAddtlITSMField',
+  'AgentTicketDecision'
+];
+$Self->{'Ticket::Frontend::AgentTicketResponsible'}->{'ShowIncidentState'} =  '1';
+$Self->{'Ticket::Frontend::AgentTicketPriority'}->{'ShowIncidentState'} =  '1';
+$Self->{'Ticket::Frontend::AgentTicketPending'}->{'ShowIncidentState'} =  '1';
+$Self->{'Ticket::Frontend::AgentTicketOwner'}->{'ShowIncidentState'} =  '1';
+$Self->{'Ticket::Frontend::AgentTicketNote'}->{'ShowIncidentState'} =  '1';
+$Self->{'Ticket::Frontend::AgentTicketFreeText'}->{'ShowIncidentState'} =  '1';
+$Self->{'Ticket::Frontend::AgentTicketClose'}->{'ShowIncidentState'} =  '1';
+$Self->{'Ticket::Frontend::AgentTicketEmail'}->{'ShowIncidentState'} =  '1';
+$Self->{'Ticket::Frontend::AgentTicketPhone'}->{'ShowIncidentState'} =  '1';
+$Self->{'Stats::DynamicObjectRegistration'}->{'ITSMTicketSolutionTimeAverage'} =  {
+  'Module' => 'Kernel::System::Stats::Dynamic::ITSMTicketSolutionTimeAverage'
+};
+$Self->{'Stats::DynamicObjectRegistration'}->{'ITSMTicketFirstLevelSolutionRate'} =  {
+  'Module' => 'Kernel::System::Stats::Dynamic::ITSMTicketFirstLevelSolutionRate'
+};
+$Self->{'Ticket::Frontend::AgentTicketDecision'}->{'ShowIncidentState'} =  '1';
+$Self->{'Ticket::Frontend::AgentTicketDecision'}->{'HistoryComment'} =  '%%Note';
+$Self->{'Ticket::Frontend::AgentTicketDecision'}->{'HistoryType'} =  'AddNote';
+$Self->{'Ticket::Frontend::AgentTicketDecision'}->{'DynamicField'} =  {
+  'ITSMDecisionDate' => '1',
+  'ITSMDecisionResult' => '1'
+};
+$Self->{'Ticket::Frontend::AgentTicketDecision'}->{'Title'} =  '0';
+$Self->{'Ticket::Frontend::AgentTicketDecision'}->{'ArticleTypes'} =  {
+  'note-external' => '1',
+  'note-internal' => '1',
+  'note-report' => '0'
+};
+$Self->{'Ticket::Frontend::AgentTicketDecision'}->{'ArticleTypeDefault'} =  'note-internal';
+$Self->{'Ticket::Frontend::AgentTicketDecision'}->{'Body'} =  '[% Translate("Reason") | html %]:';
+$Self->{'Ticket::Frontend::AgentTicketDecision'}->{'Subject'} =  '[% Translate("Decision") | html %]';
+$Self->{'Ticket::Frontend::AgentTicketDecision'}->{'NoteMandatory'} =  '0';
+$Self->{'Ticket::Frontend::AgentTicketDecision'}->{'Note'} =  '1';
+$Self->{'Ticket::Frontend::AgentTicketDecision'}->{'StateType'} =  [
+  'open',
+  'closed',
+  'pending reminder',
+  'pending auto'
+];
+$Self->{'Ticket::Frontend::AgentTicketDecision'}->{'State'} =  '0';
+$Self->{'Ticket::Frontend::AgentTicketDecision'}->{'Responsible'} =  '0';
+$Self->{'Ticket::Frontend::AgentTicketDecision'}->{'OwnerMandatory'} =  '0';
+$Self->{'Ticket::Frontend::AgentTicketDecision'}->{'Owner'} =  '0';
+$Self->{'Ticket::Frontend::AgentTicketDecision'}->{'Queue'} =  '0';
+$Self->{'Ticket::Frontend::AgentTicketDecision'}->{'SLAMandatory'} =  '0';
+$Self->{'Ticket::Frontend::AgentTicketDecision'}->{'ServiceMandatory'} =  '0';
+$Self->{'Ticket::Frontend::AgentTicketDecision'}->{'Service'} =  '0';
+$Self->{'Ticket::Frontend::AgentTicketDecision'}->{'TicketType'} =  '0';
+$Self->{'Ticket::Frontend::AgentTicketDecision'}->{'RequiredLock'} =  '0';
+$Self->{'Ticket::Frontend::AgentTicketDecision'}->{'Permission'} =  'rw';
+$Self->{'Ticket::Frontend::AgentTicketAddtlITSMField'}->{'ShowIncidentState'} =  '1';
+$Self->{'Ticket::Frontend::AgentTicketAddtlITSMField'}->{'HistoryComment'} =  '%%FreeText';
+$Self->{'Ticket::Frontend::AgentTicketAddtlITSMField'}->{'HistoryType'} =  'AddNote';
+$Self->{'Ticket::Frontend::AgentTicketAddtlITSMField'}->{'DynamicField'} =  {
+  'ITSMDueDate' => '1',
+  'ITSMRecoveryStartTime' => '1',
+  'ITSMRepairStartTime' => '1'
+};
+$Self->{'Ticket::Frontend::AgentTicketAddtlITSMField'}->{'Title'} =  '1';
+$Self->{'Ticket::Frontend::AgentTicketAddtlITSMField'}->{'ArticleTypes'} =  {
+  'note-external' => '1',
+  'note-internal' => '1',
+  'note-report' => '0'
+};
+$Self->{'Ticket::Frontend::AgentTicketAddtlITSMField'}->{'ArticleTypeDefault'} =  'note-internal';
+$Self->{'Ticket::Frontend::AgentTicketAddtlITSMField'}->{'Body'} =  '';
+$Self->{'Ticket::Frontend::AgentTicketAddtlITSMField'}->{'Subject'} =  '[% Translate("Note") | html %]';
+$Self->{'Ticket::Frontend::AgentTicketAddtlITSMField'}->{'NoteMandatory'} =  '0';
+$Self->{'Ticket::Frontend::AgentTicketAddtlITSMField'}->{'Note'} =  '0';
+$Self->{'Ticket::Frontend::AgentTicketAddtlITSMField'}->{'StateType'} =  [
+  'open',
+  'closed',
+  'pending reminder',
+  'pending auto'
+];
+$Self->{'Ticket::Frontend::AgentTicketAddtlITSMField'}->{'State'} =  '0';
+$Self->{'Ticket::Frontend::AgentTicketAddtlITSMField'}->{'Responsible'} =  '0';
+$Self->{'Ticket::Frontend::AgentTicketAddtlITSMField'}->{'OwnerMandatory'} =  '0';
+$Self->{'Ticket::Frontend::AgentTicketAddtlITSMField'}->{'Owner'} =  '0';
+$Self->{'Ticket::Frontend::AgentTicketAddtlITSMField'}->{'Queue'} =  '0';
+$Self->{'Ticket::Frontend::AgentTicketAddtlITSMField'}->{'SLAMandatory'} =  '0';
+$Self->{'Ticket::Frontend::AgentTicketAddtlITSMField'}->{'ServiceMandatory'} =  '0';
+$Self->{'Ticket::Frontend::AgentTicketAddtlITSMField'}->{'Service'} =  '0';
+$Self->{'Ticket::Frontend::AgentTicketAddtlITSMField'}->{'TicketType'} =  '0';
+$Self->{'Ticket::Frontend::AgentTicketAddtlITSMField'}->{'RequiredLock'} =  '0';
+$Self->{'Ticket::Frontend::AgentTicketAddtlITSMField'}->{'Permission'} =  'rw';
+$Self->{'Ticket::Frontend::MenuModule'}->{'420-Decision'} =  {
+  'Action' => 'AgentTicketDecision',
+  'Description' => 'Add a decision!',
+  'Link' => 'Action=AgentTicketDecision;TicketID=[% Data.TicketID | html %]',
+  'Module' => 'Kernel::Output::HTML::TicketMenu::Generic',
+  'Name' => 'Decision',
+  'PopupType' => 'TicketAction',
+  'Target' => ''
+};
+$Self->{'Ticket::Frontend::MenuModule'}->{'315-AddtlITSMField'} =  {
+  'Action' => 'AgentTicketAddtlITSMField',
+  'Description' => 'Change the ITSM fields!',
+  'Link' => 'Action=AgentTicketAddtlITSMField;TicketID=[% Data.TicketID | html %]',
+  'Module' => 'Kernel::Output::HTML::TicketMenu::Generic',
+  'Name' => 'Additional ITSM Fields',
+  'PopupType' => 'TicketAction',
+  'Target' => ''
+};
+$Self->{'Frontend::Module'}->{'AgentTicketDecision'} =  {
+  'Description' => 'Ticket decision.',
+  'Loader' => {
+    'JavaScript' => [
+      'Core.Agent.TicketAction.js'
+    ]
+  },
+  'NavBarName' => 'Ticket',
+  'Title' => 'Decision'
+};
+$Self->{'Frontend::Module'}->{'AgentTicketAddtlITSMField'} =  {
+  'Description' => 'Additional ITSM ticket fields.',
+  'Loader' => {
+    'JavaScript' => [
+      'Core.Agent.TicketAction.js'
+    ]
+  },
+  'NavBarName' => 'Ticket',
+  'Title' => 'Additional ITSM Fields'
+};
+$Self->{'LinkObject::ComplexTable'}->{'Service'} =  {
+  'DefaultColumns' => {
+    'ChangeTime' => '1',
+    'Comment' => '1',
+    'CreateTime' => '1',
+    'Criticality' => '2',
+    'CurInciState' => '2',
+    'Type' => '2'
+  },
+  'Module' => 'Kernel::Output::HTML::LinkObject::Service.pm',
+  'Priority' => {
+    'ChangeTime' => '160',
+    'Comment' => '110',
+    'CreateTime' => '150',
+    'Criticality' => '130',
+    'CurInciState' => '140',
+    'Type' => '120'
+  }
+};
+$Self->{'LinkObject::ComplexTable::SettingsVisibility'}->{'Service'} =  [
+  'AgentITSMServiceZoom'
+];
+$Self->{'ITSMSLA::Frontend::MenuModule'}->{'100-Print'} =  {
+  'Action' => 'AgentITSMSLAPrint',
+  'Description' => 'Print',
+  'Link' => 'Action=AgentITSMSLAPrint;SLAID=[% Data.SLAID | html %]',
+  'Module' => 'Kernel::Output::HTML::ITSMSLAMenu::Generic',
+  'Name' => 'Print'
+};
+$Self->{'ITSMSLA::Frontend::MenuModule'}->{'000-Back'} =  {
+  'Action' => '',
+  'Description' => 'Back',
+  'Link' => 'Action=AgentITSMSLA',
+  'Module' => 'Kernel::Output::HTML::ITSMSLAMenu::Generic',
+  'Name' => 'Back',
+  'Target' => 'Back'
+};
+$Self->{'ITSMService::Frontend::MenuModule'}->{'200-Link'} =  {
+  'Action' => 'AgentITSMService',
+  'Description' => 'Link',
+  'Link' => 'Action=AgentLinkObject;SourceObject=Service;SourceKey=[% Data.ServiceID | html %]',
+  'Module' => 'Kernel::Output::HTML::ITSMServiceMenu::Link',
+  'Name' => 'Link',
+  'Target' => 'PopUp'
+};
+$Self->{'ITSMService::Frontend::MenuModule'}->{'100-Print'} =  {
+  'Action' => 'AgentITSMServicePrint',
+  'Description' => 'Print',
+  'Link' => 'Action=AgentITSMServicePrint;ServiceID=[% Data.ServiceID | html %]',
+  'Module' => 'Kernel::Output::HTML::ITSMServiceMenu::Generic',
+  'Name' => 'Print'
+};
+$Self->{'ITSMService::Frontend::MenuModule'}->{'000-Back'} =  {
+  'Action' => '',
+  'Description' => 'Back',
+  'Link' => 'Action=AgentITSMService',
+  'Module' => 'Kernel::Output::HTML::ITSMServiceMenu::Generic',
+  'Name' => 'Back',
+  'Target' => 'Back'
+};
+$Self->{'Frontend::Module'}->{'AgentITSMSLAPrint'} =  {
+  'Description' => 'SLA Print.',
+  'GroupRo' => [
+    'itsm-service'
+  ],
+  'NavBarName' => 'Service',
+  'Title' => 'Print'
+};
+$Self->{'Frontend::Module'}->{'AgentITSMSLAZoom'} =  {
+  'Description' => 'SLA Zoom.',
+  'GroupRo' => [
+    'itsm-service'
+  ],
+  'NavBarName' => 'Service',
+  'Title' => 'Zoom'
+};
+$Self->{'Frontend::Module'}->{'AgentITSMServicePrint'} =  {
+  'Description' => 'Service Print.',
+  'GroupRo' => [
+    'itsm-service'
+  ],
+  'NavBarName' => 'Service',
+  'Title' => 'Print'
+};
+$Self->{'Frontend::Module'}->{'AgentITSMServiceZoom'} =  {
+  'Description' => 'Service Zoom.',
+  'GroupRo' => [
+    'itsm-service'
+  ],
+  'Loader' => {
+    'CSS' => [
+      'Core.AllocationList.css'
+    ],
+    'JavaScript' => [
+      'Core.UI.AllocationList.js',
+      'Core.UI.Table.Sort.js',
+      'Core.Agent.TableFilters.js',
+      'Core.Agent.LinkObject.js'
+    ]
+  },
+  'NavBarName' => 'Service',
+  'Title' => 'Zoom'
+};
+$Self->{'Frontend::Module'}->{'AgentITSMSLA'} =  {
+  'Description' => 'ITSM SLA Overview.',
+  'GroupRo' => [
+    'itsm-service'
+  ],
+  'NavBar' => [
+    {
+      'AccessKey' => '',
+      'Block' => '',
+      'Description' => 'SLA Overview',
+      'Link' => 'Action=AgentITSMSLA',
+      'Name' => 'SLA',
+      'NavBar' => 'Service',
+      'Prio' => '200',
+      'Type' => ''
+    }
+  ],
+  'NavBarName' => 'Service',
+  'Title' => 'SLA'
+};
+$Self->{'Frontend::Module'}->{'AgentITSMService'} =  {
+  'Description' => 'ITSM Service Overview.',
+  'Group' => [
+    'itsm-service'
+  ],
+  'GroupRo' => [
+    'itsm-service'
+  ],
+  'NavBar' => [
+    {
+      'AccessKey' => '',
+      'Block' => 'ItemArea',
+      'Description' => 'Service-Area',
+      'Link' => 'Action=AgentITSMService',
+      'Name' => 'Services',
+      'NavBar' => 'Service',
+      'Prio' => '3100',
+      'Type' => 'Menu'
+    },
+    {
+      'AccessKey' => '',
+      'Block' => '',
+      'Description' => 'Service Overview',
+      'Link' => 'Action=AgentITSMService',
+      'Name' => 'Service',
+      'NavBar' => 'Service',
+      'Prio' => '100',
+      'Type' => ''
+    }
+  ],
+  'NavBarName' => 'Service',
+  'Title' => 'Service'
+};
+$Self->{'Loader::Agent::CommonJS'}->{'100-ITSM'} =  [
+  'ITSM.Agent.CustomerSearch.js',
+  'ITSM.Agent.IncidentState.js'
+];
+$Self->{'Loader::Agent::CommonCSS'}->{'100-ITSM'} =  [
+  'ITSM.Agent.Default.css',
+  'ITSM.Agent.Search.css'
+];
+$Self->{'GeneralCatalogPreferences'}->{'IncidentStates'} =  {
+  'Block' => 'Option',
+  'Class' => 'ITSM::Core::IncidentState',
+  'Data' => {
+    'incident' => 'Incident',
+    'operational' => 'Operational',
+    'warning' => 'Warning'
+  },
+  'Desc' => 'Incident State Type.',
+  'Label' => 'Incident State Type',
+  'Module' => 'Kernel::Output::HTML::GeneralCatalogPreferences::Generic',
+  'PrefKey' => 'Functionality'
+};
+$Self->{'ITSM::Frontend::TextArea'} =  '78';
+$Self->{'LinkObject::PossibleLink'}->{'3420'} =  {
+  'Object1' => 'ITSMChange',
+  'Object2' => 'Ticket',
+  'Type' => 'Normal'
+};
+$Self->{'LinkObject::PossibleLink'}->{'3412'} =  {
+  'Object1' => 'ITSMWorkOrder',
+  'Object2' => 'Ticket',
+  'Type' => 'Normal'
+};
+$Self->{'LinkObject::PossibleLink'}->{'3411'} =  {
+  'Object1' => 'ITSMWorkOrder',
+  'Object2' => 'ITSMConfigItem',
+  'Type' => 'DependsOn'
+};
+$Self->{'LinkObject::PossibleLink'}->{'3410'} =  {
+  'Object1' => 'ITSMWorkOrder',
+  'Object2' => 'ITSMConfigItem',
+  'Type' => 'Normal'
+};
+$Self->{'LinkObject::PossibleLink'}->{'3401'} =  {
+  'Object1' => 'ITSMWorkOrder',
+  'Object2' => 'Service',
+  'Type' => 'DependsOn'
+};
+$Self->{'LinkObject::PossibleLink'}->{'3400'} =  {
+  'Object1' => 'ITSMWorkOrder',
+  'Object2' => 'Service',
+  'Type' => 'Normal'
+};
+$Self->{'LinkObject::PossibleLink'}->{'3282'} =  {
+  'Object1' => 'Service',
+  'Object2' => 'FAQ',
+  'Type' => 'RelevantTo'
+};
+$Self->{'LinkObject::PossibleLink'}->{'3281'} =  {
+  'Object1' => 'Service',
+  'Object2' => 'FAQ',
+  'Type' => 'ParentChild'
+};
+$Self->{'LinkObject::PossibleLink'}->{'3280'} =  {
+  'Object1' => 'Service',
+  'Object2' => 'FAQ',
+  'Type' => 'Normal'
+};
+$Self->{'LinkObject::PossibleLink'}->{'3262'} =  {
+  'Object1' => 'ITSMConfigItem',
+  'Object2' => 'FAQ',
+  'Type' => 'RelevantTo'
+};
+$Self->{'LinkObject::PossibleLink'}->{'3261'} =  {
+  'Object1' => 'ITSMConfigItem',
+  'Object2' => 'FAQ',
+  'Type' => 'ParentChild'
+};
+$Self->{'LinkObject::PossibleLink'}->{'3260'} =  {
+  'Object1' => 'ITSMConfigItem',
+  'Object2' => 'FAQ',
+  'Type' => 'Normal'
+};
+$Self->{'LinkObject::PossibleLink'}->{'3242'} =  {
+  'Object1' => 'ITSMConfigItem',
+  'Object2' => 'Service',
+  'Type' => 'RelevantTo'
+};
+$Self->{'LinkObject::PossibleLink'}->{'3241'} =  {
+  'Object1' => 'ITSMConfigItem',
+  'Object2' => 'Service',
+  'Type' => 'DependsOn'
+};
+$Self->{'LinkObject::PossibleLink'}->{'3240'} =  {
+  'Object1' => 'ITSMConfigItem',
+  'Object2' => 'Service',
+  'Type' => 'AlternativeTo'
+};
+$Self->{'LinkObject::PossibleLink'}->{'3222'} =  {
+  'Object1' => 'ITSMConfigItem',
+  'Object2' => 'Ticket',
+  'Type' => 'RelevantTo'
+};
+$Self->{'LinkObject::PossibleLink'}->{'3221'} =  {
+  'Object1' => 'ITSMConfigItem',
+  'Object2' => 'Ticket',
+  'Type' => 'DependsOn'
+};
+$Self->{'LinkObject::PossibleLink'}->{'3220'} =  {
+  'Object1' => 'ITSMConfigItem',
+  'Object2' => 'Ticket',
+  'Type' => 'AlternativeTo'
+};
+$Self->{'LinkObject::PossibleLink'}->{'3204'} =  {
+  'Object1' => 'ITSMConfigItem',
+  'Object2' => 'ITSMConfigItem',
+  'Type' => 'RelevantTo'
+};
+$Self->{'LinkObject::PossibleLink'}->{'3203'} =  {
+  'Object1' => 'ITSMConfigItem',
+  'Object2' => 'ITSMConfigItem',
+  'Type' => 'Includes'
+};
+$Self->{'LinkObject::PossibleLink'}->{'3202'} =  {
+  'Object1' => 'ITSMConfigItem',
+  'Object2' => 'ITSMConfigItem',
+  'Type' => 'DependsOn'
+};
+$Self->{'LinkObject::PossibleLink'}->{'3201'} =  {
+  'Object1' => 'ITSMConfigItem',
+  'Object2' => 'ITSMConfigItem',
+  'Type' => 'ConnectedTo'
+};
+$Self->{'LinkObject::PossibleLink'}->{'3200'} =  {
+  'Object1' => 'ITSMConfigItem',
+  'Object2' => 'ITSMConfigItem',
+  'Type' => 'AlternativeTo'
+};
+$Self->{'LinkObject::Type'}->{'RelevantTo'} =  {
+  'SourceName' => 'Relevant to',
+  'TargetName' => 'Relevant to'
+};
+$Self->{'LinkObject::Type'}->{'Includes'} =  {
+  'SourceName' => 'Includes',
+  'TargetName' => 'Part of'
+};
+$Self->{'LinkObject::Type'}->{'DependsOn'} =  {
+  'SourceName' => 'Depends on',
+  'TargetName' => 'Required for'
+};
+$Self->{'LinkObject::Type'}->{'ConnectedTo'} =  {
+  'SourceName' => 'Connected to',
+  'TargetName' => 'Connected to'
+};
+$Self->{'LinkObject::Type'}->{'AlternativeTo'} =  {
+  'SourceName' => 'Alternative to',
+  'TargetName' => 'Alternative to'
+};
+$Self->{'ITSM::Core::IncidentLinkTypeDirection'} =  {
+  'DependsOn' => 'Both'
+};
+$Self->{'Frontend::Module'}->{'AdminITSMCIPAllocate'} =  {
+  'Description' => 'Manage priority matrix.',
+  'Group' => [
+    'admin'
+  ],
+  'Loader' => {
+    'CSS' => [
+      'ITSM.Table.css'
+    ]
+  },
+  'NavBarModule' => {
+    'Block' => 'System',
+    'Module' => 'Kernel::Output::HTML::NavBar::ModuleAdmin',
+    'Name' => 'Criticality <-> Impact <-> Priority',
+    'Prio' => '430'
+  },
+  'NavBarName' => 'Admin',
+  'Title' => 'Criticality <-> Impact <-> Priority'
+};
+$Self->{'ITSMConfigItem::Frontend::AgentITSMConfigItemBulk'}->{'InciState'} =  '1';
+$Self->{'ITSMConfigItem::Frontend::AgentITSMConfigItemBulk'}->{'DeplState'} =  '1';
+$Self->{'ITSMConfigItem::Frontend::PreMenuModule'}->{'300-Duplicate'} =  {
+  'Action' => 'AgentITSMConfigItemEdit',
+  'Description' => 'Duplicate',
+  'Link' => 'Action=AgentITSMConfigItemEdit;DuplicateID=[% Data.ConfigItemID | html %];VersionID=[% Data.VersionID | html %];ReturnToLastScreen=1',
+  'Module' => 'Kernel::Output::HTML::ITSMConfigItem::MenuGeneric',
+  'Name' => 'Duplicate',
+  'Target' => 'PopUp'
+};
+$Self->{'ITSMConfigItem::Frontend::PreMenuModule'}->{'200-History'} =  {
+  'Action' => 'AgentITSMConfigItemHistory',
+  'Description' => 'History',
+  'Link' => 'Action=AgentITSMConfigItemHistory;ConfigItemID=[% Data.ConfigItemID | html %];VersionID=[% Data.VersionID | html %]',
+  'Module' => 'Kernel::Output::HTML::ITSMConfigItem::MenuGeneric',
+  'Name' => 'History',
+  'Target' => 'PopUp'
+};
+$Self->{'ITSMConfigItem::Frontend::PreMenuModule'}->{'100-Zoom'} =  {
+  'Action' => 'AgentITSMConfigItemZoom',
+  'Description' => 'Zoom',
+  'Link' => 'Action=AgentITSMConfigItemZoom;ConfigItemID=[% Data.ConfigItemID | html %]',
+  'Module' => 'Kernel::Output::HTML::ITSMConfigItem::MenuGeneric',
+  'Name' => 'Zoom',
+  'Target' => ''
+};
+$Self->{'Frontend::Module'}->{'AgentITSMConfigItemBulk'} =  {
+  'Description' => 'Configuration item bulk module.',
+  'NavBarName' => 'CMDB',
+  'Title' => 'Bulk Action'
+};
+$Self->{'ITSMConfigItem::Frontend::BulkFeature'} =  '1';
+$Self->{'UniqueCIName::UniquenessCheckScope'} =  'global';
+$Self->{'UniqueCIName::EnableUniquenessCheck'} =  '0';
+$Self->{'ITSMConfigItem::Frontend::AgentITSMConfigItem'}->{'ShowColumns'} =  {
+  'Class' => '0',
+  'CurDeplSignal' => '1',
+  'CurDeplState' => '1',
+  'CurDeplStateType' => '0',
+  'CurInciSignal' => '1',
+  'CurInciState' => '1',
+  'CurInciStateType' => '0',
+  'LastChanged' => '1',
+  'Name' => '1',
+  'Number' => '1'
+};
+$Self->{'ITSMConfigItem::Frontend::AgentITSMConfigItem'}->{'SearchLimit'} =  '10000';
+$Self->{'ITSMConfigItem::Frontend::AgentITSMConfigItemSearch'}->{'SearchCSVData'} =  [
+  'Class',
+  'Incident State',
+  'Name',
+  'ConfigItemNumber',
+  'Deployment State',
+  'Version',
+  'Create Time'
+];
+$Self->{'ITSMConfigItem::Frontend::AgentITSMConfigItemSearch'}->{'ShowColumns'} =  {
+  'Class' => '0',
+  'CurDeplSignal' => '1',
+  'CurDeplState' => '1',
+  'CurDeplStateType' => '0',
+  'CurInciSignal' => '1',
+  'CurInciState' => '1',
+  'CurInciStateType' => '0',
+  'LastChanged' => '1',
+  'Name' => '1',
+  'Number' => '1'
+};
+$Self->{'ITSMConfigItem::Frontend::AgentITSMConfigItemSearch'}->{'SearchLimit'} =  '10000';
+$Self->{'ITSMConfigItem::Hook'} =  'ConfigItem#';
+$Self->{'ITSMConfigItem::Frontend::Overview'}->{'Small'} =  {
+  'Module' => 'Kernel::Output::HTML::ITSMConfigItem::OverviewSmall',
+  'Name' => 'Small',
+  'NameShort' => 'S',
+  'PageShown' => '25'
+};
+$Self->{'PreferencesGroups'}->{'ConfigItemOverviewSmallPageShown'} =  {
+  'Active' => '0',
+  'Column' => 'Other Settings',
+  'Data' => {
+    '10' => '10',
+    '15' => '15',
+    '20' => '20',
+    '25' => '25',
+    '30' => '30',
+    '35' => '35'
+  },
+  'DataSelected' => '25',
+  'Key' => 'Configuration Item limit per page',
+  'Label' => 'Configuration Item Limit',
+  'Module' => 'Kernel::Output::HTML::Preferences::Generic',
+  'PrefKey' => 'UserConfigItemOverviewSmallPageShown',
+  'Prio' => '8000'
+};
+$Self->{'Loader::Agent::CommonJS'}->{'100-ConfigurationManagement'} =  [
+  'ITSM.Agent.ConfigItem.Search.js',
+  'ITSM.UI.ConfigItemActionRow.js'
+];
+$Self->{'Frontend::Search::JavaScript'}->{'ConfigItem'} =  {
+  '^(?:Agent|Admin)ITSMConfigItem' => 'ITSM.Agent.ConfigItem.Search.OpenSearchDialog(\'AgentITSMConfigItemSearch\')'
+};
+$Self->{'Frontend::Search'}->{'ConfigItem'} =  {
+  '^(?:Agent|Admin)ITSMConfigItem' => 'Action=AgentITSMConfigItemSearch;Subaction=AJAX'
+};
+$Self->{'GeneralCatalogPreferences'}->{'Permissions'} =  {
+  'Block' => 'Permission',
+  'Class' => 'ITSM::ConfigItem::Class',
+  'Desc' => 'Define the group with permissions.',
+  'Label' => 'Permission',
+  'Module' => 'Kernel::Output::HTML::GeneralCatalogPreferences::Generic',
+  'PrefKey' => 'Permission'
+};
+$Self->{'ITSMConfigItem::Frontend::AdminITSMConfigItem'}->{'EditorRows'} =  '30';
+$Self->{'ITSMConfigItem::Frontend::AgentITSMConfigItemSearch'}->{'Permission'} =  'ro';
+$Self->{'ITSMConfigItem::Frontend::AgentITSMConfigItemZoom'}->{'Permission'} =  'ro';
+$Self->{'ITSMConfigItem::Frontend::AgentITSMConfigItemDelete'}->{'Permission'} =  'rw';
+$Self->{'ITSMConfigItem::Frontend::AgentITSMConfigItemPrint'}->{'Permission'} =  'ro';
+$Self->{'ITSMConfigItem::Frontend::AgentITSMConfigItemHistory'}->{'Permission'} =  'ro';
+$Self->{'ITSMConfigItem::Frontend::AgentITSMConfigItemAdd'}->{'Permission'} =  'rw';
+$Self->{'ITSMConfigItem::Frontend::AgentITSMConfigItemEdit'}->{'Permission'} =  'rw';
+$Self->{'ITSMConfigItem::Frontend::AgentITSMConfigItem'}->{'Permission'} =  'ro';
+$Self->{'ITSMConfigItem::Permission::Item'}->{'010-ItemClassGroupCheck'} =  {
+  'Granted' => '1',
+  'Module' => 'Kernel::System::ITSMConfigItem::Permission::ItemClassGroupCheck',
+  'Required' => '0'
+};
+$Self->{'ITSMConfigItem::Permission::Class'}->{'010-ClassGroupCheck'} =  {
+  'Granted' => '1',
+  'Module' => 'Kernel::System::ITSMConfigItem::Permission::ClassGroupCheck',
+  'Required' => '0'
+};
+$Self->{'GeneralCatalogPreferences'}->{'DeploymentStatesColors'} =  {
+  'Block' => 'ColorPicker',
+  'Class' => 'ITSM::ConfigItem::DeploymentState',
+  'Data' => '',
+  'Desc' => 'Deployment State Color.',
+  'Label' => 'Deployment State Color',
+  'Module' => 'Kernel::Output::HTML::GeneralCatalogPreferences::Generic',
+  'PrefKey' => 'Color'
+};
+$Self->{'GeneralCatalogPreferences'}->{'DeploymentStates'} =  {
+  'Block' => 'Option',
+  'Class' => 'ITSM::ConfigItem::DeploymentState',
+  'Data' => {
+    'postproductive' => 'postproductive',
+    'preproductive' => 'preproductive',
+    'productive' => 'productive'
+  },
+  'Desc' => 'Deployment State Type.',
+  'Label' => 'Deployment State Type',
+  'Module' => 'Kernel::Output::HTML::GeneralCatalogPreferences::Generic',
+  'PrefKey' => 'Functionality'
+};
+$Self->{'Frontend::Module'}->{'AgentITSMConfigItemHistory'} =  {
+  'Description' => 'Config item history.',
+  'GroupRo' => [
+    'itsm-configitem'
+  ],
+  'NavBarName' => 'Config Item',
+  'Title' => 'History'
+};
+$Self->{'ITSMConfigItem::Frontend::HistoryOrder'} =  'normal';
+$Self->{'ITSMConfigItem::EventModulePost'}->{'100-History'} =  {
+  'Event' => '(ConfigItemCreate|VersionCreate|DeploymentStateUpdate|IncidentStateUpdate|ConfigItemDelete|LinkAdd|LinkDelete|DefinitionUpdate|NameUpdate|ValueUpdate|DefinitionCreate|VersionDelete|AttachmentAddPost|AttachmentDeletePost)',
+  'Module' => 'Kernel::System::ITSMConfigItem::Event::DoHistory',
+  'Transaction' => '0'
+};
+$Self->{'ImportExport::ObjectBackendRegistration'}->{'ITSMConfigItem'} =  {
+  'Module' => 'Kernel::System::ImportExport::ObjectBackend::ITSMConfigItem',
+  'Name' => 'Config Item'
+};
+$Self->{'Stats::DynamicObjectRegistration'}->{'ITSMConfigItem'} =  {
+  'Module' => 'Kernel::System::Stats::Dynamic::ITSMConfigItem'
+};
+$Self->{'LinkObject::DefaultSubObject'}->{'ITSMConfigItem'} =  'Computer';
+$Self->{'ITSMConfigItem::NumberGenerator'} =  'Kernel::System::ITSMConfigItem::Number::AutoIncrement';
+$Self->{'LinkObject::ComplexTable::SettingsVisibility'}->{'ITSMConfigItem'} =  [
+  'AgentITSMConfigItemZoom'
+];
+$Self->{'ITSMConfigItem::Frontend::MenuModule'}->{'700-ConfigItemDelete'} =  {
+  'Action' => 'AgentITSMConfigItemDelete',
+  'ConfirmedActionQueryString' => 'Action=AgentITSMConfigItemDelete;Subaction=ConfigItemDelete;ConfigItemID=[% Data.ConfigItemID | html %]',
+  'Description' => 'Delete Configuration Item',
+  'DialogContentQueryString' => 'Action=AgentITSMConfigItemDelete;ConfigItemID=[% Data.ConfigItemID | html %]',
+  'DialogTitle' => '[% Translate("Delete") | html %] [% Config("ITSMConfigItem::Hook") %] [% Data.Number | html %]',
+  'ElementSelector' => '#Menu[% Data.MenuID | html %]',
+  'Link' => 'Action=AgentITSMConfigItemDelete;ConfigItemID=[% Data.ConfigItemID | html %]',
+  'Module' => 'Kernel::Output::HTML::ITSMConfigItem::MenuGeneric',
+  'Name' => 'Delete',
+  'Target' => 'ConfirmDialog'
+};
+$Self->{'ITSMConfigItem::Frontend::MenuModule'}->{'600-Duplicate'} =  {
+  'Action' => 'AgentITSMConfigItemEdit',
+  'Description' => 'Duplicate',
+  'Link' => 'Action=AgentITSMConfigItemEdit;DuplicateID=[% Data.ConfigItemID | html %];VersionID=[% Data.VersionID | html %]',
+  'Module' => 'Kernel::Output::HTML::ITSMConfigItem::MenuGeneric',
+  'Name' => 'Duplicate',
+  'Target' => 'PopUp'
+};
+$Self->{'ITSMConfigItem::Frontend::MenuModule'}->{'500-Link'} =  {
+  'Action' => 'AgentLinkObject',
+  'Description' => 'Link',
+  'Link' => 'Action=AgentLinkObject;SourceObject=ITSMConfigItem;SourceKey=[% Data.ConfigItemID | html %]',
+  'Module' => 'Kernel::Output::HTML::ITSMConfigItem::MenuGeneric',
+  'Name' => 'Link',
+  'Target' => 'PopUp'
+};
+$Self->{'ITSMConfigItem::Frontend::MenuModule'}->{'400-Print'} =  {
+  'Action' => 'AgentITSMConfigItemPrint',
+  'Description' => 'Print',
+  'Link' => 'Action=AgentITSMConfigItemPrint;ConfigItemID=[% Data.ConfigItemID | html %];VersionID=[% Data.VersionID | html %]',
+  'LinkParam' => 'target="print"',
+  'Module' => 'Kernel::Output::HTML::ITSMConfigItem::MenuGeneric',
+  'Name' => 'Print',
+  'Target' => 'PopUp'
+};
+$Self->{'ITSMConfigItem::Frontend::MenuModule'}->{'300-Edit'} =  {
+  'Action' => 'AgentITSMConfigItemEdit',
+  'Description' => 'Edit',
+  'Link' => 'Action=AgentITSMConfigItemEdit;ConfigItemID=[% Data.ConfigItemID | html %]',
+  'Module' => 'Kernel::Output::HTML::ITSMConfigItem::MenuGeneric',
+  'Name' => 'Edit',
+  'Target' => 'PopUp'
+};
+$Self->{'ITSMConfigItem::Frontend::MenuModule'}->{'200-History'} =  {
+  'Action' => 'AgentITSMConfigItemHistory',
+  'Description' => 'History',
+  'Link' => 'Action=AgentITSMConfigItemHistory;ConfigItemID=[% Data.ConfigItemID | html %];VersionID=[% Data.VersionID | html %]',
+  'Module' => 'Kernel::Output::HTML::ITSMConfigItem::MenuGeneric',
+  'Name' => 'History',
+  'Target' => 'PopUp'
+};
+$Self->{'ITSMConfigItem::Frontend::MenuModule'}->{'000-Back'} =  {
+  'Action' => '',
+  'Description' => 'Back',
+  'Link' => 'Action=AgentITSMConfigItem;ClassID=[% Data.ClassID | html %]',
+  'Module' => 'Kernel::Output::HTML::ITSMConfigItem::MenuGeneric',
+  'Name' => 'Back',
+  'Target' => 'Back'
+};
+$Self->{'Frontend::Module'}->{'AgentITSMConfigItemSearch'} =  {
+  'Description' => 'Search config items.',
+  'GroupRo' => [
+    'itsm-configitem'
+  ],
+  'Loader' => {
+    'CSS' => [
+      'ITSM.Agent.Detail.css',
+      'ITSM.Table.css',
+      'ITSM.Print.css'
+    ],
+    'JavaScript' => [
+      'thirdparty/jquery-tablesorter-2.0.5/jquery.tablesorter.js',
+      'Core.UI.Table.Sort.js',
+      'ITSM.Agent.Zoom.js'
+    ]
+  },
+  'NavBar' => [
+    {
+      'AccessKey' => '',
+      'Block' => '',
+      'Description' => 'Search config items.',
+      'Link' => 'Action=AgentITSMConfigItemSearch',
+      'LinkOption' => 'onclick="ITSM.Agent.ConfigItem.Search.OpenSearchDialog(\'AgentITSMConfigItemSearch\'); if (event.stopPropagation) { event.stopPropagation(); } else { window.event.cancelBubble = true; } return false;"',
+      'Name' => 'Search',
+      'NavBar' => 'Config Item',
+      'Prio' => '300',
+      'Type' => ''
+    }
+  ],
+  'NavBarName' => 'Config Item',
+  'Title' => 'Search'
+};
+$Self->{'Frontend::Module'}->{'AgentITSMConfigItemAdd'} =  {
+  'Description' => 'Config item add.',
+  'Group' => [
+    'itsm-configitem'
+  ],
+  'NavBar' => [
+    {
+      'AccessKey' => '',
+      'Block' => '',
+      'Description' => 'New',
+      'Link' => 'Action=AgentITSMConfigItemAdd',
+      'Name' => 'New',
+      'NavBar' => 'Config Item',
+      'Prio' => '200',
+      'Type' => ''
+    }
+  ],
+  'NavBarName' => 'Config Item',
+  'Title' => 'Add'
+};
+$Self->{'Frontend::Module'}->{'AgentITSMConfigItemDelete'} =  {
+  'Description' => 'Delete a configuration item',
+  'Group' => [
+    'itsm-configitem'
+  ],
+  'NavBarName' => 'ITSM ConfigItem',
+  'Title' => 'Delete'
+};
+$Self->{'Frontend::Module'}->{'AgentITSMConfigItemPrint'} =  {
+  'Description' => 'Config item print.',
+  'GroupRo' => [
+    'itsm-configitem'
+  ],
+  'NavBarName' => 'Config Item',
+  'Title' => 'Print'
+};
+$Self->{'Frontend::Module'}->{'AgentITSMConfigItemEdit'} =  {
+  'Description' => 'Config item edit.',
+  'Group' => [
+    'itsm-configitem'
+  ],
+  'NavBarName' => 'Config Item',
+  'Title' => 'Edit'
+};
+$Self->{'Frontend::Module'}->{'AgentITSMConfigItemZoom'} =  {
+  'Description' => 'Config item zoom.',
+  'GroupRo' => [
+    'itsm-configitem'
+  ],
+  'Loader' => {
+    'CSS' => [
+      'ITSM.Agent.Default.css',
+      'ITSM.Agent.Detail.css',
+      'Core.AllocationList.css',
+      'ITSM.Print.css'
+    ],
+    'JavaScript' => [
+      'thirdparty/jquery-tablesorter-2.0.5/jquery.tablesorter.js',
+      'Core.UI.AllocationList.js',
+      'Core.UI.Table.Sort.js',
+      'Core.Agent.TableFilters.js',
+      'Core.Agent.LinkObject.js',
+      'ITSM.Agent.Zoom.js',
+      'ITSM.Agent.ConfirmDialog.js'
+    ]
+  },
+  'NavBarName' => 'Config Item',
+  'Title' => 'Zoom'
+};
+$Self->{'Frontend::Module'}->{'AgentITSMConfigItem'} =  {
+  'Description' => 'ITSM config item overview.',
+  'GroupRo' => [
+    'itsm-configitem'
+  ],
+  'Loader' => {
+    'CSS' => [
+      'ITSM.Agent.Default.css'
+    ]
+  },
+  'NavBar' => [
+    {
+      'AccessKey' => '',
+      'Block' => 'ItemArea',
+      'Description' => 'Configuration Management Database.',
+      'Link' => 'Action=AgentITSMConfigItem',
+      'Name' => 'CMDB',
+      'NavBar' => 'Config Item',
+      'Prio' => '3200',
+      'Type' => 'Menu'
+    },
+    {
+      'AccessKey' => '',
+      'Block' => '',
+      'Description' => 'Overview.',
+      'Link' => 'Action=AgentITSMConfigItem',
+      'Name' => 'Overview',
+      'NavBar' => 'Config Item',
+      'Prio' => '100',
+      'Type' => ''
+    }
+  ],
+  'NavBarName' => 'Config Item',
+  'Title' => 'Config Item'
+};
+$Self->{'Frontend::Module'}->{'AdminITSMConfigItem'} =  {
+  'Description' => 'Admin.',
+  'Group' => [
+    'admin'
+  ],
+  'NavBarModule' => {
+    'Block' => 'Ticket',
+    'Description' => 'Create and manage the definitions for Configuration Items.',
+    'Module' => 'Kernel::Output::HTML::NavBar::ModuleAdmin',
+    'Name' => 'Config Items',
+    'Prio' => '495'
+  },
+  'NavBarName' => 'Admin',
+  'Title' => 'Config Item'
+};
+$Self->{'ITSMWorkOrder::EventModule'}->{'1000-GenericInterface'} =  {
+  'Event' => '',
+  'Module' => 'Kernel::GenericInterface::Event::Handler',
+  'Transaction' => '1'
+};
+$Self->{'ITSMChange::EventModule'}->{'1000-GenericInterface'} =  {
+  'Event' => '',
+  'Module' => 'Kernel::GenericInterface::Event::Handler',
+  'Transaction' => '1'
+};
+$Self->{'Events'}->{'ITSMWorkOrder'} =  [
+  'WorkOrderAddPre',
+  'WorkOrderAddPost',
+  'WorkOrderUpdatePre',
+  'WorkOrderUpdatePost',
+  'WorkOrderDeletePre',
+  'WorkOrderDeletePost',
+  'WorkOrderAttachmentAddPost',
+  'WorkOrderAttachmentDeletePost',
+  'WorkOrderReportAttachmentAddPost',
+  'WorkOrderReportAttachmentDeletePost'
+];
+$Self->{'Events'}->{'ITSMChange'} =  [
+  'ChangeAddPre',
+  'ChangeAddPost',
+  'ChangeUpdatePre',
+  'ChangeUpdatePost',
+  'ChangeCABUpdatePre',
+  'ChangeCABUpdatePost',
+  'ChangeCABDeletePre',
+  'ChangeCABDeletePost',
+  'ChangeDeletePre',
+  'ChangeDeletePost',
+  'ChangeAttachmentAddPost',
+  'ChangeAttachmentDeletePost'
+];
+$Self->{'Loader::Agent::CommonJS'}->{'100-ITSMChangeManagement'} =  [
+  'ITSM.Agent.ChangeManagement.Search.js',
+  'ITSM.Agent.UserSearch.js',
+  'ITSM.Agent.CABMemberSearch.js'
+];
+$Self->{'ITSMChange::Frontend::AgentHTMLFieldHeightMax'} =  '2500';
+$Self->{'ITSMChange::Frontend::AgentHTMLFieldHeightDefault'} =  '100';
+$Self->{'ITSMChange::Frontend::AgentITSMChangeSearch'}->{'SearchCSVData'} =  [
+  'ChangeNumber',
+  'ChangeTitle',
+  'ChangeBuilder',
+  'WorkOrderCount',
+  'ChangeState',
+  'Priority',
+  'PlannedStartTime',
+  'PlannedEndTime'
+];
+$Self->{'Frontend::Search::JavaScript'}->{'Change'} =  {
+  '^(?:Agent|Admin)ITSM(Change|WorkOrder|TemplateOverview)' => 'ITSM.Agent.ChangeManagement.Search.OpenSearchDialog(\'AgentITSMChangeSearch\')'
+};
+$Self->{'Frontend::Search'}->{'Change'} =  {
+  '^(?:Agent|Admin)ITSM(Change|WorkOrder|TemplateOverview)' => 'Action=AgentITSMChangeSearch;Subaction=AJAX'
+};
+$Self->{'PreferencesGroups'}->{'UserITSMChangeManagementTemplateEdit'} =  {
+  'Active' => '0',
+  'Block' => 'Input',
+  'Column' => 'Other Settings',
+  'Data' => '',
+  'Desc' => 'Change and workorder templates edited by this user.',
+  'Key' => 'Template',
+  'Label' => 'Change and Workorder Templates',
+  'Module' => 'Kernel::Output::HTML::Preferences::Generic',
+  'PrefKey' => 'UserITSMChangeManagementTemplateEdit',
+  'Prio' => '9000'
+};
+$Self->{'PreferencesGroups'}->{'ChangeOverviewSmallPageShown'} =  {
+  'Active' => '0',
+  'Column' => 'Other Settings',
+  'Data' => {
+    '10' => '10',
+    '15' => '15',
+    '20' => '20',
+    '25' => '25',
+    '30' => '30',
+    '35' => '35'
+  },
+  'DataSelected' => '25',
+  'Desc' => 'Change limit per page for Change Overview "Small".',
+  'Key' => 'Limit',
+  'Label' => 'Change Overview "Small" Limit',
+  'Module' => 'Kernel::Output::HTML::Preferences::Generic',
+  'PrefKey' => 'UserChangeOverviewSmallPageShown',
+  'Prio' => '8000'
+};
+$Self->{'PreferencesGroups'}->{'UserCreateWorkOrderNextMask'} =  {
+  'Active' => '1',
+  'Column' => 'Other Settings',
+  'Data' => {
+    'AgentITSMChangeZoom' => 'ChangeZoom',
+    'AgentITSMWorkOrderZoom' => 'WorkorderZoom'
+  },
+  'DataSelected' => 'AgentITSMWorkOrderZoom',
+  'Desc' => 'Configure which screen should be shown after a new workorder has been created.',
+  'Key' => 'Screen',
+  'Label' => 'Screen after creating a workorder',
+  'Module' => 'Kernel::Output::HTML::Preferences::Generic',
+  'PrefKey' => 'UserCreateWorkOrderNextMask',
+  'Prio' => '4000'
+};
+$Self->{'ITSMChange::NumberGenerator::AutoIncrement::MinCounterSize'} =  '5';
+$Self->{'ITSMChange::NumberGenerator'} =  'Kernel::System::ITSMChange::Number::DateChecksum';
+$Self->{'Stats::DynamicObjectRegistration'}->{'ITSMChangeManagementChangesPerCIClasses'} =  {
+  'Module' => 'Kernel::System::Stats::Dynamic::ITSMChangeManagementChangesPerCIClasses'
+};
+$Self->{'Stats::DynamicObjectRegistration'}->{'ITSMChangeManagementRfcRequester'} =  {
+  'Module' => 'Kernel::System::Stats::Dynamic::ITSMChangeManagementRfcRequester'
+};
+$Self->{'Stats::DynamicObjectRegistration'}->{'ITSMChangeManagementChangesIncidents'} =  {
+  'Module' => 'Kernel::System::Stats::Dynamic::ITSMChangeManagementChangesIncidents'
+};
+$Self->{'Stats::DynamicObjectRegistration'}->{'ITSMChangeManagementHistory'} =  {
+  'Module' => 'Kernel::System::Stats::Dynamic::ITSMChangeManagementHistory'
+};
+$Self->{'Stats::DynamicObjectRegistration'}->{'ITSMChangeManagement'} =  {
+  'Module' => 'Kernel::System::Stats::Dynamic::ITSMChangeManagement'
+};
+$Self->{'Stats::ExchangeAxis'} =  '1';
+$Self->{'ITSMChange::TimeReachedNotifications'}->{'Hours'} =  '1';
+$Self->{'ITSMChange::TimeReachedNotifications'}->{'Frequency'} =  'once';
+$Self->{'ITSMChange::SendNotifications'} =  '1';
+$Self->{'ITSMStateMachine::Object'}->{'WorkOrder'} =  {
+  'Class' => 'ITSM::ChangeManagement::WorkOrder::State',
+  'Name' => 'WorkOrder'
+};
+$Self->{'ITSMStateMachine::Object'}->{'Change'} =  {
+  'Class' => 'ITSM::ChangeManagement::Change::State',
+  'Name' => 'Change'
+};
+$Self->{'ITSMWorkOrder::Permission'}->{'40-CABCheck'} =  {
+  'Granted' => '1',
+  'Module' => 'Kernel::System::ITSMChange::ITSMWorkOrder::Permission::CABCheck',
+  'Required' => '0'
+};
+$Self->{'ITSMWorkOrder::Permission'}->{'30-WorkOrderAgentCheck'} =  {
+  'Granted' => '1',
+  'Module' => 'Kernel::System::ITSMChange::ITSMWorkOrder::Permission::WorkOrderAgentCheck',
+  'Required' => '0'
+};
+$Self->{'ITSMWorkOrder::Permission'}->{'20-ChangeBuilderCheck'} =  {
+  'Granted' => '1',
+  'Module' => 'Kernel::System::ITSMChange::ITSMWorkOrder::Permission::ChangeBuilderCheck',
+  'Required' => '0'
+};
+$Self->{'ITSMWorkOrder::Permission'}->{'10-ChangeManagerCheck'} =  {
+  'Granted' => '1',
+  'Module' => 'Kernel::System::ITSMChange::ITSMWorkOrder::Permission::ChangeManagerCheck',
+  'Required' => '0'
+};
+$Self->{'ITSMChange::Permission'}->{'40-CABCheck'} =  {
+  'Granted' => '1',
+  'Module' => 'Kernel::System::ITSMChange::Permission::CABCheck',
+  'Required' => '0'
+};
+$Self->{'ITSMChange::Permission'}->{'30-ChangeAgentCheck'} =  {
+  'Granted' => '1',
+  'Module' => 'Kernel::System::ITSMChange::Permission::ChangeAgentCheck',
+  'Required' => '0'
+};
+$Self->{'ITSMChange::Permission'}->{'20-ChangeBuilderCheck'} =  {
+  'Granted' => '1',
+  'Module' => 'Kernel::System::ITSMChange::Permission::ChangeBuilderCheck',
+  'Required' => '0'
+};
+$Self->{'ITSMChange::Permission'}->{'10-ChangeManagerCheck'} =  {
+  'Granted' => '1',
+  'Module' => 'Kernel::System::ITSMChange::Permission::ChangeManagerCheck',
+  'Required' => '0'
+};
+$Self->{'ITSMChange::Permission'}->{'06-AddWorkOrderCheck'} =  {
+  'Granted' => '0',
+  'Module' => 'Kernel::System::ITSMChange::Permission::AddWorkOrderCheck',
+  'Required' => '1'
+};
+$Self->{'ITSMChange::Frontend::CustomerITSMChangeSchedule'}->{'SortBy::Default'} =  'PlannedStartTime';
+$Self->{'ITSMChange::Frontend::CustomerITSMChangeSchedule'}->{'ShowOnlyChangesWithAllowedServices'} =  '1';
+$Self->{'ITSMChange::Frontend::CustomerITSMChangeSchedule'}->{'ShowColumns'} =  {
+  'ActualEndTime' => '0',
+  'ActualStartTime' => '0',
+  'Category' => '0',
+  'ChangeBuilder' => '0',
+  'ChangeManager' => '0',
+  'ChangeNumber' => '1',
+  'ChangeState' => '1',
+  'ChangeStateSignal' => '1',
+  'ChangeTitle' => '1',
+  'CreateTime' => '0',
+  'DynamicField_ChangeFieldName1' => '0',
+  'DynamicField_ChangeFieldName2' => '0',
+  'Impact' => '0',
+  'PlannedEndTime' => '1',
+  'PlannedStartTime' => '1',
+  'Priority' => '0',
+  'RequestedTime' => '0',
+  'Services' => '1',
+  'WorkOrderCount' => '0'
+};
+$Self->{'ITSMChange::Frontend::CustomerITSMChangeSchedule'}->{'Order::Default'} =  'Up';
+$Self->{'ITSMChange::Frontend::CustomerITSMChangeSchedule'}->{'Filter::ChangeStates'} =  [
+  'approved',
+  'in progress'
+];
+$Self->{'ITSMWorkOrder::Frontend::AgentITSMWorkOrderZoom'}->{'DynamicField'} =  {};
+$Self->{'ITSMWorkOrder::Frontend::AgentITSMWorkOrderZoom'}->{'PlannedEffort'} =  '1';
+$Self->{'ITSMWorkOrder::Frontend::AgentITSMWorkOrderZoom'}->{'Permission'} =  'ro';
+$Self->{'ITSMWorkOrder::Frontend::AgentITSMWorkOrderZoom'}->{'AccountedTime'} =  '1';
+$Self->{'ITSMWorkOrder::Frontend::AgentITSMWorkOrderTemplate'}->{'Permission'} =  'rw';
+$Self->{'ITSMWorkOrder::Frontend::AgentITSMWorkOrderTake'}->{'Permission'} =  'rw';
+$Self->{'ITSMWorkOrder::Frontend::AgentITSMWorkOrderReport'}->{'Permission'} =  'rw';
+$Self->{'ITSMWorkOrder::Frontend::AgentITSMWorkOrderReport'}->{'DynamicField'} =  {};
+$Self->{'ITSMWorkOrder::Frontend::AgentITSMWorkOrderReport'}->{'ActualTimeSpan'} =  '0';
+$Self->{'ITSMWorkOrder::Frontend::AgentITSMWorkOrderReport'}->{'AccountedTime'} =  '1';
+$Self->{'ITSMWorkOrder::Frontend::AgentITSMWorkOrderHistoryZoom'}->{'Permission'} =  'ro';
+$Self->{'ITSMWorkOrder::Frontend::AgentITSMWorkOrderHistory'}->{'Permission'} =  'ro';
+$Self->{'ITSMWorkOrder::Frontend::AgentITSMWorkOrderEdit'}->{'MoveFollowingWorkOrders'} =  '1';
+$Self->{'ITSMWorkOrder::Frontend::AgentITSMWorkOrderEdit'}->{'PlannedEffort'} =  '1';
+$Self->{'ITSMWorkOrder::Frontend::AgentITSMWorkOrderEdit'}->{'Permission'} =  'rw';
+$Self->{'ITSMWorkOrder::Frontend::AgentITSMWorkOrderEdit'}->{'DynamicField'} =  {};
+$Self->{'ITSMWorkOrder::Frontend::AgentITSMWorkOrderDelete'}->{'Permission'} =  'rw';
+$Self->{'ITSMWorkOrder::Frontend::AgentITSMWorkOrderAgent'}->{'Permission'} =  'rw';
+$Self->{'ITSMChange::Frontend::AgentITSMWorkOrderAddFromTemplate'}->{'Permission'} =  'rw';
+$Self->{'ITSMChange::Frontend::AgentITSMWorkOrderAdd'}->{'PlannedEffort'} =  '1';
+$Self->{'ITSMChange::Frontend::AgentITSMWorkOrderAdd'}->{'Permission'} =  'rw';
+$Self->{'ITSMChange::Frontend::AgentITSMWorkOrderAdd'}->{'DynamicField'} =  {};
+$Self->{'ITSMChange::Frontend::AgentITSMTemplateOverview'}->{'SortBy::Default'} =  'TemplateID';
+$Self->{'ITSMChange::Frontend::AgentITSMTemplateOverview'}->{'ShowColumns'} =  {
+  'ChangeBy' => '0',
+  'ChangeTime' => '0',
+  'Comment' => '1',
+  'CreateBy' => '1',
+  'CreateTime' => '1',
+  'Delete' => '1',
+  'EditContent' => '1',
+  'Name' => '1',
+  'Type' => '1',
+  'Valid' => '1'
+};
+$Self->{'ITSMChange::Frontend::AgentITSMTemplateOverview'}->{'Permission'} =  'ro';
+$Self->{'ITSMChange::Frontend::AgentITSMTemplateOverview'}->{'Order::Default'} =  'Up';
+$Self->{'ITSMChange::Frontend::AgentITSMTemplateOverview'}->{'Filter::TemplateTypes'} =  [
+  'ITSMChange',
+  'ITSMWorkOrder',
+  'CAB'
+];
+$Self->{'ITSMChange::Frontend::AgentITSMTemplateEditCAB'}->{'Permission'} =  'rw';
+$Self->{'ITSMChange::Frontend::AgentITSMTemplateEditContent'}->{'DefaultChangeTitle'} =  'Helper dummy change needed for editing a workorder template';
+$Self->{'ITSMChange::Frontend::AgentITSMTemplateEditContent'}->{'Permission'} =  'rw';
+$Self->{'ITSMChange::Frontend::AgentITSMTemplateEdit'}->{'Permission'} =  'rw';
+$Self->{'ITSMChange::Frontend::AgentITSMTemplateDelete'}->{'Permission'} =  'rw';
+$Self->{'ITSMChange::Frontend::AgentITSMChangeZoom'}->{'DynamicField'} =  {};
+$Self->{'ITSMChange::Frontend::AgentITSMChangeZoom'}->{'Tooltip::WorkOrderAttributes'} =  {
+  'AccountedTime' => '0',
+  'ActualEndTime' => '1',
+  'ActualStartTime' => '1',
+  'DynamicField_WorkOrderFieldName1' => '0',
+  'DynamicField_WorkOrderFieldName2' => '0',
+  'Instruction' => '0',
+  'PlannedEffort' => '0',
+  'PlannedEndTime' => '1',
+  'PlannedStartTime' => '1',
+  'Report' => '0',
+  'WorkOrderAgent' => '1',
+  'WorkOrderState' => '1',
+  'WorkOrderTitle' => '1',
+  'WorkOrderType' => '1'
+};
+$Self->{'ITSMChange::Frontend::AgentITSMChangeZoom'}->{'WorkOrderGraph'} =  {
+  'TimeLineColor' => '#DC143C',
+  'TimeLineWidth' => '2',
+  'approval_actual_color' => '#FF7F50',
+  'approval_planned_color' => '#FF4500',
+  'backout_actual_color' => '#C0C0C0',
+  'backout_planned_color' => '#696969',
+  'pir_actual_color' => '#87CEEB',
+  'pir_planned_color' => '#4682B4',
+  'undefined_actual_color' => '#F08080',
+  'undefined_planned_color' => '#B22222',
+  'workorder_actual_color' => '#3CB371',
+  'workorder_planned_color' => '#006400'
+};
+$Self->{'ITSMChange::Frontend::AgentITSMChangeZoom'}->{'WorkOrderTitle'} =  '0';
+$Self->{'ITSMChange::Frontend::AgentITSMChangeZoom'}->{'WorkOrderState'} =  '0';
+$Self->{'ITSMChange::Frontend::AgentITSMChangeZoom'}->{'RequestedTime'} =  '1';
+$Self->{'ITSMChange::Frontend::AgentITSMChangeZoom'}->{'PlannedEffort'} =  '1';
+$Self->{'ITSMChange::Frontend::AgentITSMChangeZoom'}->{'Permission'} =  'ro';
+$Self->{'ITSMChange::Frontend::AgentITSMChangeZoom'}->{'AccountedTime'} =  '1';
+$Self->{'ITSMChange::Frontend::AgentITSMChangeTimeSlot'}->{'Permission'} =  'rw';
+$Self->{'ITSMChange::Frontend::AgentITSMChangeTemplate'}->{'Permission'} =  'rw';
+$Self->{'ITSMChange::Frontend::AgentITSMChangeSearch'}->{'ShowColumns'} =  {
+  'ActualEndTime' => '0',
+  'ActualStartTime' => '0',
+  'Category' => '0',
+  'ChangeBuilder' => '1',
+  'ChangeManager' => '0',
+  'ChangeNumber' => '1',
+  'ChangeState' => '1',
+  'ChangeStateSignal' => '1',
+  'ChangeTime' => '0',
+  'ChangeTitle' => '1',
+  'CreateTime' => '0',
+  'DynamicField_ChangeFieldName1' => '0',
+  'DynamicField_ChangeFieldName2' => '0',
+  'Impact' => '0',
+  'PlannedEndTime' => '1',
+  'PlannedStartTime' => '1',
+  'Priority' => '1',
+  'RequestedTime' => '0',
+  'Services' => '0',
+  'WorkOrderCount' => '1'
+};
+$Self->{'ITSMChange::Frontend::AgentITSMChangeSearch'}->{'DynamicField'} =  {};
+$Self->{'ITSMChange::Frontend::AgentITSMChangeSearch'}->{'RequestedTime'} =  '1';
+$Self->{'ITSMChange::Frontend::AgentITSMChangePrint'}->{'DynamicField'} =  {};
+$Self->{'ITSMChange::Frontend::AgentITSMChangePrint'}->{'RequestedTime'} =  '1';
+$Self->{'ITSMChange::Frontend::AgentITSMChangePrint'}->{'PlannedEffort'} =  '1';
+$Self->{'ITSMChange::Frontend::AgentITSMChangePrint'}->{'Permission'} =  'ro';
+$Self->{'ITSMChange::Frontend::AgentITSMChangePrint'}->{'AccountedTime'} =  '1';
+$Self->{'ITSMChange::Frontend::AdminITSMChangeNotification'}->{'RichTextHeight'} =  '320';
+$Self->{'ITSMChange::Frontend::AdminITSMChangeNotification'}->{'RichTextWidth'} =  '620';
+$Self->{'ITSMChange::Frontend::AdminITSMChangeNotification'}->{'RichText'} =  '1';
+$Self->{'ITSMChange::Frontend::AgentITSMChangePIR'}->{'WorkOrderTypes'} =  [
+  'pir'
+];
+$Self->{'ITSMChange::Frontend::AgentITSMChangePIR'}->{'SortBy::Default'} =  'PlannedStartTime';
+$Self->{'ITSMChange::Frontend::AgentITSMChangePIR'}->{'ShowColumns'} =  {
+  'ActualEndTime' => '0',
+  'ActualStartTime' => '0',
+  'Category' => '0',
+  'ChangeBuilder' => '0',
+  'ChangeManager' => '0',
+  'ChangeNumber' => '0',
+  'ChangeState' => '0',
+  'ChangeStateSignal' => '0',
+  'ChangeTime' => '0',
+  'ChangeTitle' => '1',
+  'CreateTime' => '0',
+  'DynamicField_WorkOrderFieldName1' => '0',
+  'DynamicField_WorkOrderFieldName2' => '0',
+  'Impact' => '0',
+  'PlannedEndTime' => '1',
+  'PlannedStartTime' => '1',
+  'Priority' => '0',
+  'RequestedTime' => '0',
+  'Services' => '0',
+  'WorkOrderAgent' => '1',
+  'WorkOrderCount' => '0',
+  'WorkOrderNumber' => '1',
+  'WorkOrderState' => '1',
+  'WorkOrderStateSignal' => '1',
+  'WorkOrderTitle' => '1',
+  'WorkOrderType' => '0'
+};
+$Self->{'ITSMChange::Frontend::AgentITSMChangePIR'}->{'Permission'} =  'ro';
+$Self->{'ITSMChange::Frontend::AgentITSMChangePIR'}->{'Order::Default'} =  'Up';
+$Self->{'ITSMChange::Frontend::AgentITSMChangePIR'}->{'Filter::WorkOrderStates'} =  [
+  'accepted',
+  'ready',
+  'in progress',
+  'closed',
+  'canceled'
+];
+$Self->{'ITSMChange::Frontend::AgentITSMChangeMyWorkOrders'}->{'SortBy::Default'} =  'PlannedStartTime';
+$Self->{'ITSMChange::Frontend::AgentITSMChangeMyWorkOrders'}->{'ShowColumns'} =  {
+  'ActualEndTime' => '0',
+  'ActualStartTime' => '0',
+  'Category' => '0',
+  'ChangeBuilder' => '0',
+  'ChangeManager' => '0',
+  'ChangeNumber' => '0',
+  'ChangeState' => '0',
+  'ChangeStateSignal' => '0',
+  'ChangeTime' => '0',
+  'ChangeTitle' => '1',
+  'CreateTime' => '0',
+  'DynamicField_WorkOrderFieldName1' => '0',
+  'DynamicField_WorkOrderFieldName2' => '0',
+  'Impact' => '0',
+  'PlannedEndTime' => '1',
+  'PlannedStartTime' => '1',
+  'Priority' => '0',
+  'RequestedTime' => '0',
+  'Services' => '0',
+  'WorkOrderAgent' => '1',
+  'WorkOrderCount' => '0',
+  'WorkOrderNumber' => '1',
+  'WorkOrderState' => '1',
+  'WorkOrderStateSignal' => '1',
+  'WorkOrderTitle' => '1',
+  'WorkOrderType' => '0'
+};
+$Self->{'ITSMChange::Frontend::AgentITSMChangeMyWorkOrders'}->{'Permission'} =  'ro';
+$Self->{'ITSMChange::Frontend::AgentITSMChangeMyWorkOrders'}->{'Order::Default'} =  'Up';
+$Self->{'ITSMChange::Frontend::AgentITSMChangeMyChanges'}->{'SortBy::Default'} =  'PlannedStartTime';
+$Self->{'ITSMChange::Frontend::AgentITSMChangeMyChanges'}->{'ShowColumns'} =  {
+  'ActualEndTime' => '0',
+  'ActualStartTime' => '0',
+  'Category' => '0',
+  'ChangeBuilder' => '1',
+  'ChangeManager' => '0',
+  'ChangeNumber' => '1',
+  'ChangeState' => '1',
+  'ChangeStateSignal' => '1',
+  'ChangeTime' => '0',
+  'ChangeTitle' => '1',
+  'CreateTime' => '0',
+  'DynamicField_ChangeFieldName1' => '0',
+  'DynamicField_ChangeFieldName2' => '0',
+  'Impact' => '0',
+  'PlannedEndTime' => '1',
+  'PlannedStartTime' => '1',
+  'Priority' => '1',
+  'RequestedTime' => '0',
+  'Services' => '0',
+  'WorkOrderCount' => '1'
+};
+$Self->{'ITSMChange::Frontend::AgentITSMChangeMyChanges'}->{'Permission'} =  'ro';
+$Self->{'ITSMChange::Frontend::AgentITSMChangeMyChanges'}->{'Order::Default'} =  'Up';
+$Self->{'ITSMChange::Frontend::AgentITSMChangeMyWorkOrders'}->{'Filter::WorkOrderStates'} =  [
+  'created',
+  'accepted',
+  'ready',
+  'in progress'
+];
+$Self->{'ITSMChange::Frontend::AgentITSMChangeMyChanges'}->{'Filter::ChangeStates'} =  [
+  'requested',
+  'pending approval',
+  'approved',
+  'in progress',
+  'pending pir'
+];
+$Self->{'ITSMChange::Frontend::AgentITSMChangeMyCAB'}->{'SortBy::Default'} =  'ChangeNumber';
+$Self->{'ITSMChange::Frontend::AgentITSMChangeMyCAB'}->{'ShowColumns'} =  {
+  'ActualEndTime' => '0',
+  'ActualStartTime' => '0',
+  'Category' => '0',
+  'ChangeBuilder' => '1',
+  'ChangeManager' => '0',
+  'ChangeNumber' => '1',
+  'ChangeState' => '1',
+  'ChangeStateSignal' => '1',
+  'ChangeTime' => '0',
+  'ChangeTitle' => '1',
+  'CreateTime' => '0',
+  'DynamicField_ChangeFieldName1' => '0',
+  'DynamicField_ChangeFieldName2' => '0',
+  'Impact' => '0',
+  'PlannedEndTime' => '1',
+  'PlannedStartTime' => '1',
+  'Priority' => '1',
+  'RequestedTime' => '0',
+  'Services' => '0',
+  'WorkOrderCount' => '1'
+};
+$Self->{'ITSMChange::Frontend::AgentITSMChangeMyCAB'}->{'Permission'} =  'ro';
+$Self->{'ITSMChange::Frontend::AgentITSMChangeMyCAB'}->{'Order::Default'} =  'Up';
+$Self->{'ITSMChange::Frontend::AgentITSMChangeMyCAB'}->{'Filter::ChangeStates'} =  [
+  'requested',
+  'pending approval',
+  'approved',
+  'in progress',
+  'pending pir'
+];
+$Self->{'ITSMChange::Frontend::AgentITSMChangeManager'}->{'SortBy::Default'} =  'ChangeNumber';
+$Self->{'ITSMChange::Frontend::AgentITSMChangeManager'}->{'ShowColumns'} =  {
+  'ActualEndTime' => '0',
+  'ActualStartTime' => '0',
+  'Category' => '0',
+  'ChangeBuilder' => '1',
+  'ChangeManager' => '1',
+  'ChangeNumber' => '1',
+  'ChangeState' => '1',
+  'ChangeStateSignal' => '1',
+  'ChangeTime' => '0',
+  'ChangeTitle' => '1',
+  'CreateTime' => '0',
+  'DynamicField_ChangeFieldName1' => '0',
+  'DynamicField_ChangeFieldName2' => '0',
+  'Impact' => '0',
+  'PlannedEndTime' => '1',
+  'PlannedStartTime' => '1',
+  'Priority' => '1',
+  'RequestedTime' => '0',
+  'Services' => '0',
+  'WorkOrderCount' => '1'
+};
+$Self->{'ITSMChange::Frontend::AgentITSMChangeManager'}->{'Permission'} =  'ro';
+$Self->{'ITSMChange::Frontend::AgentITSMChangeManager'}->{'Order::Default'} =  'Up';
+$Self->{'ITSMChange::Frontend::AgentITSMChangeManager'}->{'Filter::ChangeStates'} =  [
+  'requested',
+  'pending approval',
+  'approved',
+  'in progress',
+  'pending pir'
+];
+$Self->{'ITSMChange::Frontend::AgentITSMChangeInvolvedPersons'}->{'Permission'} =  'rw';
+$Self->{'ITSMChange::Frontend::AgentITSMChangeHistoryZoom'}->{'Permission'} =  'ro';
+$Self->{'ITSMChange::Frontend::AgentITSMChangeHistory'}->{'Permission'} =  'ro';
+$Self->{'ITSMChange::Frontend::AgentITSMChangeSchedule'}->{'SortBy::Default'} =  'PlannedStartTime';
+$Self->{'ITSMChange::Frontend::AgentITSMChangeSchedule'}->{'ShowColumns'} =  {
+  'ActualEndTime' => '0',
+  'ActualStartTime' => '0',
+  'Category' => '0',
+  'ChangeBuilder' => '1',
+  'ChangeManager' => '0',
+  'ChangeNumber' => '1',
+  'ChangeState' => '1',
+  'ChangeStateSignal' => '1',
+  'ChangeTime' => '0',
+  'ChangeTitle' => '1',
+  'CreateTime' => '0',
+  'DynamicField_ChangeFieldName1' => '0',
+  'DynamicField_ChangeFieldName2' => '0',
+  'Impact' => '0',
+  'PlannedEndTime' => '1',
+  'PlannedStartTime' => '1',
+  'Priority' => '1',
+  'RequestedTime' => '0',
+  'Services' => '0',
+  'WorkOrderCount' => '1'
+};
+$Self->{'ITSMChange::Frontend::AgentITSMChangeSchedule'}->{'Permission'} =  'ro';
+$Self->{'ITSMChange::Frontend::AgentITSMChangeSchedule'}->{'Order::Default'} =  'Up';
+$Self->{'ITSMChange::Frontend::AgentITSMChangeSchedule'}->{'Filter::ChangeStates'} =  [
+  'approved'
+];
+$Self->{'ITSMChange::Frontend::AgentITSMChangeReset'}->{'Permission'} =  'rw';
+$Self->{'ITSMChange::Frontend::AgentITSMChangePSA'}->{'SortBy::Default'} =  'PlannedStartTime';
+$Self->{'ITSMChange::Frontend::AgentITSMChangePSA'}->{'ShowColumns'} =  {
+  'ActualEndTime' => '0',
+  'ActualStartTime' => '0',
+  'Category' => '0',
+  'ChangeBuilder' => '0',
+  'ChangeManager' => '0',
+  'ChangeNumber' => '1',
+  'ChangeState' => '1',
+  'ChangeStateSignal' => '1',
+  'ChangeTime' => '0',
+  'ChangeTitle' => '1',
+  'CreateTime' => '0',
+  'DynamicField_ChangeFieldName1' => '0',
+  'DynamicField_ChangeFieldName2' => '0',
+  'Impact' => '0',
+  'PlannedEndTime' => '1',
+  'PlannedStartTime' => '1',
+  'Priority' => '1',
+  'RequestedTime' => '0',
+  'Services' => '1',
+  'WorkOrderCount' => '0'
+};
+$Self->{'ITSMChange::Frontend::AgentITSMChangePSA'}->{'Permission'} =  'ro';
+$Self->{'ITSMChange::Frontend::AgentITSMChangePSA'}->{'Order::Default'} =  'Up';
+$Self->{'ITSMChange::Frontend::AgentITSMChangePSA'}->{'Filter::ChangeStates'} =  [
+  'approved'
+];
+$Self->{'ITSMChange::Frontend::AgentITSMChangeEdit'}->{'DynamicField'} =  {};
+$Self->{'ITSMChange::Frontend::AgentITSMChangeEdit'}->{'ChangeState'} =  '0';
+$Self->{'ITSMChange::Frontend::AgentITSMChangeEdit'}->{'RequestedTime'} =  '1';
+$Self->{'ITSMChange::Frontend::AgentITSMChangeDelete'}->{'ChangeStates'} =  [
+  'requested',
+  'pending approval'
+];
+$Self->{'ITSMChange::Frontend::AgentITSMChangeDelete'}->{'Permission'} =  'rw';
+$Self->{'ITSMChange::Frontend::AgentITSMChangeEdit'}->{'Permission'} =  'rw';
+$Self->{'ITSMChange::Frontend::AgentITSMChangeConditionEdit'}->{'Permission'} =  'rw';
+$Self->{'ITSMChange::Frontend::AgentITSMChangeCondition'}->{'Permission'} =  'rw';
+$Self->{'ITSMChange::Frontend::AgentITSMChangeCABTemplate'}->{'Permission'} =  'rw';
+$Self->{'ITSMChange::Frontend::AgentITSMChangeAddFromTemplate'}->{'Permission'} =  'rw';
+$Self->{'ITSMChange::Frontend::AgentITSMChangeAdd'}->{'DynamicField'} =  {};
+$Self->{'ITSMChange::Frontend::AgentITSMChangeAdd'}->{'RequestedTime'} =  '1';
+$Self->{'ITSMChange::Frontend::AgentITSMChangeAdd'}->{'Permission'} =  'rw';
+$Self->{'ITSMChange::Frontend::AgentITSMChange'}->{'SortBy::Default'} =  'ChangeNumber';
+$Self->{'ITSMChange::Frontend::AgentITSMChange'}->{'ShowColumns'} =  {
+  'ActualEndTime' => '0',
+  'ActualStartTime' => '0',
+  'Category' => '0',
+  'ChangeBuilder' => '1',
+  'ChangeManager' => '0',
+  'ChangeNumber' => '1',
+  'ChangeState' => '1',
+  'ChangeStateSignal' => '1',
+  'ChangeTime' => '0',
+  'ChangeTitle' => '1',
+  'CreateTime' => '0',
+  'DynamicField_ChangeFieldName1' => '0',
+  'DynamicField_ChangeFieldName2' => '0',
+  'Impact' => '0',
+  'PlannedEndTime' => '1',
+  'PlannedStartTime' => '1',
+  'Priority' => '1',
+  'RequestedTime' => '0',
+  'Services' => '0',
+  'WorkOrderCount' => '1'
+};
+$Self->{'ITSMChange::Frontend::AgentITSMChange'}->{'Permission'} =  'ro';
+$Self->{'ITSMChange::Frontend::AgentITSMChange'}->{'Order::Default'} =  'Up';
+$Self->{'ITSMChange::Frontend::AgentITSMChange'}->{'Filter::ChangeStates'} =  [
+  'requested',
+  'pending approval',
+  'rejected',
+  'approved',
+  'in progress',
+  'pending pir',
+  'successful',
+  'failed',
+  'canceled',
+  'retracted'
+];
+$Self->{'ITSMChange::Frontend::HistoryOrder'} =  'normal';
+$Self->{'ITSMWorkOrder::TimePeriod'} =  {
+  'YearPeriodFuture' => '5',
+  'YearPeriodPast' => '5'
+};
+$Self->{'ITSMWorkOrder::TakePermission::List'} =  {
+  '' => '1'
+};
+$Self->{'ITSMWorkOrder::ActualStartTimeSet::States'} =  [
+  'in progress'
+];
+$Self->{'ITSMWorkOrder::Type::Default'} =  'workorder';
+$Self->{'ITSMWorkOrder::State::Signal'} =  {
+  'accepted' => 'grayled',
+  'canceled' => 'redled',
+  'closed' => 'greenled',
+  'created' => 'grayled',
+  'in progress' => 'yellowled',
+  'ready' => 'yellowled'
+};
+$Self->{'ITSMWorkOrder::StateLock::AllowEndStates'} =  '1';
+$Self->{'ITSMWorkOrder::Hook'} =  'Workorder#';
+$Self->{'ITSMWorkOrder::Mapping::Action::Attribute::Operator'}->{'DynamicField'} =  {
+  'set' => '1'
+};
+$Self->{'ITSMWorkOrder::Mapping::Action::Attribute::Operator'}->{'AccountedTime'} =  {
+  'set' => '1'
+};
+$Self->{'ITSMWorkOrder::Mapping::Action::Attribute::Operator'}->{'PlannedEffort'} =  {
+  'set' => '1'
+};
+$Self->{'ITSMWorkOrder::Mapping::Action::Attribute::Operator'}->{'ActualEndTime'} =  {
+  'set' => '1'
+};
+$Self->{'ITSMWorkOrder::Mapping::Action::Attribute::Operator'}->{'ActualStartTime'} =  {
+  'set' => '1'
+};
+$Self->{'ITSMWorkOrder::Mapping::Action::Attribute::Operator'}->{'PlannedEndTime'} =  {
+  'set' => '1'
+};
+$Self->{'ITSMWorkOrder::Mapping::Action::Attribute::Operator'}->{'PlannedStartTime'} =  {
+  'set' => '1'
+};
+$Self->{'ITSMWorkOrder::Mapping::Action::Attribute::Operator'}->{'WorkOrderAgentID'} =  {
+  'set' => '1'
+};
+$Self->{'ITSMWorkOrder::Mapping::Action::Attribute::Operator'}->{'WorkOrderTitle'} =  {
+  'set' => '1'
+};
+$Self->{'ITSMWorkOrder::Mapping::Action::Attribute::Operator'}->{'WorkOrderTypeID'} =  {
+  'set' => '1'
+};
+$Self->{'ITSMWorkOrder::Mapping::Action::Attribute::Operator'}->{'WorkOrderStateID'} =  {
+  'lock' => '1',
+  'set' => '1'
+};
+$Self->{'ITSMWorkOrder::Mapping::Action::Attribute::Operator'}->{'WorkOrderNumber'} =  {
+  'set' => '1'
+};
+$Self->{'ITSMWorkOrder::Mapping::Action::Object::Attribute'} =  {
+  'AccountedTime' => '0',
+  'ActualEndTime' => '0',
+  'ActualStartTime' => '0',
+  'DynamicField' => '1',
+  'PlannedEffort' => '0',
+  'PlannedEndTime' => '0',
+  'PlannedStartTime' => '0',
+  'WorkOrderAgentID' => '1',
+  'WorkOrderNumber' => '0',
+  'WorkOrderStateID' => '1',
+  'WorkOrderTitle' => '0',
+  'WorkOrderTypeID' => '0'
+};
+$Self->{'ITSMWorkOrder::Mapping::Expression::Attribute::Operator'}->{'DynamicField'} =  {
+  'begins with' => '1',
+  'contains' => '1',
+  'ends with' => '1',
+  'is' => '1',
+  'is after' => '0',
+  'is before' => '0',
+  'is empty' => '1',
+  'is greater than' => '1',
+  'is less than' => '1',
+  'is not' => '1',
+  'is not empty' => '1',
+  'not contains' => '1'
+};
+$Self->{'ITSMWorkOrder::Mapping::Expression::Attribute::Operator'}->{'AccountedTime'} =  {
+  'begins with' => '0',
+  'contains' => '0',
+  'ends with' => '0',
+  'is' => '1',
+  'is after' => '0',
+  'is before' => '0',
+  'is empty' => '1',
+  'is greater than' => '1',
+  'is less than' => '1',
+  'is not' => '1',
+  'is not empty' => '1',
+  'not contains' => '0'
+};
+$Self->{'ITSMWorkOrder::Mapping::Expression::Attribute::Operator'}->{'PlannedEffort'} =  {
+  'begins with' => '0',
+  'contains' => '0',
+  'ends with' => '0',
+  'is' => '1',
+  'is after' => '0',
+  'is before' => '0',
+  'is empty' => '1',
+  'is greater than' => '1',
+  'is less than' => '1',
+  'is not' => '1',
+  'is not empty' => '1',
+  'not contains' => '0'
+};
+$Self->{'ITSMWorkOrder::Mapping::Expression::Attribute::Operator'}->{'ActualEndTime'} =  {
+  'begins with' => '0',
+  'contains' => '0',
+  'ends with' => '0',
+  'is' => '1',
+  'is after' => '1',
+  'is before' => '1',
+  'is empty' => '1',
+  'is greater than' => '0',
+  'is less than' => '0',
+  'is not' => '1',
+  'is not empty' => '1',
+  'not contains' => '0'
+};
+$Self->{'ITSMWorkOrder::Mapping::Expression::Attribute::Operator'}->{'ActualStartTime'} =  {
+  'begins with' => '0',
+  'contains' => '0',
+  'ends with' => '0',
+  'is' => '1',
+  'is after' => '1',
+  'is before' => '1',
+  'is empty' => '1',
+  'is greater than' => '0',
+  'is less than' => '0',
+  'is not' => '1',
+  'is not empty' => '1',
+  'not contains' => '0'
+};
+$Self->{'ITSMWorkOrder::Mapping::Expression::Attribute::Operator'}->{'PlannedEndTime'} =  {
+  'begins with' => '0',
+  'contains' => '0',
+  'ends with' => '0',
+  'is' => '1',
+  'is after' => '1',
+  'is before' => '1',
+  'is empty' => '1',
+  'is greater than' => '0',
+  'is less than' => '0',
+  'is not' => '1',
+  'is not empty' => '1',
+  'not contains' => '0'
+};
+$Self->{'ITSMWorkOrder::Mapping::Expression::Attribute::Operator'}->{'PlannedStartTime'} =  {
+  'begins with' => '0',
+  'contains' => '0',
+  'ends with' => '0',
+  'is' => '1',
+  'is after' => '1',
+  'is before' => '1',
+  'is empty' => '1',
+  'is greater than' => '0',
+  'is less than' => '0',
+  'is not' => '1',
+  'is not empty' => '1',
+  'not contains' => '0'
+};
+$Self->{'ITSMWorkOrder::Mapping::Expression::Attribute::Operator'}->{'WorkOrderAgentID'} =  {
+  'begins with' => '0',
+  'contains' => '0',
+  'ends with' => '0',
+  'is' => '1',
+  'is after' => '0',
+  'is before' => '0',
+  'is empty' => '0',
+  'is greater than' => '0',
+  'is less than' => '0',
+  'is not' => '1',
+  'is not empty' => '0',
+  'not contains' => '0'
+};
+$Self->{'ITSMWorkOrder::Mapping::Expression::Attribute::Operator'}->{'WorkOrderTitle'} =  {
+  'begins with' => '1',
+  'contains' => '1',
+  'ends with' => '1',
+  'is' => '1',
+  'is after' => '0',
+  'is before' => '0',
+  'is empty' => '1',
+  'is greater than' => '0',
+  'is less than' => '0',
+  'is not' => '1',
+  'is not empty' => '1',
+  'not contains' => '1'
+};
+$Self->{'ITSMWorkOrder::Mapping::Expression::Attribute::Operator'}->{'WorkOrderTypeID'} =  {
+  'begins with' => '0',
+  'contains' => '0',
+  'ends with' => '0',
+  'is' => '1',
+  'is after' => '0',
+  'is before' => '0',
+  'is empty' => '0',
+  'is greater than' => '0',
+  'is less than' => '0',
+  'is not' => '1',
+  'is not empty' => '0',
+  'not contains' => '0'
+};
+$Self->{'ITSMWorkOrder::Mapping::Expression::Attribute::Operator'}->{'WorkOrderStateID'} =  {
+  'begins with' => '0',
+  'contains' => '0',
+  'ends with' => '0',
+  'is' => '1',
+  'is after' => '0',
+  'is before' => '0',
+  'is empty' => '0',
+  'is greater than' => '0',
+  'is less than' => '0',
+  'is not' => '1',
+  'is not empty' => '0',
+  'not contains' => '0'
+};
+$Self->{'ITSMWorkOrder::Mapping::Expression::Attribute::Operator'}->{'WorkOrderNumber'} =  {
+  'begins with' => '0',
+  'contains' => '0',
+  'ends with' => '0',
+  'is' => '1',
+  'is after' => '0',
+  'is before' => '0',
+  'is empty' => '0',
+  'is greater than' => '1',
+  'is less than' => '1',
+  'is not' => '1',
+  'is not empty' => '0',
+  'not contains' => '0'
+};
+$Self->{'ITSMWorkOrder::Mapping::Expression::Object::Attribute'} =  {
+  'AccountedTime' => '1',
+  'ActualEndTime' => '1',
+  'ActualStartTime' => '1',
+  'DynamicField' => '1',
+  'PlannedEffort' => '1',
+  'PlannedEndTime' => '1',
+  'PlannedStartTime' => '1',
+  'WorkOrderAgentID' => '1',
+  'WorkOrderNumber' => '1',
+  'WorkOrderStateID' => '1',
+  'WorkOrderTitle' => '1',
+  'WorkOrderTypeID' => '1'
+};
+$Self->{'ITSMWorkOrder::Attribute::CompareValue::FieldType'} =  {
+  'AccountedTime' => 'Text',
+  'ActualEndTime' => 'Date',
+  'ActualStartTime' => 'Date',
+  'DynamicField' => 'Text',
+  'PlannedEffort' => 'Text',
+  'PlannedEndTime' => 'Date',
+  'PlannedStartTime' => 'Date',
+  'WorkOrderAgentID' => 'Selection',
+  'WorkOrderNumber' => 'Text',
+  'WorkOrderStateID' => 'Selection',
+  'WorkOrderTitle' => 'Text',
+  'WorkOrderTypeID' => 'Selection'
+};
+$Self->{'ITSMChange::Mapping::Action::Attribute::Operator'}->{'DynamicField'} =  {
+  'set' => '1'
+};
+$Self->{'ITSMChange::Mapping::Action::Attribute::Operator'}->{'AccountedTime'} =  {
+  'set' => '1'
+};
+$Self->{'ITSMChange::Mapping::Action::Attribute::Operator'}->{'PlannedEffort'} =  {
+  'set' => '1'
+};
+$Self->{'ITSMChange::Mapping::Action::Attribute::Operator'}->{'ActualEndTime'} =  {
+  'set' => '1'
+};
+$Self->{'ITSMChange::Mapping::Action::Attribute::Operator'}->{'ActualStartTime'} =  {
+  'set' => '1'
+};
+$Self->{'ITSMChange::Mapping::Action::Attribute::Operator'}->{'PlannedEndTime'} =  {
+  'set' => '1'
+};
+$Self->{'ITSMChange::Mapping::Action::Attribute::Operator'}->{'PlannedStartTime'} =  {
+  'set' => '1'
+};
+$Self->{'ITSMChange::Mapping::Action::Attribute::Operator'}->{'RequestedTime'} =  {
+  'set' => '1'
+};
+$Self->{'ITSMChange::Mapping::Action::Attribute::Operator'}->{'ChangeBuilderID'} =  {
+  'set' => '1'
+};
+$Self->{'ITSMChange::Mapping::Action::Attribute::Operator'}->{'ChangeManagerID'} =  {
+  'set' => '1'
+};
+$Self->{'ITSMChange::Mapping::Action::Attribute::Operator'}->{'PriorityID'} =  {
+  'set' => '1'
+};
+$Self->{'ITSMChange::Mapping::Action::Attribute::Operator'}->{'ImpactID'} =  {
+  'set' => '1'
+};
+$Self->{'ITSMChange::Mapping::Action::Attribute::Operator'}->{'CategoryID'} =  {
+  'set' => '1'
+};
+$Self->{'ITSMChange::Mapping::Action::Attribute::Operator'}->{'ChangeTitle'} =  {
+  'set' => '1'
+};
+$Self->{'ITSMChange::Mapping::Action::Attribute::Operator'}->{'ChangeStateID'} =  {
+  'lock' => '1',
+  'set' => '1'
+};
+$Self->{'ITSMChange::Mapping::Action::Object::Attribute'} =  {
+  'AccountedTime' => '0',
+  'ActualEndTime' => '0',
+  'ActualStartTime' => '0',
+  'CategoryID' => '1',
+  'ChangeBuilderID' => '0',
+  'ChangeManagerID' => '1',
+  'ChangeStateID' => '1',
+  'ChangeTitle' => '0',
+  'DynamicField' => '1',
+  'ImpactID' => '1',
+  'PlannedEffort' => '0',
+  'PlannedEndTime' => '0',
+  'PlannedStartTime' => '0',
+  'PriorityID' => '1',
+  'RequestedTime' => '0'
+};
+$Self->{'ITSMChange::Mapping::Expression::Attribute::Operator'}->{'DynamicField'} =  {
+  'begins with' => '1',
+  'contains' => '1',
+  'ends with' => '1',
+  'is' => '1',
+  'is after' => '0',
+  'is before' => '0',
+  'is empty' => '1',
+  'is greater than' => '1',
+  'is less than' => '1',
+  'is not' => '1',
+  'is not empty' => '1',
+  'not contains' => '1'
+};
+$Self->{'ITSMChange::Mapping::Expression::Attribute::Operator'}->{'AccountedTime'} =  {
+  'begins with' => '0',
+  'contains' => '0',
+  'ends with' => '0',
+  'is' => '1',
+  'is after' => '0',
+  'is before' => '0',
+  'is empty' => '1',
+  'is greater than' => '1',
+  'is less than' => '1',
+  'is not' => '1',
+  'is not empty' => '1',
+  'not contains' => '0'
+};
+$Self->{'ITSMChange::Mapping::Expression::Attribute::Operator'}->{'PlannedEffort'} =  {
+  'begins with' => '0',
+  'contains' => '0',
+  'ends with' => '0',
+  'is' => '1',
+  'is after' => '0',
+  'is before' => '0',
+  'is empty' => '1',
+  'is greater than' => '1',
+  'is less than' => '1',
+  'is not' => '1',
+  'is not empty' => '1',
+  'not contains' => '0'
+};
+$Self->{'ITSMChange::Mapping::Expression::Attribute::Operator'}->{'ActualEndTime'} =  {
+  'begins with' => '0',
+  'contains' => '0',
+  'ends with' => '0',
+  'is' => '1',
+  'is after' => '1',
+  'is before' => '1',
+  'is empty' => '1',
+  'is greater than' => '0',
+  'is less than' => '0',
+  'is not' => '1',
+  'is not empty' => '1',
+  'not contains' => '0'
+};
+$Self->{'ITSMChange::Mapping::Expression::Attribute::Operator'}->{'ActualStartTime'} =  {
+  'begins with' => '0',
+  'contains' => '0',
+  'ends with' => '0',
+  'is' => '1',
+  'is after' => '1',
+  'is before' => '1',
+  'is empty' => '1',
+  'is greater than' => '0',
+  'is less than' => '0',
+  'is not' => '1',
+  'is not empty' => '1',
+  'not contains' => '0'
+};
+$Self->{'ITSMChange::Mapping::Expression::Attribute::Operator'}->{'PlannedEndTime'} =  {
+  'begins with' => '0',
+  'contains' => '0',
+  'ends with' => '0',
+  'is' => '1',
+  'is after' => '1',
+  'is before' => '1',
+  'is empty' => '1',
+  'is greater than' => '0',
+  'is less than' => '0',
+  'is not' => '1',
+  'is not empty' => '1',
+  'not contains' => '0'
+};
+$Self->{'ITSMChange::Mapping::Expression::Attribute::Operator'}->{'PlannedStartTime'} =  {
+  'begins with' => '0',
+  'contains' => '0',
+  'ends with' => '0',
+  'is' => '1',
+  'is after' => '1',
+  'is before' => '1',
+  'is empty' => '1',
+  'is greater than' => '0',
+  'is less than' => '0',
+  'is not' => '1',
+  'is not empty' => '1',
+  'not contains' => '0'
+};
+$Self->{'ITSMChange::Mapping::Expression::Attribute::Operator'}->{'RequestedTime'} =  {
+  'begins with' => '0',
+  'contains' => '0',
+  'ends with' => '0',
+  'is' => '1',
+  'is after' => '1',
+  'is before' => '1',
+  'is empty' => '1',
+  'is greater than' => '0',
+  'is less than' => '0',
+  'is not' => '1',
+  'is not empty' => '1',
+  'not contains' => '0'
+};
+$Self->{'ITSMChange::Mapping::Expression::Attribute::Operator'}->{'ChangeBuilderID'} =  {
+  'begins with' => '0',
+  'contains' => '0',
+  'ends with' => '0',
+  'is' => '1',
+  'is after' => '0',
+  'is before' => '0',
+  'is empty' => '0',
+  'is greater than' => '0',
+  'is less than' => '0',
+  'is not' => '1',
+  'is not empty' => '0',
+  'not contains' => '0'
+};
+$Self->{'ITSMChange::Mapping::Expression::Attribute::Operator'}->{'ChangeManagerID'} =  {
+  'begins with' => '0',
+  'contains' => '0',
+  'ends with' => '0',
+  'is' => '1',
+  'is after' => '0',
+  'is before' => '0',
+  'is empty' => '1',
+  'is greater than' => '0',
+  'is less than' => '0',
+  'is not' => '1',
+  'is not empty' => '1',
+  'not contains' => '0'
+};
+$Self->{'ITSMChange::Mapping::Expression::Attribute::Operator'}->{'PriorityID'} =  {
+  'begins with' => '0',
+  'contains' => '0',
+  'ends with' => '0',
+  'is' => '1',
+  'is after' => '0',
+  'is before' => '0',
+  'is empty' => '0',
+  'is greater than' => '0',
+  'is less than' => '0',
+  'is not' => '1',
+  'is not empty' => '0',
+  'not contains' => '0'
+};
+$Self->{'ITSMChange::Mapping::Expression::Attribute::Operator'}->{'ImpactID'} =  {
+  'begins with' => '0',
+  'contains' => '0',
+  'ends with' => '0',
+  'is' => '1',
+  'is after' => '0',
+  'is before' => '0',
+  'is empty' => '0',
+  'is greater than' => '0',
+  'is less than' => '0',
+  'is not' => '1',
+  'is not empty' => '0',
+  'not contains' => '0'
+};
+$Self->{'ITSMChange::Mapping::Expression::Attribute::Operator'}->{'CategoryID'} =  {
+  'begins with' => '0',
+  'contains' => '0',
+  'ends with' => '0',
+  'is' => '1',
+  'is after' => '0',
+  'is before' => '0',
+  'is empty' => '0',
+  'is greater than' => '0',
+  'is less than' => '0',
+  'is not' => '1',
+  'is not empty' => '0',
+  'not contains' => '0'
+};
+$Self->{'ITSMChange::Mapping::Expression::Attribute::Operator'}->{'ChangeTitle'} =  {
+  'begins with' => '1',
+  'contains' => '1',
+  'ends with' => '1',
+  'is' => '1',
+  'is after' => '0',
+  'is before' => '0',
+  'is empty' => '1',
+  'is greater than' => '0',
+  'is less than' => '0',
+  'is not' => '1',
+  'is not empty' => '1',
+  'not contains' => '1'
+};
+$Self->{'ITSMChange::Mapping::Expression::Attribute::Operator'}->{'ChangeStateID'} =  {
+  'begins with' => '0',
+  'contains' => '0',
+  'ends with' => '0',
+  'is' => '1',
+  'is after' => '0',
+  'is before' => '0',
+  'is empty' => '0',
+  'is greater than' => '0',
+  'is less than' => '0',
+  'is not' => '1',
+  'is not empty' => '0',
+  'not contains' => '0'
+};
+$Self->{'ITSMChange::Mapping::Expression::Object::Attribute'} =  {
+  'AccountedTime' => '1',
+  'ActualEndTime' => '1',
+  'ActualStartTime' => '1',
+  'CategoryID' => '1',
+  'ChangeBuilderID' => '1',
+  'ChangeManagerID' => '1',
+  'ChangeStateID' => '1',
+  'ChangeTitle' => '1',
+  'DynamicField' => '1',
+  'ImpactID' => '1',
+  'PlannedEffort' => '1',
+  'PlannedEndTime' => '1',
+  'PlannedStartTime' => '1',
+  'PriorityID' => '1',
+  'RequestedTime' => '1'
+};
+$Self->{'ITSMChange::Attribute::CompareValue::FieldType'} =  {
+  'AccountedTime' => 'Text',
+  'ActualEndTime' => 'Date',
+  'ActualStartTime' => 'Date',
+  'CategoryID' => 'Selection',
+  'ChangeBuilderID' => 'Selection',
+  'ChangeManagerID' => 'Selection',
+  'ChangeStateID' => 'Selection',
+  'ChangeTitle' => 'Text',
+  'DynamicField' => 'Text',
+  'ImpactID' => 'Selection',
+  'PlannedEffort' => 'Text',
+  'PlannedEndTime' => 'Date',
+  'PlannedStartTime' => 'Date',
+  'PriorityID' => 'Selection',
+  'RequestedTime' => 'Date'
+};
+$Self->{'ITSMChange::Impact::Default'} =  '3 normal';
+$Self->{'ITSMChange::Category::Default'} =  '3 normal';
+$Self->{'ITSMChange::State::Signal'} =  {
+  'approved' => 'greenled',
+  'canceled' => 'redled',
+  'failed' => 'redled',
+  'in progress' => 'yellowled',
+  'pending approval' => 'yellowled',
+  'pending pir' => 'yellowled',
+  'rejected' => 'redled',
+  'requested' => 'grayled',
+  'retracted' => 'grayled',
+  'successful' => 'greenled'
+};
+$Self->{'ITSMChange::StateLock::AllowEndStates'} =  '1';
+$Self->{'ITSMChange::Hook'} =  'Change#';
+$Self->{'ITSMChange::CounterLog'} =  '<OTRS_CONFIG_Home>/var/log/ITSMChangeCounter.log';
+$Self->{'ITSMChange::RestrictTicketTypes::Groups'} =  [
+  'itsm-change',
+  'itsm-change-builder',
+  'itsm-change-manager'
+];
+$Self->{'ITSMChange::AddChangeLinkTicketTypes'} =  [
+  'RfC'
+];
+$Self->{'ITSMChange::ToolBar::CacheTTL'} =  '180';
+$Self->{'ITSMChange::CacheTTL'} =  '7200';
+$Self->{'DynamicFields::ObjectType'}->{'ITSMWorkOrder'} =  {
+  'DisplayName' => 'ITSMWorkOrder',
+  'Module' => 'Kernel::System::DynamicField::ObjectType::ITSMWorkOrder',
+  'Prio' => '460'
+};
+$Self->{'DynamicFields::ObjectType'}->{'ITSMChange'} =  {
+  'DisplayName' => 'ITSMChange',
+  'Module' => 'Kernel::System::DynamicField::ObjectType::ITSMChange',
+  'Prio' => '450'
+};
+$Self->{'ITSMChange::ChangeSearch::MirrorDB'} =  '0';
+$Self->{'ITSMCondition::EventModule'}->{'02-Notification'} =  {
+  'Event' => '(ActionExecutePost)',
+  'Module' => 'Kernel::System::ITSMChange::Event::Notification',
+  'Transaction' => '0'
+};
+$Self->{'ITSMCondition::EventModule'}->{'01-HistoryAdd'} =  {
+  'Event' => '(ConditionAddPost|ConditionUpdatePost|ConditionDeletePost|ConditionDeleteAllPost|ExpressionAddPost|ExpressionUpdatePost|ExpressionDeletePost|ExpressionDeleteAllPost|ActionAddPost|ActionUpdatePost|ActionDeletePost|ActionDeleteAllPost|ActionExecutePost)',
+  'Module' => 'Kernel::System::ITSMChange::Event::HistoryAdd',
+  'Transaction' => '0'
+};
+$Self->{'ITSMChangeManagementNotification::EventModule'}->{'01-HistoryAdd'} =  {
+  'Event' => '(ChangeNotificationSentPost|WorkOrderNotificationSentPost)',
+  'Module' => 'Kernel::System::ITSMChange::Event::HistoryAdd',
+  'Transaction' => '0'
+};
+$Self->{'ITSMChangeCronjob::EventModule'}->{'03-Condition'} =  {
+  'Event' => '(ChangePlannedStartTimeReachedPost|ChangePlannedEndTimeReachedPost|ChangeActualStartTimeReachedPost|ChangeActualEndTimeReachedPost|ChangeRequestedTimeReachedPost|WorkOrderPlannedStartTimeReachedPost|WorkOrderPlannedEndTimeReachedPost|WorkOrderActualStartTimeReachedPost|WorkOrderActualEndTimeReachedPost)',
+  'Module' => 'Kernel::System::ITSMChange::Event::Condition',
+  'Transaction' => '0'
+};
+$Self->{'ITSMChangeCronjob::EventModule'}->{'02-Notification'} =  {
+  'Event' => '(ChangePlannedStartTimeReachedPost|ChangePlannedEndTimeReachedPost|ChangeActualStartTimeReachedPost|ChangeActualEndTimeReachedPost|ChangeRequestedTimeReachedPost|WorkOrderPlannedStartTimeReachedPost|WorkOrderPlannedEndTimeReachedPost|WorkOrderActualStartTimeReachedPost|WorkOrderActualEndTimeReachedPost)',
+  'Module' => 'Kernel::System::ITSMChange::Event::Notification',
+  'Transaction' => '0'
+};
+$Self->{'ITSMChangeCronjob::EventModule'}->{'01-HistoryAdd'} =  {
+  'Event' => '(ChangePlannedStartTimeReachedPost|ChangePlannedEndTimeReachedPost|ChangeActualStartTimeReachedPost|ChangeActualEndTimeReachedPost|ChangeRequestedTimeReachedPost|WorkOrderPlannedStartTimeReachedPost|WorkOrderPlannedEndTimeReachedPost|WorkOrderActualStartTimeReachedPost|WorkOrderActualEndTimeReachedPost)',
+  'Module' => 'Kernel::System::ITSMChange::Event::HistoryAdd',
+  'Transaction' => '0'
+};
+$Self->{'Daemon::SchedulerCronTaskManager::Task'}->{'ITSMChangesCheck'} =  {
+  'Function' => 'Execute',
+  'MaximumParallelInstances' => '1',
+  'Module' => 'Kernel::System::Console::Command::Admin::ITSM::Change::Check',
+  'Params' => [],
+  'Schedule' => '*/10 * * * *',
+  'TaskName' => 'ITSMChangesCheck'
+};
+$Self->{'ITSMWorkOrder::EventModule'}->{'80-ToolBarMyWorkOrdersCacheDelete'} =  {
+  'Event' => '(WorkOrderAddPost|WorkOrderUpdatePost|WorkOrderDeletePost)',
+  'Module' => 'Kernel::System::ITSMChange::ITSMWorkOrder::Event::ToolBarMyWorkOrdersCacheDelete',
+  'Transaction' => '0'
+};
+$Self->{'ITSMWorkOrder::EventModule'}->{'05-Condition'} =  {
+  'Event' => '(WorkOrderAddPost|WorkOrderUpdatePost)',
+  'Module' => 'Kernel::System::ITSMChange::Event::Condition',
+  'Transaction' => '0'
+};
+$Self->{'ITSMWorkOrder::EventModule'}->{'04-Notification'} =  {
+  'Event' => '(WorkOrderAddPost|WorkOrderUpdatePost|WorkOrderDeletePost|WorkOrderLinkAddPost|WorkOrderLinkDeletePost|WorkOrderAttachmentAddPost|WorkOrderAttachmentDeletePost|WorkOrderReportAttachmentAddPost|WorkOrderReportAttachmentDeletePost)',
+  'Module' => 'Kernel::System::ITSMChange::Event::Notification',
+  'Transaction' => '0'
+};
+$Self->{'ITSMWorkOrder::EventModule'}->{'03-HistoryAdd'} =  {
+  'Event' => '(WorkOrderAddPost|WorkOrderUpdatePost|WorkOrderDeletePost|WorkOrderLinkAddPost|WorkOrderLinkDeletePost|WorkOrderAttachmentAddPost|WorkOrderAttachmentDeletePost|WorkOrderReportAttachmentAddPost|WorkOrderReportAttachmentDeletePost)',
+  'Module' => 'Kernel::System::ITSMChange::Event::HistoryAdd',
+  'Transaction' => '0'
+};
+$Self->{'ITSMWorkOrder::EventModule'}->{'02-WorkOrderActualTimesSet'} =  {
+  'Event' => 'WorkOrderUpdatePost',
+  'Module' => 'Kernel::System::ITSMChange::ITSMWorkOrder::Event::WorkOrderActualTimesSet',
+  'Transaction' => '0'
+};
+$Self->{'ITSMWorkOrder::EventModule'}->{'01-WorkOrderNumberCalc'} =  {
+  'Event' => '(WorkOrderUpdatePost|WorkOrderDeletePost)',
+  'Module' => 'Kernel::System::ITSMChange::ITSMWorkOrder::Event::WorkOrderNumberCalc',
+  'Transaction' => '0'
+};
+$Self->{'ITSMChange::EventModule'}->{'91-HistoryDelete'} =  {
+  'Event' => '(ChangeDeletePost)',
+  'Module' => 'Kernel::System::ITSMChange::Event::HistoryDelete',
+  'Transaction' => '0'
+};
+$Self->{'ITSMChange::EventModule'}->{'90-ConditionDelete'} =  {
+  'Event' => '(ChangeDeletePost)',
+  'Module' => 'Kernel::System::ITSMChange::Event::ConditionDelete',
+  'Transaction' => '0'
+};
+$Self->{'ITSMChange::EventModule'}->{'82-ToolBarMyCABCacheDelete'} =  {
+  'Event' => '(ChangeCABUpdatePost|ChangeCABDeletePost)',
+  'Module' => 'Kernel::System::ITSMChange::Event::ToolBarMyCABCacheDelete',
+  'Transaction' => '0'
+};
+$Self->{'ITSMChange::EventModule'}->{'81-ToolBarMyChangesCacheDelete'} =  {
+  'Event' => '(ChangeAddPost|ChangeUpdatePost|ChangeDeletePost)',
+  'Module' => 'Kernel::System::ITSMChange::Event::ToolBarMyChangesCacheDelete',
+  'Transaction' => '0'
+};
+$Self->{'ITSMChange::EventModule'}->{'80-ToolBarChangeManagerCacheDelete'} =  {
+  'Event' => '(ChangeAddPost|ChangeUpdatePost|ChangeDeletePost)',
+  'Module' => 'Kernel::System::ITSMChange::Event::ToolBarChangeManagerCacheDelete',
+  'Transaction' => '0'
+};
+$Self->{'ITSMChange::EventModule'}->{'03-Condition'} =  {
+  'Event' => '(ChangeAddPost|ChangeUpdatePost)',
+  'Module' => 'Kernel::System::ITSMChange::Event::Condition',
+  'Transaction' => '0'
+};
+$Self->{'ITSMChange::EventModule'}->{'02-Notification'} =  {
+  'Event' => '(ChangeAddPost|ChangeUpdatePost|ChangeCABUpdatePost|ChangeCABDeletePost|ChangeDeletePost|ChangeLinkAddPost|ChangeLinkDeletePost|ChangeAttachmentAddPost|ChangeAttachmentDeletePost)',
+  'Module' => 'Kernel::System::ITSMChange::Event::Notification',
+  'Transaction' => '0'
+};
+$Self->{'ITSMChange::EventModule'}->{'01-HistoryAdd'} =  {
+  'Event' => '(ChangeAddPost|ChangeUpdatePost|ChangeCABUpdatePost|ChangeCABDeletePost|ChangeLinkAddPost|ChangeLinkDeletePost|ChangeAttachmentAddPost|ChangeAttachmentDeletePost)',
+  'Module' => 'Kernel::System::ITSMChange::Event::HistoryAdd',
+  'Transaction' => '0'
+};
+$Self->{'DynamicField::EventModulePost'}->{'100-UpdateITSMChangeConditions'} =  {
+  'Event' => '(DynamicFieldAdd|DynamicFieldUpdate|DynamicFieldDelete)',
+  'Module' => 'Kernel::System::DynamicField::Event::UpdateITSMChangeConditions',
+  'Transaction' => '0'
+};
+$Self->{'LinkObject::ComplexTable'}->{'ITSMWorkOrder'} =  {
+  'DefaultColumns' => {
+    'AccountedTime' => '1',
+    'ActualEndTime' => '1',
+    'ActualStartTime' => '1',
+    'ChangeTime' => '2',
+    'CreateTime' => '1',
+    'PlannedEffort' => '1',
+    'PlannedEndTime' => '1',
+    'PlannedStartTime' => '1',
+    'WorkOrderState' => '2',
+    'WorkOrderTitle' => '2',
+    'WorkOrderType' => '2'
+  },
+  'Module' => 'Kernel::Output::HTML::LinkObject::ITSMWorkOrder.pm',
+  'Priority' => {
+    'AccountedTime' => '180',
+    'ActualEndTime' => '160',
+    'ActualStartTime' => '150',
+    'ChangeTime' => '200',
+    'CreateTime' => '190',
+    'PlannedEffort' => '170',
+    'PlannedEndTime' => '140',
+    'PlannedStartTime' => '130',
+    'WorkOrderState' => '110',
+    'WorkOrderTitle' => '100',
+    'WorkOrderType' => '120'
+  }
+};
+$Self->{'LinkObject::ComplexTable'}->{'ITSMChange'} =  {
+  'DefaultColumns' => {
+    'AccountedTime' => '1',
+    'ActualEndTime' => '1',
+    'ActualStartTime' => '1',
+    'Category' => '2',
+    'ChangeState' => '2',
+    'ChangeTime' => '2',
+    'ChangeTitle' => '2',
+    'CreateTime' => '1',
+    'Impact' => '2',
+    'PlannedEffort' => '1',
+    'PlannedEndTime' => '1',
+    'PlannedStartTime' => '1',
+    'Priority' => '2',
+    'RequestedTime' => '1'
+  },
+  'Module' => 'Kernel::Output::HTML::LinkObject::ITSMChange.pm',
+  'Priority' => {
+    'AccountedTime' => '200',
+    'ActualEndTime' => '180',
+    'ActualStartTime' => '170',
+    'Category' => '120',
+    'ChangeState' => '110',
+    'ChangeTime' => '230',
+    'ChangeTitle' => '100',
+    'CreateTime' => '220',
+    'Impact' => '130',
+    'PlannedEffort' => '190',
+    'PlannedEndTime' => '160',
+    'PlannedStartTime' => '150',
+    'Priority' => '140',
+    'RequestedTime' => '210'
+  }
+};
+$Self->{'LinkObject::ComplexTable::SettingsVisibility'}->{'ITSMChangeManagement'} =  [
+  'AgentITSMChangeZoom',
+  'AgentITSMWorkOrderZoom'
+];
+$Self->{'ITSMWorkOrder::Frontend::MenuModule'}->{'090-WorkOrderDelete'} =  {
+  'Action' => 'AgentITSMWorkOrderDelete',
+  'ConfirmedActionQueryString' => 'Action=AgentITSMWorkOrderDelete;Subaction=WorkOrderDelete;WorkOrderID=[% Data.WorkOrderID | html %]',
+  'Description' => 'Delete the workorder.',
+  'DialogContentQueryString' => 'Action=AgentITSMWorkOrderDelete;WorkOrderID=[% Data.WorkOrderID | html %]',
+  'DialogTitle' => '[% Translate("Delete") | html %] [% Config("ITSMWorkOrder::Hook") %] [% Data.ChangeNumber | html %]-[% Data.WorkOrderNumber | html %]',
+  'ElementSelector' => '#Menu[% Data.MenuID | html %]',
+  'Link' => 'Action=AgentITSMWorkOrderDelete;WorkOrderID=[% Data.WorkOrderID | html %]',
+  'Module' => 'Kernel::Output::HTML::ITSMWorkOrder::MenuWithPermissionFromChange',
+  'Name' => 'Delete',
+  'Target' => 'ConfirmDialog'
+};
+$Self->{'ITSMWorkOrder::Frontend::MenuModule'}->{'080-Template'} =  {
+  'Action' => 'AgentITSMWorkOrderTemplate',
+  'Description' => 'Save workorder as a template.',
+  'Link' => 'Action=AgentITSMWorkOrderTemplate;WorkOrderID=[% Data.WorkOrderID | html %]',
+  'Module' => 'Kernel::Output::HTML::ITSMWorkOrder::MenuWithPermissionFromChange',
+  'Name' => 'Template',
+  'Target' => 'PopUp'
+};
+$Self->{'ITSMWorkOrder::Frontend::MenuModule'}->{'060-Link'} =  {
+  'Action' => 'AgentLinkObject',
+  'Description' => 'Link another object to the workorder.',
+  'Link' => 'Action=AgentLinkObject;SourceObject=ITSMWorkOrder;SourceKey=[% Data.WorkOrderID | html %]',
+  'Module' => 'Kernel::Output::HTML::ITSMWorkOrder::MenuGeneric',
+  'Name' => 'Link',
+  'Target' => 'PopUp'
+};
+$Self->{'ITSMWorkOrder::Frontend::MenuModule'}->{'050-Report'} =  {
+  'Action' => 'AgentITSMWorkOrderReport',
+  'Description' => 'Report',
+  'Link' => 'Action=AgentITSMWorkOrderReport;WorkOrderID=[% Data.WorkOrderID | html %]',
+  'Module' => 'Kernel::Output::HTML::ITSMWorkOrder::MenuGeneric',
+  'Name' => 'Report',
+  'Target' => 'PopUp'
+};
+$Self->{'ITSMWorkOrder::Frontend::MenuModule'}->{'040-WorkOrderAgent'} =  {
+  'Action' => 'AgentITSMWorkOrderAgent',
+  'Description' => 'Set the agent for the workorder.',
+  'Link' => 'Action=AgentITSMWorkOrderAgent;WorkOrderID=[% Data.WorkOrderID | html %]',
+  'Module' => 'Kernel::Output::HTML::ITSMWorkOrder::MenuWithPermissionFromChange',
+  'Name' => 'Workorder Agent',
+  'Target' => 'PopUp'
+};
+$Self->{'ITSMWorkOrder::Frontend::MenuModule'}->{'035-Take'} =  {
+  'Action' => 'AgentITSMWorkOrderTake',
+  'ConfirmedActionQueryString' => 'Action=AgentITSMWorkOrderTake;Subaction=WorkOrderTake;WorkOrderID=[% Data.WorkOrderID | html %]',
+  'Description' => 'Take the workorder.',
+  'DialogContentQueryString' => 'Action=AgentITSMWorkOrderTake;WorkOrderID=[% Data.WorkOrderID | html %]',
+  'DialogTitle' => '[% Translate("Take Workorder") | html %]: [% Config("ITSMWorkOrder::Hook") %] [% Data.ChangeNumber | html %] - [% Data.WorkOrderNumber | html %]',
+  'ElementSelector' => '#Menu[% Data.MenuID | html %]',
+  'Link' => 'Action=AgentITSMWorkOrderTake;WorkOrderID=[% Data.WorkOrderID | html %]',
+  'Module' => 'Kernel::Output::HTML::ITSMWorkOrder::MenuWithTakePermission',
+  'Name' => 'Take Workorder',
+  'Target' => 'ConfirmDialog'
+};
+$Self->{'ITSMWorkOrder::Frontend::MenuModule'}->{'030-Edit'} =  {
+  'Action' => 'AgentITSMWorkOrderEdit',
+  'Description' => 'Edit the workorder.',
+  'Link' => 'Action=AgentITSMWorkOrderEdit;WorkOrderID=[% Data.WorkOrderID | html %]',
+  'Module' => 'Kernel::Output::HTML::ITSMWorkOrder::MenuWithPermissionFromChange',
+  'Name' => 'Edit',
+  'Target' => 'PopUp'
+};
+$Self->{'ITSMWorkOrder::Frontend::MenuModule'}->{'020-Print'} =  {
+  'Action' => 'AgentITSMChangePrint',
+  'Description' => 'Print the workorder.',
+  'Link' => 'Action=AgentITSMChangePrint;WorkOrderID=[% Data.WorkOrderID | html %]',
+  'Module' => 'Kernel::Output::HTML::ITSMWorkOrder::MenuGeneric',
+  'Name' => 'Print',
+  'Target' => 'PopUp'
+};
+$Self->{'ITSMWorkOrder::Frontend::MenuModule'}->{'010-History'} =  {
+  'Action' => 'AgentITSMWorkOrderHistory',
+  'Description' => 'History',
+  'Link' => 'Action=AgentITSMWorkOrderHistory;WorkOrderID=[% Data.WorkOrderID | html %]',
+  'Module' => 'Kernel::Output::HTML::ITSMWorkOrder::MenuGeneric',
+  'Name' => 'History',
+  'Target' => 'PopUp'
+};
+$Self->{'ITSMWorkOrder::Frontend::MenuModule'}->{'000-Back'} =  {
+  'Action' => '',
+  'Description' => 'Back',
+  'Link' => '[% Env("LastScreenWorkOrders") %]',
+  'Module' => 'Kernel::Output::HTML::ITSMWorkOrder::MenuGeneric',
+  'Name' => 'Back',
+  'Target' => 'Back'
+};
+$Self->{'ITSMChange::Frontend::MenuModule'}->{'090-Template'} =  {
+  'Action' => 'AgentITSMChangeTemplate',
+  'Description' => 'Save change as a template.',
+  'Link' => 'Action=AgentITSMChangeTemplate;ChangeID=[% Data.ChangeID | html %]',
+  'Module' => 'Kernel::Output::HTML::ITSMChange::MenuGeneric',
+  'Name' => 'Template',
+  'Target' => 'PopUp'
+};
+$Self->{'ITSMChange::Frontend::MenuModule'}->{'080-MoveTimeSlot'} =  {
+  'Action' => 'AgentITSMChangeTimeSlot',
+  'Description' => 'Move all workorders in time.',
+  'Link' => 'Action=AgentITSMChangeTimeSlot;ChangeID=[% Data.ChangeID | html %]',
+  'Module' => 'Kernel::Output::HTML::ITSMChange::MenuTimeSlot',
+  'Name' => 'Move Time Slot',
+  'Target' => 'PopUp'
+};
+$Self->{'ITSMChange::Frontend::MenuModule'}->{'070-Link'} =  {
+  'Action' => 'AgentLinkObject',
+  'Description' => 'Link another object to the change.',
+  'Link' => 'Action=AgentLinkObject;SourceObject=ITSMChange;SourceKey=[% Data.ChangeID | html %]',
+  'Module' => 'Kernel::Output::HTML::ITSMChange::MenuGeneric',
+  'Name' => 'Link',
+  'Target' => 'PopUp'
+};
+$Self->{'ITSMChange::Frontend::MenuModule'}->{'060-Conditions'} =  {
+  'Action' => 'AgentITSMChangeCondition',
+  'Description' => 'Edit the conditions of the change.',
+  'Link' => 'Action=AgentITSMChangeCondition;ChangeID=[% Data.ChangeID | html %]',
+  'Module' => 'Kernel::Output::HTML::ITSMChange::MenuGeneric',
+  'Name' => 'Conditions',
+  'Target' => 'PopUp'
+};
+$Self->{'ITSMChange::Frontend::MenuModule'}->{'055-WorkOrderAddFromTemplate'} =  {
+  'Action' => 'AgentITSMWorkOrderAddFromTemplate',
+  'Description' => 'Add a workorder (from template) to the change.',
+  'Link' => 'Action=AgentITSMWorkOrderAddFromTemplate;ChangeID=[% Data.ChangeID | html %]',
+  'Module' => 'Kernel::Output::HTML::ITSMChange::MenuGeneric',
+  'Name' => 'Add Workorder (from Template)',
+  'Target' => 'PopUp'
+};
+$Self->{'ITSMChange::Frontend::MenuModule'}->{'050-WorkOrderAdd'} =  {
+  'Action' => 'AgentITSMWorkOrderAdd',
+  'Description' => 'Add a workorder to the change.',
+  'Link' => 'Action=AgentITSMWorkOrderAdd;ChangeID=[% Data.ChangeID | html %]',
+  'Module' => 'Kernel::Output::HTML::ITSMChange::MenuGeneric',
+  'Name' => 'Add Workorder',
+  'Target' => 'PopUp'
+};
+$Self->{'ITSMChange::Frontend::MenuModule'}->{'040-InvolvedPersons'} =  {
+  'Action' => 'AgentITSMChangeInvolvedPersons',
+  'Description' => 'Change involved persons of the change.',
+  'Link' => 'Action=AgentITSMChangeInvolvedPersons;ChangeID=[% Data.ChangeID | html %]',
+  'Module' => 'Kernel::Output::HTML::ITSMChange::MenuGeneric',
+  'Name' => 'Involved Persons',
+  'Target' => 'PopUp'
+};
+$Self->{'ITSMChange::Frontend::MenuModule'}->{'030-Edit'} =  {
+  'Action' => 'AgentITSMChangeEdit',
+  'Description' => 'Edit the change.',
+  'Link' => 'Action=AgentITSMChangeEdit;ChangeID=[% Data.ChangeID | html %]',
+  'Module' => 'Kernel::Output::HTML::ITSMChange::MenuGeneric',
+  'Name' => 'Edit',
+  'Target' => 'PopUp'
+};
+$Self->{'ITSMChange::Frontend::MenuModule'}->{'020-Print'} =  {
+  'Action' => 'AgentITSMChangePrint',
+  'Description' => 'Print the change.',
+  'Link' => 'Action=AgentITSMChangePrint;ChangeID=[% Data.ChangeID | html %]',
+  'LinkParam' => 'target="print_change"',
+  'Module' => 'Kernel::Output::HTML::ITSMChange::MenuGeneric',
+  'Name' => 'Print',
+  'Target' => 'PopUp'
+};
+$Self->{'ITSMChange::Frontend::MenuModule'}->{'010-History'} =  {
+  'Action' => 'AgentITSMChangeHistory',
+  'Description' => 'History',
+  'Link' => 'Action=AgentITSMChangeHistory;ChangeID=[% Data.ChangeID | html %]',
+  'Module' => 'Kernel::Output::HTML::ITSMChange::MenuGeneric',
+  'Name' => 'History',
+  'Target' => 'PopUp'
+};
+$Self->{'ITSMChange::Frontend::MenuModule'}->{'000-Back'} =  {
+  'Action' => '',
+  'Description' => 'Back',
+  'Link' => '[% Env("LastScreenChanges") %]',
+  'Module' => 'Kernel::Output::HTML::ITSMChange::MenuGeneric',
+  'Name' => 'Back',
+  'Target' => 'Back'
+};
+$Self->{'Ticket::Frontend::MenuModule'}->{'317-ITSMChangeAdd'} =  {
+  'Action' => 'AgentITSMChangeAdd',
+  'Description' => 'Create a change from this ticket.',
+  'Link' => 'Action=AgentITSMChangeAdd;TicketID=[% Data.TicketID | html %]',
+  'Module' => 'Kernel::Output::HTML::TicketMenu::ITSMChange',
+  'Name' => 'Create Change'
+};
+$Self->{'ITSMChange::Frontend::TemplateOverview'}->{'Small'} =  {
+  'Module' => 'Kernel::Output::HTML::ITSMTemplate::OverviewSmall',
+  'Name' => 'Small',
+  'NameShort' => 'S',
+  'PageShown' => '25'
+};
+$Self->{'ITSMChange::Frontend::Overview'}->{'Small'} =  {
+  'Module' => 'Kernel::Output::HTML::ITSMChange::OverviewSmall',
+  'Name' => 'Small',
+  'NameShort' => 'S',
+  'PageShown' => '25'
+};
+$Self->{'Frontend::ToolBarModule'}->{'104-ITSMChangeManagement::MyCAB'} =  {
+  'CssClass' => 'MyCABs',
+  'Icon' => 'fa fa-group',
+  'Module' => 'Kernel::Output::HTML::ToolBar::MyCAB',
+  'Priority' => '1000620'
+};
+$Self->{'Frontend::ToolBarModule'}->{'103-ITSMChangeManagement::MyWorkOrders'} =  {
+  'CssClass' => 'MyWorkOrders',
+  'Icon' => 'fa fa-tasks',
+  'Module' => 'Kernel::Output::HTML::ToolBar::MyWorkOrders',
+  'Priority' => '1000640'
+};
+$Self->{'Frontend::ToolBarModule'}->{'102-ITSMChangeManagement::MyChanges'} =  {
+  'CssClass' => 'MyChanges',
+  'Icon' => 'fa fa-retweet',
+  'Module' => 'Kernel::Output::HTML::ToolBar::MyChanges',
+  'Priority' => '1000630'
+};
+$Self->{'Frontend::ToolBarModule'}->{'101-ITSMChangeManagement::ChangeManager'} =  {
+  'CssClass' => 'ChangeManager',
+  'Icon' => 'fa fa-male',
+  'Module' => 'Kernel::Output::HTML::ToolBar::ChangeManager',
+  'Priority' => '1000610'
+};
+$Self->{'Frontend::Module'}->{'AgentITSMWorkOrderZoom'} =  {
+  'Description' => 'Workorder Zoom.',
+  'GroupRo' => [
+    'itsm-change'
+  ],
+  'Loader' => {
+    'CSS' => [
+      'ITSM.Agent.Default.css',
+      'ITSM.ChangeManagement.Default.css',
+      'ITSM.ChangeManagement.RTEContent.css',
+      'Core.AllocationList.css'
+    ],
+    'JavaScript' => [
+      'Core.UI.AllocationList.js',
+      'Core.UI.Table.Sort.js',
+      'Core.Agent.TableFilters.js',
+      'Core.Agent.LinkObject.js',
+      'ITSM.Agent.ChangeManagement.Zoom.js',
+      'ITSM.Agent.ConfirmDialog.js'
+    ]
+  },
+  'NavBarName' => 'ITSM Change',
+  'Title' => 'Zoom'
+};
+$Self->{'Frontend::Module'}->{'AgentITSMWorkOrderTemplate'} =  {
+  'Description' => 'Template.',
+  'GroupRo' => [
+    'itsm-change'
+  ],
+  'NavBarName' => 'ITSM Change',
+  'Title' => 'Template'
+};
+$Self->{'Frontend::Module'}->{'AgentITSMWorkOrderTake'} =  {
+  'Description' => 'Take Workorder.',
+  'GroupRo' => [
+    'itsm-change'
+  ],
+  'NavBarName' => 'ITSM Change',
+  'Title' => 'Take Workorder'
+};
+$Self->{'Frontend::Module'}->{'AgentITSMWorkOrderReport'} =  {
+  'Description' => 'Workorder Report.',
+  'GroupRo' => [
+    'itsm-change'
+  ],
+  'NavBarName' => 'ITSM Change',
+  'Title' => 'Report'
+};
+$Self->{'Frontend::Module'}->{'AgentITSMWorkOrderHistoryZoom'} =  {
+  'Description' => 'Workorder History Zoom.',
+  'GroupRo' => [
+    'itsm-change'
+  ],
+  'NavBarName' => 'ITSM Change',
+  'Title' => 'History Zoom'
+};
+$Self->{'Frontend::Module'}->{'AgentITSMWorkOrderHistory'} =  {
+  'Description' => 'Workorder History.',
+  'GroupRo' => [
+    'itsm-change'
+  ],
+  'NavBarName' => 'ITSM Change',
+  'Title' => 'History'
+};
+$Self->{'Frontend::Module'}->{'AgentITSMWorkOrderEdit'} =  {
+  'Description' => 'Workorder Edit.',
+  'GroupRo' => [
+    'itsm-change'
+  ],
+  'NavBarName' => 'ITSM Change',
+  'Title' => 'Edit'
+};
+$Self->{'Frontend::Module'}->{'AgentITSMWorkOrderDelete'} =  {
+  'Description' => 'Workorder Delete.',
+  'GroupRo' => [
+    'itsm-change'
+  ],
+  'NavBarName' => 'ITSM Change',
+  'Title' => 'Delete'
+};
+$Self->{'Frontend::Module'}->{'AgentITSMWorkOrderAgent'} =  {
+  'Description' => 'Workorder Agent.',
+  'GroupRo' => [
+    'itsm-change'
+  ],
+  'NavBarName' => 'ITSM Change',
+  'Title' => 'Agent'
+};
+$Self->{'Frontend::Module'}->{'AgentITSMWorkOrderAddFromTemplate'} =  {
+  'Description' => 'Workorder Add (from template).',
+  'GroupRo' => [
+    'itsm-change'
+  ],
+  'NavBarName' => 'ITSM Change',
+  'Title' => 'Add'
+};
+$Self->{'Frontend::Module'}->{'AgentITSMWorkOrderAdd'} =  {
+  'Description' => 'Workorder Add.',
+  'GroupRo' => [
+    'itsm-change'
+  ],
+  'NavBarName' => 'ITSM Change',
+  'Title' => 'Add'
+};
+$Self->{'Frontend::Module'}->{'AgentITSMUserSearch'} =  {
+  'Description' => 'Lookup of agents, used for autocompletion.',
+  'GroupRo' => [
+    'itsm-change'
+  ],
+  'NavBarName' => 'ITSM Change',
+  'Title' => 'User Search'
+};
+$Self->{'Frontend::Module'}->{'AgentITSMTemplateOverview'} =  {
+  'Description' => 'ITSM Template Overview.',
+  'GroupRo' => [
+    'itsm-change-builder',
+    'itsm-change-manager'
+  ],
+  'Loader' => {
+    'CSS' => [
+      'ITSM.ChangeManagement.Default.css'
+    ],
+    'JavaScript' => [
+      'ITSM.Agent.ConfirmDialog.js'
+    ]
+  },
+  'NavBar' => [
+    {
+      'AccessKey' => '',
+      'Block' => '',
+      'Description' => 'Template Overview',
+      'Link' => 'Action=AgentITSMTemplateOverview',
+      'Name' => 'Templates',
+      'NavBar' => 'ITSM Change',
+      'Prio' => '500',
+      'Type' => ''
+    }
+  ],
+  'NavBarName' => 'ITSM Change',
+  'Title' => 'ITSM Change'
+};
+$Self->{'Frontend::Module'}->{'AgentITSMTemplateEditContent'} =  {
+  'Description' => 'ITSM Template Edit Content.',
+  'GroupRo' => [
+    'itsm-change-builder',
+    'itsm-change-manager'
+  ],
+  'Title' => 'ITSM Change'
+};
+$Self->{'Frontend::Module'}->{'AgentITSMTemplateEditCAB'} =  {
+  'Description' => 'ITSM Template Edit CAB.',
+  'GroupRo' => [
+    'itsm-change-builder',
+    'itsm-change-manager'
+  ],
+  'Title' => 'ITSM Change'
+};
+$Self->{'Frontend::Module'}->{'AgentITSMTemplateEdit'} =  {
+  'Description' => 'ITSM Template Edit.',
+  'GroupRo' => [
+    'itsm-change-builder',
+    'itsm-change-manager'
+  ],
+  'Title' => 'ITSM Change'
+};
+$Self->{'Frontend::Module'}->{'AgentITSMTemplateDelete'} =  {
+  'Description' => 'ITSM Template Delete.',
+  'GroupRo' => [
+    'itsm-change-builder',
+    'itsm-change-manager'
+  ],
+  'Title' => 'ITSM Change'
+};
+$Self->{'Frontend::Module'}->{'AgentITSMChangeZoom'} =  {
+  'Description' => 'Change Zoom.',
+  'GroupRo' => [
+    'itsm-change'
+  ],
+  'Loader' => {
+    'CSS' => [
+      'ITSM.Agent.Default.css',
+      'Core.AllocationList.css',
+      'ITSM.ChangeManagement.Default.css',
+      'ITSM.ChangeManagement.Responsive.css',
+      'ITSM.ChangeManagement.WorkorderGraph.css',
+      'ITSM.ChangeManagement.RTEContent.css'
+    ],
+    'JavaScript' => [
+      'thirdparty/jquery-tablesorter-2.0.5/jquery.tablesorter.js',
+      'ITSM.Agent.ChangeManagement.WorkorderGraph.js',
+      'ITSM.Agent.ChangeManagement.Zoom.js',
+      'Core.UI.AllocationList.js',
+      'Core.UI.Table.Sort.js',
+      'Core.Agent.TableFilters.js',
+      'Core.Agent.LinkObject.js',
+      'ITSM.Agent.ConfirmDialog.js'
+    ]
+  },
+  'NavBarName' => 'ITSM Change',
+  'Title' => 'Zoom'
+};
+$Self->{'Frontend::Module'}->{'AgentITSMChangeTimeSlot'} =  {
+  'Description' => 'Move Time Slot.',
+  'GroupRo' => [
+    'itsm-change'
+  ],
+  'NavBarName' => 'ITSM Change',
+  'Title' => 'Time Slot'
+};
+$Self->{'Frontend::Module'}->{'AgentITSMChangeTemplate'} =  {
+  'Description' => 'Template.',
+  'GroupRo' => [
+    'itsm-change'
+  ],
+  'NavBarName' => 'ITSM Change',
+  'Title' => 'Template'
+};
+$Self->{'Frontend::Module'}->{'AgentITSMChangeSearch'} =  {
+  'Description' => 'Search Changes.',
+  'GroupRo' => [
+    'itsm-change'
+  ],
+  'NavBar' => [
+    {
+      'AccessKey' => '',
+      'Block' => '',
+      'Description' => 'Search Changes',
+      'Link' => 'Action=AgentITSMChangeSearch',
+      'LinkOption' => 'onclick="ITSM.Agent.ChangeManagement.Search.OpenSearchDialog(\'AgentITSMChangeSearch\'); if (event.stopPropagation) { event.stopPropagation(); } else { window.event.cancelBubble = true; } return false;"',
+      'Name' => 'Search',
+      'NavBar' => 'ITSM Change',
+      'Prio' => '600',
+      'Type' => ''
+    }
+  ],
+  'NavBarName' => 'ITSM Change',
+  'Title' => 'Search'
+};
+$Self->{'Frontend::Module'}->{'AgentITSMChangeSchedule'} =  {
+  'Description' => 'Forward schedule of changes. Overview over approved changes.',
+  'GroupRo' => [
+    'itsm-change'
+  ],
+  'NavBar' => [
+    {
+      'AccessKey' => '',
+      'Block' => '',
+      'Description' => 'Change Schedule',
+      'Link' => 'Action=AgentITSMChangeSchedule',
+      'Name' => 'Schedule',
+      'NavBar' => 'ITSM Change',
+      'Prio' => '300',
+      'Type' => ''
+    }
+  ],
+  'NavBarName' => 'ITSM Change',
+  'Title' => 'Change Schedule'
+};
+$Self->{'Frontend::Module'}->{'AgentITSMChangePSA'} =  {
+  'Description' => 'Projected Service Availability (PSA) of changes. Overview of approved changes and their services.',
+  'GroupRo' => [
+    'itsm-change'
+  ],
+  'Loader' => {
+    'CSS' => [
+      'ITSM.Agent.Default.css'
+    ]
+  },
+  'NavBar' => [
+    {
+      'AccessKey' => '',
+      'Block' => '',
+      'Description' => 'Projected Service Availability (PSA)',
+      'Link' => 'Action=AgentITSMChangePSA',
+      'Name' => 'Projected Service Availability',
+      'NavBar' => 'ITSM Change',
+      'Prio' => '350',
+      'Type' => ''
+    }
+  ],
+  'NavBarName' => 'ITSM Change',
+  'Title' => 'PSA'
+};
+$Self->{'Frontend::Module'}->{'AgentITSMChangePrint'} =  {
+  'Description' => 'Change Print.',
+  'GroupRo' => [
+    'itsm-change'
+  ],
+  'NavBarName' => 'ITSM Change',
+  'Title' => 'Print'
+};
+$Self->{'Frontend::Module'}->{'AgentITSMChangePIR'} =  {
+  'Description' => 'ITSM Change PIR Overview.',
+  'GroupRo' => [
+    'itsm-change'
+  ],
+  'Loader' => {
+    'CSS' => [
+      'ITSM.Agent.Default.css'
+    ]
+  },
+  'NavBar' => [
+    {
+      'AccessKey' => '',
+      'Block' => '',
+      'Description' => 'PIR (Post Implementation Review)',
+      'Link' => 'Action=AgentITSMChangePIR',
+      'Name' => 'PIR',
+      'NavBar' => 'ITSM Change',
+      'Prio' => '400',
+      'Type' => ''
+    }
+  ],
+  'NavBarName' => 'ITSM Change',
+  'Title' => 'ITSM Change'
+};
+$Self->{'Frontend::Module'}->{'AgentITSMChangeMyWorkOrders'} =  {
+  'Description' => 'ITSM MyWorkorders Overview.',
+  'GroupRo' => [
+    'itsm-change'
+  ],
+  'Loader' => {
+    'CSS' => [
+      'ITSM.Agent.Default.css'
+    ]
+  },
+  'NavBarName' => 'ITSM Change',
+  'Title' => 'ITSM Change'
+};
+$Self->{'Frontend::Module'}->{'AgentITSMChangeMyChanges'} =  {
+  'Description' => 'ITSM MyChanges Overview.',
+  'GroupRo' => [
+    'itsm-change-builder',
+    'itsm-change-manager'
+  ],
+  'Loader' => {
+    'CSS' => [
+      'ITSM.Agent.Default.css'
+    ]
+  },
+  'NavBarName' => 'ITSM Change',
+  'Title' => 'ITSM Change'
+};
+$Self->{'Frontend::Module'}->{'AgentITSMChangeMyCAB'} =  {
+  'Description' => 'ITSM MyCAB Overview.',
+  'GroupRo' => [
+    'itsm-change'
+  ],
+  'Loader' => {
+    'CSS' => [
+      'ITSM.Agent.Default.css'
+    ]
+  },
+  'NavBarName' => 'ITSM Change',
+  'Title' => 'ITSM Change'
+};
+$Self->{'Frontend::Module'}->{'AgentITSMChangeManager'} =  {
+  'Description' => 'ITSM Change Manager Overview.',
+  'GroupRo' => [
+    'itsm-change-manager'
+  ],
+  'Loader' => {
+    'CSS' => [
+      'ITSM.Agent.Default.css'
+    ]
+  },
+  'NavBarName' => 'ITSM Change',
+  'Title' => 'ITSM Change'
+};
+$Self->{'Frontend::Module'}->{'AgentITSMChangeInvolvedPersons'} =  {
+  'Description' => 'Change Involved Persons.',
+  'GroupRo' => [
+    'itsm-change'
+  ],
+  'NavBarName' => 'ITSM Change',
+  'Title' => 'Involved Persons'
+};
+$Self->{'Frontend::Module'}->{'AgentITSMChangeHistoryZoom'} =  {
+  'Description' => 'Details of a change history entry.',
+  'GroupRo' => [
+    'itsm-change'
+  ],
+  'NavBarName' => 'ITSM Change',
+  'Title' => 'History Zoom'
+};
+$Self->{'Frontend::Module'}->{'AgentITSMChangeHistory'} =  {
+  'Description' => 'Change History.',
+  'GroupRo' => [
+    'itsm-change'
+  ],
+  'NavBarName' => 'ITSM Change',
+  'Title' => 'History'
+};
+$Self->{'Frontend::Module'}->{'AgentITSMChangeEdit'} =  {
+  'Description' => 'Edit a change.',
+  'GroupRo' => [
+    'itsm-change'
+  ],
+  'NavBarName' => 'ITSM Change',
+  'Title' => 'Edit'
+};
+$Self->{'Frontend::Module'}->{'AgentITSMChangeConditionEdit'} =  {
+  'Description' => 'ITSM Change Condition Edit.',
+  'GroupRo' => [
+    'itsm-change'
+  ],
+  'Loader' => {
+    'CSS' => [
+      'ITSM.Table.css'
+    ]
+  },
+  'NavBarName' => 'ITSM Change',
+  'Title' => 'Condition Edit'
+};
+$Self->{'Frontend::Module'}->{'AgentITSMChangeCondition'} =  {
+  'Description' => 'ITSM Change Condition Overview.',
+  'GroupRo' => [
+    'itsm-change'
+  ],
+  'NavBarName' => 'ITSM Change',
+  'Title' => 'Condition Overview'
+};
+$Self->{'Frontend::Module'}->{'AgentITSMChangeCABTemplate'} =  {
+  'Description' => 'ITSM Change CAB Templates.',
+  'GroupRo' => [
+    'itsm-change'
+  ],
+  'NavBarName' => 'ITSM Change',
+  'Title' => 'Change CAB Templates'
+};
+$Self->{'Frontend::Module'}->{'AgentITSMChangeAddFromTemplate'} =  {
+  'Description' => 'Add a change from template.',
+  'GroupRo' => [
+    'itsm-change-builder',
+    'itsm-change-manager'
+  ],
+  'NavBar' => [
+    {
+      'AccessKey' => '',
+      'Block' => '',
+      'Description' => 'New (from template)',
+      'Link' => 'Action=AgentITSMChangeAddFromTemplate',
+      'Name' => 'New (from template)',
+      'NavBar' => 'ITSM Change',
+      'Prio' => '250',
+      'Type' => ''
+    }
+  ],
+  'NavBarName' => 'ITSM Change',
+  'Title' => 'Add from template'
+};
+$Self->{'Frontend::Module'}->{'AgentITSMChangeAdd'} =  {
+  'Description' => 'Add a change.',
+  'GroupRo' => [
+    'itsm-change-manager'
+  ],
+  'NavBar' => [
+    {
+      'AccessKey' => '',
+      'Block' => '',
+      'Description' => 'New',
+      'Link' => 'Action=AgentITSMChangeAdd',
+      'Name' => 'New',
+      'NavBar' => 'ITSM Change',
+      'Prio' => '200',
+      'Type' => ''
+    }
+  ],
+  'NavBarName' => 'ITSM Change',
+  'Title' => 'Add'
+};
+$Self->{'Frontend::Module'}->{'AgentITSMChange'} =  {
+  'Description' => 'Overview over all Changes.',
+  'GroupRo' => [
+    'itsm-change'
+  ],
+  'Loader' => {
+    'CSS' => [
+      'ITSM.Agent.Default.css'
+    ]
+  },
+  'NavBar' => [
+    {
+      'AccessKey' => '',
+      'Block' => 'ItemArea',
+      'Description' => 'Change area.',
+      'Link' => 'Action=AgentITSMChange',
+      'Name' => 'ITSM Changes',
+      'NavBar' => 'ITSM Change',
+      'Prio' => '3400',
+      'Type' => 'Menu'
+    },
+    {
+      'AccessKey' => '',
+      'Block' => '',
+      'Description' => 'Change Overview.',
+      'Link' => 'Action=AgentITSMChange',
+      'Name' => 'Overview',
+      'NavBar' => 'ITSM Change',
+      'Prio' => '100',
+      'Type' => ''
+    }
+  ],
+  'NavBarName' => 'ITSM Change',
+  'Title' => 'ITSM Changes'
+};
+$Self->{'Frontend::Module'}->{'AgentITSMCABMemberSearch'} =  {
+  'Description' => 'Lookup of CAB members for autocompletion.',
+  'GroupRo' => [
+    'itsm-change'
+  ],
+  'Title' => 'CAB Member Search'
+};
+$Self->{'Frontend::Module'}->{'AdminITSMStateMachine'} =  {
+  'Description' => 'Admin of the state machine.',
+  'Group' => [
+    'admin'
+  ],
+  'NavBarModule' => {
+    'Block' => 'System',
+    'Module' => 'Kernel::Output::HTML::NavBar::ModuleAdmin',
+    'Name' => 'State Machine',
+    'Prio' => '433'
+  },
+  'NavBarName' => 'Admin',
+  'Title' => 'State Machine'
+};
+$Self->{'Frontend::Module'}->{'AdminITSMChangeNotification'} =  {
+  'Description' => 'Create and manage ITSM Change Management notifications.',
+  'Group' => [
+    'admin'
+  ],
+  'Loader' => {
+    'CSS' => [
+      'Core.Agent.Admin.NotificationEvent.css'
+    ],
+    'JavaScript' => [
+      'ITSM.Agent.ChangeManagement.NotificationEvent.js'
+    ]
+  },
+  'NavBarModule' => {
+    'Block' => 'System',
+    'Module' => 'Kernel::Output::HTML::NavBar::ModuleAdmin',
+    'Name' => 'ITSM Change Management Notifications',
+    'Prio' => '406'
+  },
+  'NavBarName' => 'Admin',
+  'Title' => 'ITSM Change notification rules'
+};
+$Self->{'Frontend::Module'}->{'AdminITSMChangeCIPAllocate'} =  {
+  'Description' => 'Admin of the CIP matrix.',
+  'Group' => [
+    'admin'
+  ],
+  'Loader' => {
+    'CSS' => [
+      'ITSM.Table.css'
+    ]
+  },
+  'NavBarModule' => {
+    'Block' => 'System',
+    'Module' => 'Kernel::Output::HTML::NavBar::ModuleAdmin',
+    'Name' => 'Category <-> Impact <-> Priority',
+    'Prio' => '431'
+  },
+  'NavBarName' => 'Admin',
+  'Title' => 'Category <-> Impact <-> Priority'
+};
+$Self->{'LinkObject::ViewMode'} =  'Complex';
+$Self->{'ProductName'} =  'OTRS::ITSM 5s';
+$Self->{'Ticket::Frontend::CustomerTicketZoom'}->{'DynamicField'} =  {
+  'ITSMCriticality' => '1',
+  'ITSMImpact' => '1'
+};
+$Self->{'Ticket::Frontend::AgentTicketPriority'}->{'Service'} =  '1';
+$Self->{'Ticket::Frontend::AgentTicketPriority'}->{'TicketType'} =  '1';
+$Self->{'Ticket::Frontend::AgentTicketCompose'}->{'DynamicField'} =  {
+  'ITSMReviewRequired' => '1'
+};
+$Self->{'Ticket::Frontend::AgentTicketClose'}->{'DynamicField'} =  {
+  'ITSMReviewRequired' => '1'
+};
+$Self->{'Ticket::Frontend::AgentTicketPriority'}->{'DynamicField'} =  {
+  'ITSMImpact' => '1'
+};
+$Self->{'Ticket::Frontend::AgentTicketZoom'}->{'DynamicField'} =  {
+  'ITSMCriticality' => '1',
+  'ITSMDecisionDate' => '1',
+  'ITSMDecisionResult' => '1',
+  'ITSMDueDate' => '1',
+  'ITSMImpact' => '1',
+  'ITSMRecoveryStartTime' => '1',
+  'ITSMRepairStartTime' => '1',
+  'ITSMReviewRequired' => '1'
+};
+$Self->{'Ticket::Frontend::AgentTicketSearch'}->{'DynamicField'} =  {
+  'ITSMDecisionDate' => '1',
+  'ITSMDecisionResult' => '1',
+  'ITSMDueDate' => '1',
+  'ITSMImpact' => '1',
+  'ITSMRecoveryStartTime' => '1',
+  'ITSMRepairStartTime' => '1',
+  'ITSMReviewRequired' => '1'
+};
+$Self->{'Ticket::Frontend::AgentTicketEmail'}->{'DynamicField'} =  {
+  'ITSMDueDate' => '1',
+  'ITSMImpact' => '1'
+};
+$Self->{'Ticket::Frontend::AgentTicketPhone'}->{'DynamicField'} =  {
+  'ITSMDueDate' => '1',
+  'ITSMImpact' => '1'
+};
+$Self->{'Ticket::Type'} =  '1';
 $Self->{'Ticket::Frontend::ZoomCollectMeta'} =  '0';
 $Self->{'LinkObject::ComplexTable'}->{'Ticket'} =  {
   'DefaultColumns' => {
@@ -331,21 +3430,16 @@ $Self->{'Ticket::Frontend::CustomerTicketSearch'}->{'SearchOverviewDynamicField'
 $Self->{'Ticket::Frontend::CustomerTicketSearch'}->{'DynamicField'} =  {};
 $Self->{'Ticket::Frontend::AgentTicketSearch'}->{'SearchCSVDynamicField'} =  {};
 $Self->{'Ticket::Frontend::AgentTicketSearch'}->{'Defaults'}->{'DynamicField'} =  {};
-$Self->{'Ticket::Frontend::AgentTicketSearch'}->{'DynamicField'} =  {};
 $Self->{'Ticket::Frontend::CustomerTicketPrint'}->{'DynamicField'} =  {};
 $Self->{'Ticket::Frontend::AgentTicketPrint'}->{'DynamicField'} =  {};
 $Self->{'Ticket::Frontend::CustomerTicketZoom'}->{'FollowUpDynamicField'} =  {};
-$Self->{'Ticket::Frontend::CustomerTicketZoom'}->{'DynamicField'} =  {};
-$Self->{'Ticket::Frontend::AgentTicketZoom'}->{'DynamicField'} =  {};
 $Self->{'Ticket::Frontend::OverviewPreview'}->{'DynamicField'} =  {};
 $Self->{'Ticket::Frontend::OverviewMedium'}->{'DynamicField'} =  {};
 $Self->{'Ticket::Frontend::OverviewSmall'}->{'DynamicField'} =  {};
 $Self->{'Ticket::Frontend::CustomerTicketMessage'}->{'DynamicField'} =  {};
 $Self->{'Ticket::Frontend::AgentTicketResponsible'}->{'DynamicField'} =  {};
-$Self->{'Ticket::Frontend::AgentTicketPriority'}->{'DynamicField'} =  {};
 $Self->{'Ticket::Frontend::AgentTicketPhoneOutbound'}->{'DynamicField'} =  {};
 $Self->{'Ticket::Frontend::AgentTicketPhoneInbound'}->{'DynamicField'} =  {};
-$Self->{'Ticket::Frontend::AgentTicketPhone'}->{'DynamicField'} =  {};
 $Self->{'Ticket::Frontend::AgentTicketPending'}->{'DynamicField'} =  {};
 $Self->{'Ticket::Frontend::AgentTicketOwner'}->{'DynamicField'} =  {};
 $Self->{'Ticket::Frontend::AgentTicketNote'}->{'DynamicField'} =  {};
@@ -353,9 +3447,6 @@ $Self->{'Ticket::Frontend::AgentTicketMove'}->{'DynamicField'} =  {};
 $Self->{'Ticket::Frontend::AgentTicketEmailOutbound'}->{'DynamicField'} =  {};
 $Self->{'Ticket::Frontend::AgentTicketForward'}->{'DynamicField'} =  {};
 $Self->{'Ticket::Frontend::AgentTicketFreeText'}->{'DynamicField'} =  {};
-$Self->{'Ticket::Frontend::AgentTicketEmail'}->{'DynamicField'} =  {};
-$Self->{'Ticket::Frontend::AgentTicketCompose'}->{'DynamicField'} =  {};
-$Self->{'Ticket::Frontend::AgentTicketClose'}->{'DynamicField'} =  {};
 $Self->{'DynamicFields::Driver'}->{'Multiselect'} =  {
   'ConfigDialog' => 'AdminDynamicFieldMultiselect',
   'DisplayName' => 'Multiselect',
@@ -2934,8 +6025,6 @@ $Self->{'Ticket::Frontend::AgentTicketPriority'}->{'Owner'} =  '0';
 $Self->{'Ticket::Frontend::AgentTicketPriority'}->{'Queue'} =  '0';
 $Self->{'Ticket::Frontend::AgentTicketPriority'}->{'SLAMandatory'} =  '0';
 $Self->{'Ticket::Frontend::AgentTicketPriority'}->{'ServiceMandatory'} =  '0';
-$Self->{'Ticket::Frontend::AgentTicketPriority'}->{'Service'} =  '0';
-$Self->{'Ticket::Frontend::AgentTicketPriority'}->{'TicketType'} =  '0';
 $Self->{'Ticket::Frontend::AgentTicketPriority'}->{'RequiredLock'} =  '1';
 $Self->{'Ticket::Frontend::AgentTicketPriority'}->{'Permission'} =  'priority';
 $Self->{'Ticket::Frontend::AgentTicketPending'}->{'HistoryComment'} =  '%%Pending';
@@ -4331,9 +7420,7 @@ $Self->{'Ticket::ArchiveSystem::RemoveSeenFlags'} =  '1';
 $Self->{'Ticket::ArchiveSystem'} =  '0';
 $Self->{'Ticket::Service::Default::UnknownCustomer'} =  '0';
 $Self->{'Ticket::Service::KeepChildren'} =  '0';
-$Self->{'Ticket::Service'} =  '0';
 $Self->{'Ticket::Type::Default'} =  'Unclassified';
-$Self->{'Ticket::Type'} =  '0';
 $Self->{'Ticket::ResponsibleAutoSet'} =  '1';
 $Self->{'Ticket::Responsible'} =  '0';
 $Self->{'Ticket::ChangeOwnerToEveryone'} =  '0';
@@ -4613,6 +7700,53 @@ $Self->{'Frontend::Module'}->{'AdminProcessManagement'} =  {
   },
   'NavBarName' => 'Admin',
   'Title' => 'Process Management'
+};
+$Self->{'ITSMConfigItem::LinkStatus::LinkTypes'} =  {
+  'RelevantTo' => 'Incident'
+};
+$Self->{'ITSMConfigItem::LinkStatus::IncidentStates'} =  [
+  'Incident',
+  'Warning',
+  'Operational'
+];
+$Self->{'Ticket::EventModulePost'}->{'042-ITSMConfigItemTicketStatusLink'} =  {
+  'Event' => '(TicketStateUpdate|TicketTypeUpdate)',
+  'Module' => 'Kernel::System::Ticket::Event::TicketStatusLink'
+};
+$Self->{'ITSMConfigItem::EventModulePost'}->{'042-ITSMConfigItemTicketStatusLink'} =  {
+  'Event' => '(LinkAdd|LinkDelete)',
+  'Module' => 'Kernel::System::Ticket::Event::TicketStatusLink'
+};
+$Self->{'ITSMConfigItem::SetIncidentStateOnLink'} =  '0';
+$Self->{'GenericInterface::Operation::ConfigItemDelete'}->{'Permission'} =  'rw';
+$Self->{'GenericInterface::Operation::ConfigItemUpdate'}->{'Permission'} =  'rw';
+$Self->{'GenericInterface::Operation::ConfigItemCreate'}->{'Permission'} =  'rw';
+$Self->{'GenericInterface::Operation::ConfigItemSearch'}->{'Permission'} =  'ro';
+$Self->{'GenericInterface::Operation::ConfigItemGet'}->{'Permission'} =  'ro';
+$Self->{'GenericInterface::Operation::Module'}->{'ConfigItem::ConfigItemDelete'} =  {
+  'ConfigDialog' => 'AdminGenericInterfaceOperationDefault',
+  'Controller' => 'ConfigItem',
+  'Name' => 'ConfigItemDelete'
+};
+$Self->{'GenericInterface::Operation::Module'}->{'ConfigItem::ConfigItemSearch'} =  {
+  'ConfigDialog' => 'AdminGenericInterfaceOperationDefault',
+  'Controller' => 'ConfigItem',
+  'Name' => 'ConfigItemSearch'
+};
+$Self->{'GenericInterface::Operation::Module'}->{'ConfigItem::ConfigItemUpdate'} =  {
+  'ConfigDialog' => 'AdminGenericInterfaceOperationDefault',
+  'Controller' => 'ConfigItem',
+  'Name' => 'ConfigItemUpdate'
+};
+$Self->{'GenericInterface::Operation::Module'}->{'ConfigItem::ConfigItemGet'} =  {
+  'ConfigDialog' => 'AdminGenericInterfaceOperationDefault',
+  'Controller' => 'ConfigItem',
+  'Name' => 'ConfigItemGet'
+};
+$Self->{'GenericInterface::Operation::Module'}->{'ConfigItem::ConfigItemCreate'} =  {
+  'ConfigDialog' => 'AdminGenericInterfaceOperationDefault',
+  'Controller' => 'ConfigItem',
+  'Name' => 'ConfigItemCreate'
 };
 $Self->{'GenericInterface::Operation::TicketSearch'}->{'Order::Default'} =  'Down';
 $Self->{'GenericInterface::Operation::TicketSearch'}->{'SortBy::Default'} =  'Age';
@@ -5025,6 +8159,47 @@ $Self->{'Frontend::NotifyModule'}->{'100-CloudServicesDisabled'} =  {
   'Group' => 'admin',
   'Module' => 'Kernel::Output::HTML::Notification::AgentCloudServicesDisabled'
 };
+$Self->{'ImportExport::FormatBackendRegistration'}->{'CSV'} =  {
+  'Module' => 'Kernel::System::ImportExport::FormatBackend::CSV',
+  'Name' => 'CSV'
+};
+$Self->{'Frontend::Module'}->{'AdminImportExport'} =  {
+  'Description' => 'Import and export object information.',
+  'Group' => [
+    'admin'
+  ],
+  'Loader' => {
+    'CSS' => [
+      'ITSM.ImportExport.css'
+    ]
+  },
+  'NavBarModule' => {
+    'Block' => 'System',
+    'Module' => 'Kernel::Output::HTML::NavBar::ModuleAdmin',
+    'Name' => 'Import/Export',
+    'Prio' => '710'
+  },
+  'NavBarName' => 'Admin',
+  'Title' => 'Import/Export'
+};
+$Self->{'Loader::Agent::CommonJS'}->{'100-GeneralCatalog'} =  [
+  'thirdparty/jscolor_1.4.1/jscolor.js'
+];
+$Self->{'Frontend::Module'}->{'AdminGeneralCatalog'} =  {
+  'Description' => 'Admin.',
+  'Group' => [
+    'admin'
+  ],
+  'NavBarModule' => {
+    'Block' => 'Ticket',
+    'Description' => 'Create and manage the General Catalog.',
+    'Module' => 'Kernel::Output::HTML::NavBar::ModuleAdmin',
+    'Name' => 'General Catalog',
+    'Prio' => '410'
+  },
+  'NavBarName' => 'Admin',
+  'Title' => 'General Catalog'
+};
 $Self->{'ModernizeCustomerFormFields'} =  '1';
 $Self->{'ModernizeFormFields'} =  '1';
 $Self->{'OTRSBusiness::ReleaseChannel'} =  '1';
@@ -5297,7 +8472,6 @@ $Self->{'Stats::CustomerUserLoginsAsMultiSelect'} =  '0';
 $Self->{'Stats::CustomerIDAsMultiSelect'} =  '1';
 $Self->{'Stats::UseInvalidAgentInStats'} =  '1';
 $Self->{'Stats::UseAgentElementInStats'} =  '0';
-$Self->{'Stats::ExchangeAxis'} =  '0';
 $Self->{'Stats::Format'} =  {
   'CSV' => 'CSV',
   'D3::BarChart' => 'Graph: Bar Chart',
@@ -7588,7 +10762,6 @@ $Self->{'LinkObject::Type'}->{'Normal'} =  {
   'SourceName' => 'Normal',
   'TargetName' => 'Normal'
 };
-$Self->{'LinkObject::ViewMode'} =  'Simple';
 $Self->{'CheckEmailInvalidAddress'} =  '@(example)\\.(..|...)$';
 $Self->{'CheckEmailValidAddress'} =  '^(root@localhost|admin@localhost)$';
 $Self->{'CheckEmailAddresses'} =  '1';
@@ -7729,7 +10902,6 @@ $Self->{'HttpType'} =  'http';
 delete $Self->{'NodeID'};
 $Self->{'FQDN'} =  'yourhost.example.com';
 $Self->{'SystemID'} =  '10';
-$Self->{'ProductName'} =  'OTRS 5s';
 $Self->{'ConfigImportAllowed'} =  '1';
 $Self->{'ConfigLevel'} =  '100';
 $Self->{'Frontend::TemplateCache'} =  '1';

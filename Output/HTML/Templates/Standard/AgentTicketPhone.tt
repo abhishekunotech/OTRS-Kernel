@@ -1,6 +1,8 @@
 # --
 # Copyright (C) 2001-2017 OTRS AG, http://otrs.com/
 # --
+# $origin: otrs - be4010f3365da552dcfd079c36ad31cc90e06c32 - Kernel/Output/HTML/Templates/Standard/AgentTicketPhone.tt
+# --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
@@ -40,6 +42,12 @@
                 <input type="hidden" name="Subaction" value="StoreNew"/>
                 <input type="hidden" name="FormID" value="[% Data.FormID | html %]"/>
                 <input type="hidden" name="ExpandCustomerName" id="ExpandCustomerName" value="0"/>
+# ---
+# ITSMIncidentProblemManagement
+# ---
+                <input type="hidden" name="ImpactRC" value="0"/>
+                <input type="hidden" name="PriorityRC" value="0"/>
+# ---
                 <input type="hidden" name="OwnerAll" id="OwnerAll" value="[% Data.OwnerAll | html %]"/>
                 <input type="hidden" name="ResponsibleAll" id="ResponsibleAll" value="[% Data.ResponsibleAll | html %]"/>
                 <input type="hidden" name="PreSelectedCustomerUser" id="PreSelectedCustomerUser" value=""/>
@@ -197,11 +205,34 @@
 <script type="text/javascript">//<![CDATA[
     $('#ServiceID').bind('change', function (Event) {
         Core.AJAX.FormUpdate($('#NewPhoneTicket'), 'AJAXUpdate', 'ServiceID', ['TypeID', 'Dest', 'NewUserID', 'NewResponsibleID', 'NextStateID', 'PriorityID', 'SLAID', 'SignKeyID', 'CryptKeyID', 'To', 'Cc', 'Bcc', 'StandardTemplateID' [% Data.DynamicFieldNamesStrg %]]);
-    });
+# ---
+# ITSMIncidentProblemManagement
+# ---
+#    });
+
+/*global ITSM: true */
+        // show service incident state and signal for the selected service
+        ITSM.Agent.IncidentState.ShowIncidentState({
+            Action: '[% Env("Action") %]',
+            ServiceID: $('#ServiceID').val()
+        });
+});
+# ---
 //]]></script>
 [% END %]
                     </div>
                     <div class="Clear"></div>
+# ---
+# ITSMIncidentProblemManagement
+# ---
+                    <label for="ServiceIncidentStateContainer" style="display:none;">[% Translate("Service Incident State") | html %]:</label>
+                    <div id="ServiceIncidentStateContainer" class="Value" style="display:none;">
+                        <div class="Flag Small">
+                            <span id="ServiceIncidentStateSignal"></span>
+                        </div>
+                        <span id="ServiceIncidentState">&nbsp;</span>
+                    </div>
+# ---
 [% RenderBlockEnd("TicketService") %]
 
 [% RenderBlockStart("TicketServiceMandatory") %]
@@ -214,11 +245,34 @@
 <script type="text/javascript">//<![CDATA[
     $('#ServiceID').bind('change', function (Event) {
         Core.AJAX.FormUpdate($('#NewPhoneTicket'), 'AJAXUpdate', 'ServiceID', ['TypeID', 'Dest', 'NewUserID', 'NewResponsibleID', 'NextStateID', 'PriorityID', 'SLAID', 'SignKeyID', 'CryptKeyID', 'To', 'Cc', 'Bcc', 'StandardTemplateID' [% Data.DynamicFieldNamesStrg %]]);
-    });
+# ---
+# ITSMIncidentProblemManagement
+# ---
+#    });
+
+/*global ITSM: true */
+        // show service incident state and signal for the selected service
+        ITSM.Agent.IncidentState.ShowIncidentState({
+            Action: '[% Env("Action") %]',
+            ServiceID: $('#ServiceID').val()
+        });
+});
+# ---
 //]]></script>
 [% END %]
                     </div>
                     <div class="Clear"></div>
+# ---
+# ITSMIncidentProblemManagement
+# ---
+                    <label for="ServiceIncidentStateContainer" style="display:none;">[% Translate("Service Incident State") | html %]:</label>
+                    <div id="ServiceIncidentStateContainer" class="Value" style="display:none;">
+                        <div class="Flag Small">
+                            <span id="ServiceIncidentStateSignal"></span>
+                        </div>
+                        <span id="ServiceIncidentState">&nbsp;</span>
+                    </div>
+# ---
 [% RenderBlockEnd("TicketServiceMandatory") %]
 
 [% RenderBlockStart("TicketSLA") %]
@@ -332,6 +386,11 @@
 [% RenderBlockStart("OptionCustomer") %]
                         <a href="#" id="OptionCustomer">[ [% Translate("Customer user") | html %] ]</a>
 [% RenderBlockEnd("OptionCustomer") %]
+# ---
+# ITSMIncidentProblemManagement
+# ---
+                        <a href="[% Env("Baselink") %]Action=AgentLinkObject;Mode=Temporary;SourceObject=Ticket;SourceKey=[% Data.FormID | uri %];TargetIdentifier=ITSMConfigItem" id="OptionLinkTicket" class="AsPopup">[ [% Translate("Link ticket") | html %] ]</a>
+# ---
 
 <!-- OutputFilterHook_TicketOptionsEnd -->
 
@@ -446,6 +505,21 @@
                             <p class="FieldExplanation">[% Translate("For all pending* states.") | html %]</p>
                         </div>
                         <div class="Clear"></div>
+# ---
+# ITSMIncidentProblemManagement
+# ---
+
+# show the impact
+[% RenderBlockStart("DynamicField_ITSMImpact") %]
+                        <div class="Row Row_DynamicField_[% Data.Name | html %]">
+                        [% Data.Label %]
+                            <div class="Field">
+                            [% Data.Field %]
+                            </div>
+                            <div class="Clear"></div>
+                        </div>
+[% RenderBlockEnd("DynamicField_ITSMImpact") %]
+# ---
 
                         <label for="PriorityID">[% Translate("Priority") | html %]:</label>
                         <div class="Field">
@@ -521,6 +595,18 @@
 <script type="text/javascript">//<![CDATA[
     Core.Agent.TicketAction.Init();
     Core.Config.Set('Localization.Delete', [% Translate("Delete") | JSON %]);
+# ---
+# ITSMIncidentProblemManagement
+# ---
+    $('a.AsPopup').bind('click', function (Event) { Core.UI.Popup.OpenPopup($(this).attr('href'), 'Action'); return false;});
+
+/*global ITSM: true */
+        // show service incident state and signal for the selected service (this part here is important if the page is reloaded due to e.g. attachment upload)
+        ITSM.Agent.IncidentState.ShowIncidentState({
+            Action: '[% Env("Action") %]',
+            ServiceID: $('#ServiceID').val()
+        });
+# ---
 //]]></script>
 [% END %]
 
