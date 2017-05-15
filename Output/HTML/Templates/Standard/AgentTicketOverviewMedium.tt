@@ -1,6 +1,8 @@
 # --
 # Copyright (C) 2001-2017 OTRS AG, http://otrs.com/
 # --
+# $origin: otrs - ad3122195fdba73a8857b4af020b7940fa5cbbc1 - Kernel/Output/HTML/Templates/Standard/AgentTicketOverviewMedium.tt
+# --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
@@ -116,15 +118,19 @@
                         <td>
                             <label>[% Translate("Queue") | html %]</label><div title="[% Data.Queue | html %]">[% Data.Queue | html %]</div>
                         </td>
-                        <td>
-[% RenderBlockStart("CustomerIDRW") %]
-                            <label>[% Translate("CustomerID") | html %]</label>[% IF Data.CustomerID %]<a href="[% Config("CustomerDBLink") | Interpolate %]" class="AsPopup PopupType_TicketAction" [% Config("CustomerDBLinkTarget") %]>[% Data.CustomerID | html %]</a>[% END %]
-[% RenderBlockEnd("CustomerIDRW") %]
-[% RenderBlockStart("CustomerIDRO") %]
-                            <label>[% Translate("CustomerID") | html %]</label>[% Data.CustomerID | html %]
-[% RenderBlockEnd("CustomerIDRO") %]
-                            <br /><div title="[% Data.CustomerName | html %]">[% Data.CustomerName | html %]</div>
-                        </td>
+# ---
+# ITSMIncidentProblemManagement
+# ---
+#                        <td>
+#[% RenderBlockStart("CustomerIDRW") %]
+#                            <label>[% Translate("CustomerID") | html %]</label>[% IF Data.CustomerID %]<a href="[% Config("CustomerDBLink") | Interpolate %]" class="AsPopup PopupType_TicketAction" [% Config("CustomerDBLinkTarget") %]>[% Data.CustomerID | html %]</a>[% END %]
+#[% RenderBlockEnd("CustomerIDRW") %]
+#[% RenderBlockStart("CustomerIDRO") %]
+#                            <label>[% Translate("CustomerID") | html %]</label>[% Data.CustomerID | html %]
+#[% RenderBlockEnd("CustomerIDRO") %]
+#                            <br /><div title="[% Data.CustomerName | html %]">[% Data.CustomerName | html %]</div>
+#                        </td>
+# ---
 # example of how to use fixed dynamic field blocks for customizations
 # Note: Field1 is the name of the field and had to be replaced with the actual
 # field name
@@ -145,6 +151,22 @@
                             <div title="[% Translate("Service Time") | html %]: [% Data.FirstResponseTimeWorkingTime | html %]" class="[% Data.FirstResponseTimeClass | html %]">[% Data.FirstResponseTimeHuman | html %] / [% Data.FirstResponseTimeDestinationDate | Localize("TimeShort") %]</div>
 [% RenderBlockEnd("FirstResponseTime") %]
                         </td>
+# ---
+# ITSMIncidentProblemManagement
+# ---
+                        <td>
+                            <label>[% Translate("Update Time") | html %]</label>
+[% RenderBlockStart("UpdateTime") %]
+                            <div title="[% Translate("Service Time") | html %]: [% Data.UpdateTimeWorkingTime | html %]" class="[% Data.UpdateTimeClass | html %]">[% Data.UpdateTimeHuman | html %] / [% Data.UpdateTimeDestinationDate | Localize("TimeShort") %]</div>
+[% RenderBlockEnd("UpdateTime") %]
+                        </td>
+                        <td>
+                            <label>[% Translate("Solution Time") | html %]</label>
+[% RenderBlockStart("SolutionTime") %]
+                            <div title="[% Translate("Service Time") | html %]: [% Data.SolutionTimeWorkingTime | html %]" class="[% Data.SolutionTimeClass | html %]">[% Data.SolutionTimeHuman | html %] / [% Data.SolutionTimeDestinationDate | Localize("TimeShort") %]</div>
+[% RenderBlockEnd("SolutionTime") %]
+                        </td>
+# ---
                     </tr>
                     <tr>
                         <td>
@@ -161,6 +183,13 @@
                             <label>[% Translate("Type") | html %]</label><div title="[% Data.Type | html %]">[% Data.Type | html %]</div>
 [% RenderBlockEnd("Type") %]
                         </td>
+# ---
+# ITSMIncidentProblemManagement
+# ---
+                        <td>
+                            <label>[% Translate("Priority") | html %]</label><div title="[% Translate(Data.Priority) | html %]">[% Translate(Data.Priority) | html %]</div>
+                        </td>
+# ---
 # example of how to use fixed dynamic field blocks for customizations
 # Note: Field2 is the name of the field and had to be replaced with the actual
 # field name
@@ -175,12 +204,16 @@
 #[% RenderBlockEnd("DynamicField_Field2Plain") %]
 #                        </td>
 #[% RenderBlockEnd("DynamicField_Field2") %]
-                        <td>
-                            <label>[% Translate("Update Time") | html %]</label>
-[% RenderBlockStart("UpdateTime") %]
-                            <div title="[% Translate("Service Time") | html %]: [% Data.UpdateTimeWorkingTime | html %]" class="[% Data.UpdateTimeClass | html %]">[% Data.UpdateTimeHuman | html %] / [% Data.UpdateTimeDestinationDate | Localize("TimeShort") %]</div>
-[% RenderBlockEnd("UpdateTime") %]
-                        </td>
+# ---
+# ITSMIncidentProblemManagement
+# ---
+#                        <td>
+#                            <label>[% Translate("Update Time") | html %]</label>
+#[% RenderBlockStart("UpdateTime") %]
+#                            <div title="[% Translate("Service Time") | html %]: [% Data.UpdateTimeWorkingTime | html %]" class="[% Data.UpdateTimeClass | html %]">[% Data.UpdateTimeHuman | html %] / [% Data.UpdateTimeDestinationDate | Localize("TimeShort") %]</div>
+#[% RenderBlockEnd("UpdateTime") %]
+#                        </td>
+# ---
                     </tr>
                     <tr>
                         <td>
@@ -200,6 +233,19 @@
                             <label>[% Translate("Service Level Agreement") | html %]</label><div title="[% Data.SLA | html %]">[% Data.SLA | html %]</div>
 [% RenderBlockEnd("SLA") %]
                         </td>
+# ---
+# ITSMIncidentProblemManagement
+# ---
+                        <td>
+[% RenderBlockStart("CustomerIDRW") %]
+                            <label>[% Translate("CustomerID") | html %]</label><a href="[% Config("CustomerDBLink") %]" class="AsPopup PopupType_TicketAction" [% Config("CustomerDBLinkTarget") %]>[% Data.CustomerID | html %]</a>
+[% RenderBlockEnd("CustomerIDRW") %]
+[% RenderBlockStart("CustomerIDRO") %]
+                            <label>[% Translate("CustomerID") | html %]</label>[% Data.CustomerID | html %]
+[% RenderBlockEnd("CustomerIDRO") %]
+                            <br /><div title="[% Data.CustomerName | html %]">[% Data.CustomerName | html %]</div>
+                        </td>
+# ---
 # example of how to use fixed dynamic field blocks for customizations
 # Note: Field3 is the name of the field and had to be replaced with the actual
 # field name
@@ -214,12 +260,16 @@
 #[% RenderBlockEnd("DynamicField_Field3Plain") %]
 #                        </td>
 #[% RenderBlockEnd("DynamicField_Field3") %]
-                        <td>
-                            <label>[% Translate("Solution Time") | html %]</label>
-[% RenderBlockStart("SolutionTime") %]
-                            <div title="[% Translate("Service Time") | html %]: [% Data.SolutionTimeWorkingTime | html %]" class="[% Data.SolutionTimeClass | html %]">[% Data.SolutionTimeHuman | html %] / [% Data.SolutionTimeDestinationDate | Localize("TimeShort") %]</div>
-[% RenderBlockEnd("SolutionTime") %]
-                        </td>
+# ---
+# ITSMIncidentProblemManagement
+# ---
+#                        <td>
+#                            <label>[% Translate("Solution Time") | html %]</label>
+#[% RenderBlockStart("SolutionTime") %]
+#                            <div title="[% Translate("Service Time") | html %]: [% Data.SolutionTimeWorkingTime | html %]" class="[% Data.SolutionTimeClass | html %]">[% Data.SolutionTimeHuman | html %] / [% Data.SolutionTimeDestinationDate | Localize("TimeShort") %]</div>
+#[% RenderBlockEnd("SolutionTime") %]
+#                        </td>
+# ---
                     </tr>
                 </tbody>
             </table>

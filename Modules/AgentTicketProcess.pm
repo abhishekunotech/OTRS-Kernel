@@ -1,6 +1,8 @@
 # --
 # Copyright (C) 2001-2017 OTRS AG, http://otrs.com/
 # --
+# $origin: otrs - 1ef2afa76d6030b6a88003d6785a67fa58c75a6f - Kernel/Modules/AgentTicketProcess.pm
+# --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
@@ -678,6 +680,41 @@ sub _RenderAjax {
             my $Data = $Self->_GetPriorities(
                 %{ $Param{GetParam} },
             );
+# ---
+# ITSMIncidentProblemManagement
+# ---
+            # check if priority needs to be recalculated
+            if (
+                ( $Param{GetParam}->{ElementChanged} eq 'ServiceID'
+                || $Param{GetParam}->{ElementChanged} eq 'DynamicField_ITSMImpact'
+                )
+                && $Param{GetParam}->{ServiceID}
+                && $Param{GetParam}->{DynamicField_ITSMImpact}
+                && $Param{GetParam}->{DynamicField_ITSMCriticality}
+            ) {
+
+                # calculate priority from the CIP matrix
+                my $PriorityIDFromImpact = $Kernel::OM->Get('Kernel::System::ITSMCIPAllocate')->PriorityAllocationGet(
+                    Criticality => $Param{GetParam}->{DynamicField_ITSMCriticality},
+                    Impact      => $Param{GetParam}->{DynamicField_ITSMImpact},
+                );
+
+                # add Priority to the JSONCollector
+                push(
+                    @JSONCollector,
+                    {
+                        Name        => $Self->{NameToID}{$CurrentField},
+                        Data        => $Data,
+                        SelectedID  => $PriorityIDFromImpact,
+                        Translation => 1,
+                        Max         => 100,
+                    },
+                );
+                $FieldsProcessed{ $Self->{NameToID}{$CurrentField} } = 1;
+
+                next DIALOGFIELD;
+            }
+# ---
 
             # add Priority to the JSONCollector
             push(
@@ -969,6 +1006,22 @@ sub _GetParam {
                 ParamObject        => $ParamObject,
                 LayoutObject       => $LayoutObject,
             );
+# ---
+# ITSMIncidentProblemManagement
+# ---
+            # set the criticality from the service
+            if ( $DynamicFieldName eq 'ITSMCriticality' && $ParamObject->GetParam( Param => 'ServiceID' ) ) {
+
+                # get service
+                my %Service = $Kernel::OM->Get('Kernel::System::Service')->ServiceGet(
+                    ServiceID => $ParamObject->GetParam( Param => 'ServiceID' ),
+                    UserID    => $Self->{UserID},
+                );
+
+                # set the criticality
+                $Value = $Service{Criticality};
+            }
+# ---
 
             # If we got a submitted param, take it and next out
             if (
@@ -4361,6 +4414,14 @@ sub _StoreActivityDialog {
                 # if we have an invisible field, use config's default value
                 if ( $ActivityDialog->{Fields}->{$CurrentField}->{Display} == 0 ) {
                     $TicketParam{$CurrentField} = $ActivityDialog->{Fields}->{$CurrentField}->{DefaultValue} // '';
+# ---
+# ITSMIncidentProblemManagement
+# ---
+                    # make sure ITSMCriticality is stored, even if this field is invisible
+                    if ( $DynamicFieldName eq 'ITSMCriticality' ) {
+                        $TicketParam{$CurrentField} = $Param{GetParam}->{DynamicField_ITSMCriticality} || $TicketParam{$CurrentField};
+                    }
+# ---
                 }
 
                 # only validate visible fields

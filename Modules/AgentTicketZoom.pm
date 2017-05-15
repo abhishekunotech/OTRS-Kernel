@@ -1,6 +1,8 @@
 # --
 # Copyright (C) 2001-2017 OTRS AG, http://otrs.com/
 # --
+# $origin: otrs - 35b033a10de0da4955e767c1623f228ac33c881c - Kernel/Modules/AgentTicketZoom.pm
+# --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
@@ -1185,10 +1187,38 @@ sub MaskAgentZoom {
 
     # ticket service
     if ( $ConfigObject->Get('Ticket::Service') && $Ticket{Service} ) {
+# ---
+# ITSMIncidentProblemManagement
+# ---
+#        $LayoutObject->Block(
+#            Name => 'Service',
+#            Data => { %Ticket, %AclAction },
+#        );
+
+        # set incident signal
+        my %InciSignals = (
+            operational => 'greenled',
+            warning     => 'yellowled',
+            incident    => 'redled',
+        );
+
+        # get service data
+        my %Service = $Kernel::OM->Get('Kernel::System::Service')->ServiceGet(
+            IncidentState => 1,
+            ServiceID     => $Ticket{ServiceID},
+            UserID        => $Self->{UserID},
+        );
+
         $LayoutObject->Block(
             Name => 'Service',
-            Data => { %Ticket, %AclAction },
+            Data => {
+                %Ticket,
+                %Service,
+                CurInciSignal => $InciSignals{ $Service{CurInciStateType} },
+                %AclAction,
+            },
         );
+# ---
         if ( $Ticket{SLA} ) {
             $LayoutObject->Block(
                 Name => 'SLA',
@@ -1560,6 +1590,23 @@ sub MaskAgentZoom {
         FieldFilter => $DynamicFieldFilter || {},
     );
     my $DynamicFieldBackendObject = $Kernel::OM->Get('Kernel::System::DynamicField::Backend');
+# ---
+# ITSMIncidentProblemManagement
+# ---
+    my @IndividualDynamicFields;
+
+    # lookup hash for all ITSM dynamic fields
+    my %ITSMDynamicFields = (
+        ITSMCriticality       => 1,
+        ITSMImpact            => 1,
+        ITSMReviewRequired    => 1,
+        ITSMDecisionResult    => 1,
+        ITSMRepairStartTime   => 1,
+        ITSMRecoveryStartTime => 1,
+        ITSMDecisionDate      => 1,
+        ITSMDueDate           => 1,
+    );
+# ---
 
     # to store dynamic fields to be displayed in the process widget and in the sidebar
     my ( @FieldsWidget, @FieldsSidebar );
@@ -1570,6 +1617,15 @@ sub MaskAgentZoom {
         next DYNAMICFIELD if !IsHashRefWithData($DynamicFieldConfig);
         next DYNAMICFIELD if !defined $Ticket{ 'DynamicField_' . $DynamicFieldConfig->{Name} };
         next DYNAMICFIELD if $Ticket{ 'DynamicField_' . $DynamicFieldConfig->{Name} } eq '';
+# ---
+# ITSMIncidentProblemManagement
+# ---
+        # remember dynamic fields that should be displayed individually
+        if ( $ITSMDynamicFields{ $DynamicFieldConfig->{Name} } ) {
+            push @IndividualDynamicFields, $DynamicFieldConfig;
+            next DYNAMICFIELD;
+        }
+# ---
 
         # use translation here to be able to reduce the character length in the template
         my $Label = $LayoutObject->{LanguageObject}->Translate( $DynamicFieldConfig->{Label} );
@@ -1783,6 +1839,53 @@ sub MaskAgentZoom {
             }
         }
     }
+# ---
+# ITSMIncidentProblemManagement
+# ---
+    # cycle trough dynamic fields that should be displayed individually
+    DYNAMICFIELD:
+    for my $DynamicFieldConfig ( @IndividualDynamicFields ) {
+
+        # get print string for this dynamic field
+        my $ValueStrg = $DynamicFieldBackendObject->DisplayValueRender(
+            DynamicFieldConfig => $DynamicFieldConfig,
+            Value              => $Ticket{ 'DynamicField_' . $DynamicFieldConfig->{Name} },
+            ValueMaxChars      => 25,
+            LayoutObject       => $LayoutObject,
+        );
+
+        my $Label = $DynamicFieldConfig->{Label};
+
+        # example of dynamic fields order customization
+        $LayoutObject->Block(
+            Name => 'TicketDynamicField_' . $DynamicFieldConfig->{Name},
+            Data => {
+                Label => $Label,
+            },
+        );
+
+        if ( $ValueStrg->{Link} ) {
+            $LayoutObject->Block(
+                Name => 'TicketDynamicField_' . $DynamicFieldConfig->{Name} . '_Link',
+                Data => {
+                    Value                       => $ValueStrg->{Value},
+                    Title                       => $ValueStrg->{Title},
+                    Link                        => $ValueStrg->{Link},
+                    $DynamicFieldConfig->{Name} => $ValueStrg->{Title},
+                },
+            );
+        }
+        else {
+            $LayoutObject->Block(
+                Name => 'TicketDynamicField_' . $DynamicFieldConfig->{Name} . '_Plain',
+                Data => {
+                    Value => $ValueStrg->{Value},
+                    Title => $ValueStrg->{Title},
+                },
+            );
+        }
+    }
+# ---
 
     # output dynamic fields in the sidebar
     for my $Field (@FieldsSidebar) {

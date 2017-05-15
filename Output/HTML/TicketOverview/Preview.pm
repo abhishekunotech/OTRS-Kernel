@@ -1,6 +1,8 @@
 # --
 # Copyright (C) 2001-2017 OTRS AG, http://otrs.com/
 # --
+# $origin: otrs - 7113936e4ca6a142762b5f1628d5ec1ba16872b3 - Kernel/Output/HTML/TicketOverview/Preview.pm
+# --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
@@ -356,7 +358,12 @@ sub _Show {
 
     my %Ticket = $TicketObject->TicketGet(
         TicketID      => $Param{TicketID},
-        DynamicFields => 0,
+# ---
+# ITSMIncidentProblemManagement
+# ---
+#        DynamicFields => 0,
+        DynamicFields => 1,
+# ---
     );
 
     # Fallback for tickets without articles: get at least basic ticket data
@@ -375,6 +382,13 @@ sub _Show {
         UserID => $Article{OwnerID},
     );
     %Article = ( %UserInfo, %Article );
+# ---
+# ITSMIncidentProblemManagement
+# ---
+    # set criticality and impact
+    $Ticket{Criticality} = $Ticket{DynamicField_ITSMCriticality} || '-';
+    $Ticket{Impact}      = $Ticket{DynamicField_ITSMImpact}      || '-';
+# ---
 
     # create human age
     $Article{Age} = $LayoutObject->CustomerAge(
@@ -522,6 +536,11 @@ sub _Show {
         Name => 'DocumentContent',
         Data => {
             %Param,
+# ---
+# ITSMIncidentProblemManagement
+# ---
+            %Ticket,
+# ---
             %Article,
             Class             => 'ArticleCount' . $ArticleCount,
             AdditionalClasses => $AdditionalClasses,

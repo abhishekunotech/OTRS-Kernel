@@ -1,6 +1,8 @@
 # --
 # Copyright (C) 2001-2017 OTRS AG, http://otrs.com/
 # --
+# $origin: otrs - 64ce969a74d7e8cc92b94a9340003eb191419256 - Kernel/Modules/AgentTicketPhone.pm
+# --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
@@ -142,6 +144,12 @@ sub Run {
 
     # get Dynamic fields form ParamObject
     my %DynamicFieldValues;
+# ---
+# ITSMIncidentProblemManagement
+# ---
+    # to store the reference to the dynamic field for the impact
+    my $ImpactDynamicFieldConfig;
+# ---
 
     # get needed objects
     my $LayoutObject              = $Kernel::OM->Get('Kernel::Output::HTML::Layout');
@@ -165,6 +173,16 @@ sub Run {
             ParamObject        => $ParamObject,
             LayoutObject       => $LayoutObject,
         );
+# ---
+# ITSMIncidentProblemManagement
+# ---
+        # impact field was found
+        if ( $DynamicFieldConfig->{Name} eq 'ITSMImpact' ) {
+
+            # store the reference to the impact field
+            $ImpactDynamicFieldConfig = $DynamicFieldConfig;
+        }
+# ---
     }
 
     # convert dynamic field values into a structure for ACLs
@@ -177,6 +195,73 @@ sub Run {
         $DynamicFieldACLParameters{ 'DynamicField_' . $DynamicField } = $DynamicFieldValues{$DynamicField};
     }
     $GetParam{DynamicField} = \%DynamicFieldACLParameters;
+# ---
+# ITSMIncidentProblemManagement
+# ---
+    # get needed stuff
+    $GetParam{DynamicField_ITSMImpact} = $ParamObject->GetParam(Param => 'DynamicField_ITSMImpact');
+    $GetParam{PriorityRC}              = $ParamObject->GetParam(Param => 'PriorityRC');
+    $GetParam{ElementChanged}          = $ParamObject->GetParam(Param => 'ElementChanged') || '';
+
+    # check if priority needs to be recalculated
+    if ( $GetParam{ElementChanged} eq 'ServiceID' || $GetParam{ElementChanged} eq 'DynamicField_ITSMImpact' ) {
+        $GetParam{PriorityRC} = 1;
+    }
+
+    my %Service;
+    # service was selected
+    if ( $GetParam{ServiceID} ) {
+
+        # get service
+        %Service = $Kernel::OM->Get('Kernel::System::Service')->ServiceGet(
+            ServiceID     => $GetParam{ServiceID},
+            IncidentState => $Config->{ShowIncidentState} || 0,
+            UserID        => $Self->{UserID},
+        );
+
+        # recalculate impact if impact is not set until now
+        if ( !$GetParam{DynamicField_ITSMImpact} && $GetParam{ElementChanged} ne 'DynamicField_ITSMImpact' ) {
+
+            # get default selection
+            my $DefaultSelection = $ImpactDynamicFieldConfig->{Config}->{DefaultValue};
+
+            if ($DefaultSelection) {
+
+                # get default impact
+                $GetParam{DynamicField_ITSMImpact} = $DefaultSelection;
+                $GetParam{PriorityRC} = 1;
+            }
+        }
+
+        # recalculate priority
+        if ( $GetParam{PriorityRC} && $GetParam{DynamicField_ITSMImpact} ) {
+
+            # get priority
+            $GetParam{PriorityIDFromImpact} = $Kernel::OM->Get('Kernel::System::ITSMCIPAllocate')->PriorityAllocationGet(
+                Criticality => $Service{Criticality},
+                Impact      => $GetParam{DynamicField_ITSMImpact},
+            );
+        }
+
+        if ( $GetParam{PriorityIDFromImpact} ) {
+            $GetParam{PriorityID} = $GetParam{PriorityIDFromImpact};
+        }
+    }
+
+    # no service was selected
+    else {
+
+        # do not show the default selection
+        $ImpactDynamicFieldConfig->{Config}->{DefaultValue} = '';
+
+        # show only the empty selection
+        $ImpactDynamicFieldConfig->{Config}->{PossibleValues} = {};
+        $GetParam{DynamicField_ITSMImpact} = '';
+    }
+
+    # set the selected impact
+    $DynamicFieldValues{ITSMImpact} = $GetParam{DynamicField_ITSMImpact};
+# ---
 
     # transform pending time, time stamp based on user time zone
     if (
@@ -1276,6 +1361,33 @@ sub Run {
             );
         }
 
+# ---
+# ITSMIncidentProblemManagement
+# ---
+        if ( $GetParam{ServiceID} && $Service{Criticality} ) {
+
+            # get config for criticality dynamic field
+            my $CriticalityDynamicFieldConfig = $Kernel::OM->Get('Kernel::System::DynamicField')->DynamicFieldGet(
+                Name => 'ITSMCriticality',
+            );
+
+            # get possible values for criticality
+            my $CriticalityPossibleValues = $DynamicFieldBackendObject->PossibleValuesGet(
+                DynamicFieldConfig => $CriticalityDynamicFieldConfig,
+            );
+
+            # reverse the list to find out the key
+            my %ReverseCriticalityPossibleValues = reverse %{ $CriticalityPossibleValues };
+
+            # set the criticality
+            $DynamicFieldBackendObject->ValueSet(
+                DynamicFieldConfig => $CriticalityDynamicFieldConfig,
+                ObjectID           => $TicketID,
+                Value              => $ReverseCriticalityPossibleValues{ $Service{Criticality} },
+                UserID             => $Self->{UserID},
+            );
+        }
+# ---
         # get pre loaded attachment
         my @AttachmentData = $UploadCacheObject->FormIDGetAllFilesData(
             FormID => $Self->{FormID},
@@ -1639,6 +1751,71 @@ sub Run {
             );
         }
 
+# ---
+# ITSMIncidentProblemManagement
+# ---
+            # get the temporarily links
+            my $TempLinkList = $Kernel::OM->Get('Kernel::System::LinkObject')->LinkList(
+                Object => 'Ticket',
+                Key    => $Self->{FormID},
+                State  => 'Temporary',
+                UserID => $Self->{UserID},
+            );
+
+            if ( $TempLinkList && ref $TempLinkList eq 'HASH' && %{$TempLinkList} ) {
+
+                for my $TargetObjectOrg ( sort keys %{$TempLinkList} ) {
+
+                    # extract typelist
+                    my $TypeList = $TempLinkList->{$TargetObjectOrg};
+
+                    for my $Type ( sort keys %{$TypeList} ) {
+
+                        # extract direction list
+                        my $DirectionList = $TypeList->{$Type};
+
+                        for my $Direction ( sort keys %{$DirectionList} ) {
+
+                            for my $TargetKeyOrg ( sort keys %{ $DirectionList->{$Direction} } ) {
+
+                                # delete the temp link
+                                $Kernel::OM->Get('Kernel::System::LinkObject')->LinkDelete(
+                                    Object1 => 'Ticket',
+                                    Key1    => $Self->{FormID},
+                                    Object2 => $TargetObjectOrg,
+                                    Key2    => $TargetKeyOrg,
+                                    Type    => $Type,
+                                    UserID  => $Self->{UserID},
+                                );
+
+                                my $SourceObject = $TargetObjectOrg;
+                                my $SourceKey    = $TargetKeyOrg;
+                                my $TargetObject = 'Ticket';
+                                my $TargetKey    = $TicketID;
+
+                                if ( $Direction eq 'Target' ) {
+                                    $SourceObject = 'Ticket';
+                                    $SourceKey    = $TicketID;
+                                    $TargetObject = $TargetObjectOrg;
+                                    $TargetKey    = $TargetKeyOrg;
+                                }
+
+                                # add the permanently link
+                                my $Success = $Kernel::OM->Get('Kernel::System::LinkObject')->LinkAdd(
+                                    SourceObject => $SourceObject,
+                                    SourceKey    => $SourceKey,
+                                    TargetObject => $TargetObject,
+                                    TargetKey    => $TargetKey,
+                                    Type         => $Type,
+                                    State        => 'Valid',
+                                    UserID       => $Self->{UserID},
+                                );
+                            }
+                        }
+                    }
+                }
+            }
+# ---
         # get redirect screen
         my $NextScreen = $Self->{UserCreateNextMask} || 'AgentTicketPhone';
 
@@ -1647,6 +1824,50 @@ sub Run {
             OP => "Action=$NextScreen;Subaction=Created;TicketID=$TicketID",
         );
     }
+# ---
+# ITSMIncidentProblemManagement
+# ---
+    elsif ( $Self->{Subaction} eq 'GetServiceIncidentState' ) {
+
+        # get the selected service id
+        my $ServiceID = $ParamObject->GetParam( Param => 'ServiceID' ) || '';
+
+        # build empty response hash
+        my %Response = (
+            CurInciSignal => '',
+            CurInciState  => '&nbsp',
+        );
+
+        # only if service id is selected
+        if ( $ServiceID && $Config->{ShowIncidentState} ) {
+
+            # set incident signal
+            my %InciSignals = (
+                operational => 'greenled',
+                warning     => 'yellowled',
+                incident    => 'redled',
+            );
+
+            # build the response
+            %Response = (
+                CurInciSignal => $InciSignals{ $Service{CurInciStateType} },
+                CurInciState  => $LayoutObject->{LanguageObject}->Translate($Service{CurInciState}),
+            );
+        }
+
+        # encode response to JSON
+        my $JSON = $LayoutObject->JSONEncode(
+            Data => \%Response,
+        );
+
+        return $LayoutObject->Attachment(
+            ContentType => 'application/json; charset=' . $LayoutObject->{Charset},
+            Content     => $JSON,
+            Type        => 'inline',
+            NoCache     => 1,
+        );
+    }
+# ---
     elsif ( $Self->{Subaction} eq 'AJAXUpdate' ) {
         my $Dest           = $ParamObject->GetParam( Param => 'Dest' ) || '';
         my $CustomerUser   = $ParamObject->GetParam( Param => 'SelectedCustomerUser' );
@@ -2519,6 +2740,13 @@ sub _MaskPhoneNew {
             );
         }
     }
+# ---
+# ITSMIncidentProblemManagement
+# ---
+    if ( $Param{PriorityIDFromImpact} ) {
+        $Param{PriorityID} = $Param{PriorityIDFromImpact};
+    }
+# ---
 
     # check if exists create templates regardless the queue
     my %StandardTemplates = $Kernel::OM->Get('Kernel::System::StandardTemplate')->StandardTemplateList(
@@ -2595,6 +2823,11 @@ sub _MaskPhoneNew {
             Data => \%Param,
         );
     }
+# ---
+# ITSMIncidentProblemManagement
+# ---
+    my @IndividualDynamicFields;
+# ---
 
     # Dynamic fields
     # cycle trough the activated Dynamic Fields for this screen
@@ -2610,6 +2843,15 @@ sub _MaskPhoneNew {
         # get the html strings form $Param
         my $DynamicFieldHTML = $Param{DynamicFieldHTML}->{ $DynamicFieldConfig->{Name} };
 
+# ---
+# ITSMIncidentProblemManagement
+# ---
+        # remember dynamic fields that should be displayed individually
+        if ( $DynamicFieldConfig->{Name} eq 'ITSMImpact' ) {
+            push @IndividualDynamicFields, $DynamicFieldConfig;
+            next DYNAMICFIELD;
+        }
+# ---
         $LayoutObject->Block(
             Name => 'DynamicField',
             Data => {
@@ -2629,6 +2871,27 @@ sub _MaskPhoneNew {
             },
         );
     }
+# ---
+# ITSMIncidentProblemManagement
+# ---
+    # cycle trough dynamic fields that should be displayed individually
+    DYNAMICFIELD:
+    for my $DynamicFieldConfig ( @IndividualDynamicFields ) {
+
+        # get the html strings form $Param
+        my $DynamicFieldHTML = $Param{DynamicFieldHTML}->{ $DynamicFieldConfig->{Name} };
+
+        # example of dynamic fields order customization
+        $LayoutObject->Block(
+            Name => 'DynamicField_' . $DynamicFieldConfig->{Name},
+            Data => {
+                Name  => $DynamicFieldConfig->{Name},
+                Label => $DynamicFieldHTML->{Label},
+                Field => $DynamicFieldHTML->{Field},
+            },
+        );
+    }
+# ---
 
     # show time accounting box
     if ( $ConfigObject->Get('Ticket::Frontend::AccountTime') ) {
@@ -2705,6 +2968,23 @@ sub _MaskPhoneNew {
             },
         );
     }
+# ---
+# ITSMIncidentProblemManagement
+# ---
+    # make sure to show the options block so that the "Link Ticket" option is shown
+    # even if spellchecker and OptionCustomer is turned off
+    if ( !$ShownOptionsBlock ) {
+        $LayoutObject->Block(
+            Name => 'TicketOptions',
+            Data => {
+                %Param,
+            },
+        );
+
+        # set flag to "true" in order to prevent calling the Options block again
+        $ShownOptionsBlock = 1;
+    }
+# ---
 
     # show attachments
     ATTACHMENT:

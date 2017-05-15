@@ -1,6 +1,8 @@
 # --
 # Copyright (C) 2001-2017 OTRS AG, http://otrs.com/
 # --
+# $origin: otrs - be4010f3365da552dcfd079c36ad31cc90e06c32 - Kernel/System/Service/PreferencesDB.pm
+# --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
@@ -97,9 +99,13 @@ sub ServicePreferencesGet {
             return;
         }
     }
-
-    # check if service preferences are available
-    return if !$Kernel::OM->Get('Kernel::Config')->Get('ServicePreferences');
+# ---
+# ITSMConfigurationManagement
+# ---
+#
+#    # check if service preferences are available
+#    return if !$Kernel::OM->Get('Kernel::Config')->Get('ServicePreferences');
+# ---
 
     # read cache
     my $Cache = $Kernel::OM->Get('Kernel::System::Cache')->Get(
