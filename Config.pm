@@ -29,7 +29,7 @@ sub Load {
     # ---------------------------------------------------- #
 
     # The database host
-    $Self->{'DatabaseHost'} = '172.17.0.4';
+    $Self->{'DatabaseHost'} = '172.17.0.3';
 
     # The database name
     $Self->{'Database'} = "otrs";
