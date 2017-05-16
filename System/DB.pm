@@ -43,7 +43,7 @@ All database functions to connect/insert/update/delete/... to a database.
 
 =item new()
 
-create database object, with database connect..
+Ccreate database object, with database connect..
 Usually you do not use it directly, instead use:
 
     use Kernel::System::ObjectManager;
