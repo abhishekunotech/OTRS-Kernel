@@ -142,6 +142,184 @@
 # an http request to the TicketZoom window. It sends the download request to this iframe instead.
 # Sending the download request to the main window would lead to an alert message about leaving the page
 # if at the same time a popup window (e.g. for a ticket answer) is opened.
+
+
+		<section class="tkt-info">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4 col-sm-4 col-xs-5">
+						<h4>Ticket Information</h4>
+						<div class="tkt-info-row row">
+							<div class="col-md-6 col-sm-6 col-xs-12">
+								<label>Type</label>
+								<label>Incident</label>
+							</div>
+							<div class="col-md-6 col-sm-6 col-xs-12">
+								<label>Issue</label>
+								<label>Idea CommLink Down</label>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="tkt-info-row row">
+							<div class="col-md-6 col-sm-6 col-xs-12">
+								<label>Created By</label>
+								<label>Yazad Balsara</label>
+							</div>
+							<div class="col-md-6 col-sm-6 col-xs-12">
+								<label>Created on</label>
+								<label>15-04-2017 11:44pm</label>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="tkt-info-row row">
+							<div class="col-md-6 col-sm-6 col-xs-12">
+								<label>Ticket Age</label>
+								<label>10 hours 10 minutes</label>
+							</div>
+							<div class="col-md-6 col-sm-6 col-xs-12">
+								<label>Priority</label>
+								<label>3 Normal</label>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="tkt-info-row row">
+							<div class="col-md-6 col-sm-6 col-xs-12">
+								<label>Owner</label>
+								<label>Yazad Balsara</label>
+							</div>
+							<div class="col-md-6 col-sm-6 col-xs-12">
+								<label>Locked</label>
+								<label>Unlock</label>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="tkt-info-row row">
+							<div class="col-md-6 col-sm-6 col-xs-12">
+								<label>SLA Response<span class="red-dot"></span></label>
+								<label>15-04-2017 11:44pm</label>
+							</div>
+							<div class="col-md-6 col-sm-6 col-xs-12">
+								<label>SLA Resolve<span class="green-dot"></span></label>
+								<label>15-04-2017 11:44pm</label>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+					<div class="col-md-7 col-sm-7 col-xs-7 col-md-offset-1 col-sm-offset-1">
+						<div class="row">
+							<div class="col-sm-5 col-md-5 col-xs-12 customer-info" style="border-right:1px solid #f1f0f0;">
+								<h4>Customer Information</h4>
+								<div class="">
+									<div class="tkt-info-row">
+										<h6>Customer User</h6>
+										<h3 class="customer-name">Wil Smith</h3>
+										<a href="javascript:void(0)" class="detail-arrow">View Details 
+											<span class="link-arrow-right"></span>
+										</a>
+									</div>
+
+									<div class="tkt-info-row row">
+										<div class="col-md-6 col-sm-6 col-xs-12">
+											<label>First name</label>
+											<label>Krishna Murthy </label>
+										</div>
+										<div class="col-md-6 col-sm-6 col-xs-12">
+											<label>Last name</label>
+											<label>Subramanian</label>
+										</div>
+										<div class="clearfix"></div>
+									</div>
+									<div class="tkt-info-row row">
+										<div class="col-md-6 col-sm-6 col-xs-12">
+											<label>Username</label>
+											<label>YazadBalsara</label>
+										</div>
+										<div class="col-md-6 col-sm-6 col-xs-12">
+											<label>Linked CI</label>
+											<label><a href="#">Commm1234</a></label>
+										</div>
+										<div class="clearfix"></div>
+									</div>
+									<div class="tkt-info-row row">
+										<div class="col-md-6 col-sm-6 col-xs-12">
+											<label>Email</label>
+											<label>Krishnamurthy_002@gmail.com</label>
+										</div>
+
+										<div class="clearfix"></div>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-7 col-md-7 col-xs-12 other-dtl">
+								<div class="" style="padding:0 20px;">
+									<h4>Other Details</h4> 
+									<div class="tkt-info-row row other-details">
+										<div class="col-md-8 col-sm-8 col-xs-12">
+											<label>Assigned to</label>
+											<div id="dd" class="wrapper-dropdown-1" tabindex="1">
+												<span>Paul Anderson(Idea Vendor)</span>
+												<ul class="dropdown">
+													<li><a href="#">Paul Anderson(Idea Vendor)</a></li>
+													<li><a href="#">Paul Anderson(Vodafone Vendor)</a></li>
+												</ul>
+											</div>
+										</div>
+										<div class="col-md-4 col-sm-4 col-xs-12 ">
+											<label>State</label>
+											<div id="state" class="wrapper-dropdown-1" tabindex="1">
+												<span>Open</span>
+												<ul class="dropdown">
+													<li><a href="#">Open</a></li>
+													<li><a href="#">Open</a></li>
+												</ul>
+											</div>
+										</div>
+									</div>   
+									<div class="tkt-info-row row  other-details">
+
+										<div class="col-md-6 col-sm-6 col-xs-6">
+											<label>priority</label>
+											<div id="priority" class="wrapper-dropdown-1" tabindex="1">
+												<span>priority</span>
+												<ul class="dropdown">
+													<li><a href="#">P1</a></li>
+													<li><a href="#">P2</a></li>
+												</ul>
+											</div>
+										</div>
+
+										<div class="col-md-6 col-sm-6 col-xs-6">
+											<label>Severity</label>
+											<div id="Severity" class="wrapper-dropdown-1" tabindex="1">
+												<span>High</span>
+												<ul class="dropdown">
+													<li><a href="#">High</a></li>
+													<li><a href="#">Low</a></li>
+												</ul>
+											</div>
+										</div>
+										<a href="javascript:void(0)" class="add-btn">+</a>
+									</div>
+									<div class="tkt-info-row row  other-details">
+										<div class="col-md-12 col-sm-12 col-xs-12">
+											<label>Queue</label>
+											<div id="network" class="wrapper-dropdown-1" tabindex="1">
+												<span>Network > </span>
+												<ul class="dropdown">
+													<li><a href="#">Maintainance</a></li>
+													<li><a href="#">Maintainance</a></li>
+												</ul>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>    
+							<div class="clearfix"></div>
+						</div>    
+					</div>
+				</div>    
+			</div>
+		</section>
     <iframe src="about:blank" width="0" height="0" name="AttachmentWindow" id="AttachmentWindow"></iframe>
 
     <div class="LayoutFixedSidebar SidebarLast">
