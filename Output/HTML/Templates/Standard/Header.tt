@@ -12,7 +12,72 @@
 [% InsertTemplate("Copyright.tt") %]
 [% InsertTemplate("HTMLHead.tt") %]
 <body class="[% Data.BodyClass | html %]">
+
+
+#--
+<header>
+		<section class="container">
+			<div class="hd-preference">
+				<div class="row">
+					<!--<div class="col-md-2 col-sm-2 col-xs-3 logo-block">
+						<a href="javascript:void(0)"><img src="assets/img/logo.png" alt="HAWK" title="HAWK"></a>
+					</div>-->
+					<div class="col-md-10 col-sm-10 col-xs-9">
+
+						<!-- user preferences here -->
+						<div class="user-pref-view pull-right">
+							<a href="javascript:void(0)" class="notify">
+								<img src="assets/img/icons/mail.png" alt="" title="">
+								<span>2</span>
+							</a>
+							<a href="javascript:void(0)">
+								<img src="assets/img/icons/settings.png" alt="" title="">
+							</a>
+							<a href="javascript:void(0)" class="authentication dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<img src="assets/img/icons/authentication.png" alt="" title="">
+							</a>
+							<ul class="dropdown-menu" aria-labelledby="dLabel">
+								<li>Drop down</li>
+								<li>Drop down</li>
+								<li>Drop down</li>
+								<li>Drop down</li>
+								<li>Drop down</li>
+							</ul>
+						</div>
+						<!-- user preferences ends -->
+						<!-- search starts here -->
+						<div class="search-block col-md-5 col-sm-5 col-xs-5 pull-right">
+							<a href="javascript:void(0)">
+								<span></span>
+							</a>
+							<input type="search" value="" placeholder="Please search here">
+						</div>
+						<!-- search ends here -->
+					</div>
+				</div>
+			</div>
+			<!-- Nav -->
+			<ul class="nav">
+				<li class="active"><a href="javascript:void(0)">dashboard</a></li>
+				<li><a href="javascript:void(0)">customers</a></li>
+				<li><a href="javascript:void(0)">tickets</a></li>
+				<li><a href="javascript:void(0)">faqs</a></li>
+				<li><a href="javascript:void(0)">services</a></li>
+				<li><a href="javascript:void(0)">cmdb</a></li>
+				<li><a href="javascript:void(0)">changes</a></li>
+				<li><a href="javascript:void(0)">time accounting</a></li>
+				<li><a href="javascript:void(0)">surveys</a></li>
+				<li><a href="javascript:void(0)">reports</a></li>
+				<li><a href="javascript:void(0)">admin</a></li>
+			</ul>
+			<!-- Nav ends -->
+		</section>
+	</header>
+#--
+
+
     <a name="Top"></a>
+	
     <div id="AppWrapper">
     <div id="Header" class="ARIARoleBanner">
         <div id="Logo"></div>
