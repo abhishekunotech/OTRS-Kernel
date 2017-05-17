@@ -41,6 +41,12 @@
 
     <link rel="stylesheet" type="text/css" href="[% Config("Frontend::WebPath") %]skins/Agent/default/css/thirdparty/ui-theme/jquery-ui.css" />
 
+	<link rel="stylesheet" type="text/css" href="[% Config("Frontend::WebPath") %]skins/Agent/default/css/thirdparty/ui-theme/main.css" />
+	<link rel="stylesheet" type="text/css" href="[% Config("Frontend::WebPath") %]skins/Agent/default/css/thirdparty/ui-theme/bootstrap-min.css" />
+	
+	<script type="text/javascript" src="[% Config("Frontend::WebPath") %]skins/Agent/default/css/thirdparty/ui-theme/bootstrap-min.js"></script>
+	
+	
 [% RenderBlockStart("HeaderLogoCSS") %]
     <style type="text/css">
         #Header #Logo {
